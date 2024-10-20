@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="fb_Funciones_Paro" Id="{873b6060-faa3-41dd-8f49-586457bbf2a6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK fb_Funciones_Paro
+VAR_INPUT
+	Fotocelula: BOOL;
+	Tiempo_Offset_MParo:INT;//Tiempo a partir del cual empieza a contar como paro
+	TiempoFiltradoFotocel:TIME;
+	Pul_Reset_Cnt_Piez : BOOL;
+	S_Justi_Paro_Ftc:STRING;//Justificación del paro	
+END_VAR
+VAR_OUTPUT	
+	tFiltro_up_Ftc:ton;//Temporizador de filtro parpadeos Up	
+	tFiltro_down_Ftc:ton;//Temporizador de filtro parpadeos Down	
+	MParo_Ftc:BOOL;//Marca de bit de linea parada en este momento	
+	M_SinParo_Ftc:BOOL;//Marca de la linea sin paro (producción constante)	 
+	H_FinParo_Ftc:STRING;//Variable de la hora de fin del paro	
+	t_DetUp_Pieza:TIMESTRUCT;//Fecha detección positiva de pieza para tiempo entre piezas
+	tH_FinParo_Ftc:STRING;//Variable de la hora de fin del paro tipo time	
+	Min_Parado_Ftc:INT;//Minutos actuales parado	
+	t_Entre_Piez_Ftc:TIME;//Minutos entre piezas 	
+	M_Delay_Esc_Ftc:BOOL;//Delay escritura 	
+	Delay_Esc_Ftc:ton;// tiempo Delay escritura 
+	_StrFuncParoEnviar:StrFuncParoEnviar;
+END_VAR
+VAR RETAIN
+	Cont_Piezas_Ftc:INT;	//Contador de piezas 				
+	t_Entr_Piez_Ante_Ftc:TIME;//Minutos entre piezas tabla anterior 		
+	tH_InParo_Ftc:STRING;//Variable de la hora de inicio del paro tipo STRING 
+	t_InParo_Ftc_Entera:STRING;
+	t_InParo_Ftc_Ent_Syst:TIMESTRUCT;	 
+	H_InParo_Ftc:STRING;//Variable de la hora de inicio del paro
+END_VAR
+VAR
+	i:INT;
+	Temporizador1min:ton;
+	FlancoUpFtc:R_TRIG;
+	FlancoDoFtc:R_TRIG;
+	FlancoFiltUpFtc:R_TRIG;
+	FlancoFiltDoFtc:R_TRIG;
+	tonTempON:ton;
+	tonTempOFF:ton;
+	tHoraReal:TIME;
+	tHora:TIME;
+	sHora: STRING(255);
+	ResetContPiez:BOOL;
+	Cont:INT;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+	//Llamada a los temporizadores Declaración de tiempos
+		tFiltro_up_Ftc(PT:=TiempoFiltradoFotocel); 
+		tFiltro_down_Ftc(PT:=TiempoFiltradoFotocel);
+		Delay_Esc_Ftc(PT:=T#1S);
+		
+	// Temporizador para empezar a detectar pieza en paro (filtro de parpadeos) Up
+	IF 	Fotocelula OR NOT tFiltro_down_Ftc.Q THEN 
+		tFiltro_up_Ftc.IN:=TRUE;
+		ELSE
+			 tFiltro_up_Ftc.IN:=FALSE;
+	END_IF
+	
+	// Temporizador para empezar a detectar pieza en paro (filtro de parpadeos) Up
+	IF 	NOT Fotocelula THEN 
+		tFiltro_down_Ftc.IN:=TRUE;
+		ELSE
+			 tFiltro_down_Ftc.IN:=FALSE;
+	END_IF
+
+	//Tiempo real parado en minutos
+	IF Temporizador1min.Q THEN 
+		Min_Parado_Ftc:=Min_Parado_Ftc +1;		
+	END_IF
+	
+
+
+//Crea flancos de subida cada vez que el temporizador de cada fotocelula se activa 
+		//Flanco filtro Up ftc
+		FlancoFiltUpFtc(CLK:=tFiltro_up_Ftc.Q);
+		//Flanco filtro Down ftc
+		FlancoFiltDoFtc(CLK:=tFiltro_down_Ftc.Q);	
+		
+//BIT Delay para Restar la hora inicio paro a la hora actual para sacar tiempo entre piezas(Dar tiempo a que el otro plc lea el valor de la variable antes del reset)
+	IF FlancoFiltUpFtc.Q  THEN
+		 M_Delay_Esc_Ftc:= TRUE;			
+	END_IF
+	//Temporizador de retardo reset inicio del paro
+	 	Delay_Esc_Ftc(IN:=M_Delay_Esc_Ftc);
+	//Inserta en fecha inicio paro la hora actual
+	IF Delay_Esc_Ftc.Q THEN
+		Fecha_Inicio_Paro();
+		S_Justi_Paro_Ftc:='.';		
+		Min_Parado_Ftc:= 0;
+		M_Delay_Esc_Ftc:= FALSE;
+	END_IF
+	
+//Contador Piezas
+  IF FlancoFiltUpFtc.Q THEN 
+	  Cont_Piezas_Ftc:=Cont_Piezas_Ftc+1;
+	  Resta_Tiempo_Entre_Piezas();
+	  Fecha_Detec_Up_Pieza();
+  END_IF
+  
+//Reset contador de las piezas
+IF ResetContPiez THEN 
+Reset_cnt_piez(Pul_Reset:=TRUE);  
+  END_IF 
+  
+  
+ //Instanciar todos los metodos que tengan que estar corriendo todo el tiempo y la dirección de sus entradas
+Reset_cnt_piez(Pul_Reset:=Pul_Reset_Cnt_Piez);
+
+//si el paro excede de el tiempo de la variable offset empieza a contar como paro y resetea marca sin paro 
+Mparo_SinParo();
+Temporizador1min(IN:=NOT Temporizador1min.Q , PT:= T#60S, Q=> , ET=> );
+// Enviar constantemente la Fecha a Hora fin de paro 
+Fin_Paro();
+//Estructura de variables que luego de las cuales el PLC maestro leerá toda la información del paro
+aStrFuncParEnviar();]]></ST>
+    </Implementation>
+    <Action Name="aStrFuncParEnviar" Id="{24851889-a132-475f-ba31-aaf74f0c9c17}">
+      <Implementation>
+        <ST><![CDATA[_StrFuncParoEnviar.Cont_Piezas:=Cont_Piezas_Ftc;
+_StrFuncParoEnviar.Fotocelula:=Fotocelula;
+_StrFuncParoEnviar.H_FinParo_Ftc:=H_FinParo_Ftc;
+_StrFuncParoEnviar.H_InParo_Ftc:=H_InParo_Ftc;
+_StrFuncParoEnviar.M_SinParo_Ftc:= M_SinParo_Ftc;
+_StrFuncParoEnviar.Min_Parado_Ftc:= Min_Parado_Ftc;
+_StrFuncParoEnviar.MParo_Ftc:= MParo_Ftc;
+_StrFuncParoEnviar.S_Justi_Paro_Ftc:=S_Justi_Paro_Ftc;
+_StrFuncParoEnviar.t_Entr_Piez_Ante_Ftc:=t_Entr_Piez_Ante_Ftc;
+_StrFuncParoEnviar.t_Entre_Piez_Ftc:=t_Entre_Piez_Ftc;
+_StrFuncParoEnviar.tFiltro_down_Ftc:= tFiltro_down_Ftc.Q;
+_StrFuncParoEnviar.tFiltro_up_Ftc:= tFiltro_up_Ftc.Q;
+]]></ST>
+      </Implementation>
+    </Action>
+    <Method Name="Fecha_Detec_Up_Pieza" Id="{19ee1d4b-6d23-4ab0-a151-d18d72257434}">
+      <Declaration><![CDATA[METHOD Fecha_Detec_Up_Pieza : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[t_DetUp_Pieza:= Fecha_PLC.Fecha_Struct;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Fecha_Inicio_Paro" Id="{1affbb20-1419-4b02-875b-69853988b8b2}">
+      <Declaration><![CDATA[METHOD Fecha_Inicio_Paro
+VAR_INPUT
+END_VAR
+VAR 
+
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+//Envío la fecha entera de inicio paro en formato string  
+t_InParo_Ftc_Entera:=Fecha_PLC.StringDateTime;
+t_InParo_Ftc_Ent_Syst:= Fecha_PLC.Fecha_Struct ;
+//Envío la fecha reducida de inicio paro en formato string para poder verla en HMI 
+tH_InParo_Ftc:= Fecha_PLC.Mes_Dia_Hora_Min_Real;
+H_InParo_Ftc:= Fecha_PLC.Mes_Dia_Hora_Min_Real;
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Fin_Paro" Id="{847d8310-0808-4054-bc72-ee50476447c2}">
+      <Declaration><![CDATA[METHOD Fin_Paro : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+//Envío de la fecha actual completa para luego enviar a la base de datos 
+tH_FinParo_Ftc:= Fecha_PLC.Mes_Dia_Hora_Min_Real;
+//Envío de la fecha actual reducida para mostrarlo en el hmi del maestro
+H_FinParo_Ftc:= Fecha_PLC.Mes_Dia_Hora_Min_Real;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Fin_Produccion" Id="{e446788c-89c7-439d-a8cf-ad8ad26e4bf0}">
+      <Declaration><![CDATA[METHOD Fin_Produccion
+VAR_INPUT
+END_VAR
+
+VAR
+	H: INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+//Se le llama desde un metodo de Datos comunes 
+// Reset de los contadores
+Cont_Piezas_Ftc:=0;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Mparo_SinParo" Id="{a1f6b608-87ec-4d04-8c4a-e772a7b95ca9}">
+      <Declaration><![CDATA[METHOD Mparo_SinParo : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Tiempo_Offset_MParo <= Min_Parado_Ftc THEN
+		MParo_Ftc:=TRUE;
+		M_SinParo_Ftc:=FALSE;	
+	ELSE 
+		MParo_Ftc:=FALSE;
+		M_SinParo_Ftc:=TRUE;	
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Reset_cnt_piez" Id="{5a3a82aa-7210-4714-9ab1-55e39903310d}">
+      <Declaration><![CDATA[METHOD Reset_cnt_piez : BOOL
+VAR_INPUT
+		Pul_Reset:BOOL;
+END_VAR
+VAR 
+
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Pul_Reset THEN 
+	Cont_Piezas_Ftc:=0;
+	Cont:=Cont+1;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Resta_Tiempo_Entre_Piezas" Id="{f6cdbfcd-7ab1-4542-8887-f432efb0a690}">
+      <Declaration><![CDATA[METHOD Resta_Tiempo_Entre_Piezas
+VAR_INPUT 
+END_VAR
+
+VAR
+	Dt_InParo_Entera:DATE_AND_TIME;
+	Time_InParo_Entera:TIME;
+	t_InParo_Ftc_Entera_Temp: TIMESTRUCT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Esta funcion al notar flanco positivo o negativo de la fotocelula 
+//coge la Fecha actual en tipo time y la resta a la Hora inicio paro para sacar cuanto tiempo ha transcurrido entre piezas 
+//No funciona bien si haces el cambio de string a Dt hay que hacerlo desde systemtime to Dt 
+
+//Envío el tiempo entre tablas de la anterior a la variable que le toca 
+t_Entr_Piez_Ante_Ftc:= t_Entre_Piez_Ftc;
+
+
+//La hora de inicio paro entera la pasamos a una variable del metodo para poder trabajar con ella sin modificar la de la FB
+t_InParo_Ftc_Entera_Temp := t_DetUp_Pieza;
+//Convertir la fecha entera inicio de string a dt y después a time 
+Dt_InParo_Entera:= SYSTEMTIME_TO_DT(t_InParo_Ftc_Entera_Temp);
+Time_InParo_Entera:= DT_TO_TIME(Dt_InParo_Entera);
+
+// Resta de la fecha de inicio entera Time menos fecha actual entera time
+t_Entre_Piez_Ftc:= Fecha_PLC.Fecha_Time_PLC - Time_InParo_Entera ;
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="fb_Funciones_Paro">
+      <LineId Id="40" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="53" Count="2" />
+      <LineId Id="146" Count="0" />
+      <LineId Id="56" Count="5" />
+      <LineId Id="145" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="67" Count="17" />
+      <LineId Id="192" Count="0" />
+      <LineId Id="89" Count="19" />
+      <LineId Id="333" Count="1" />
+      <LineId Id="338" Count="1" />
+      <LineId Id="335" Count="2" />
+      <LineId Id="109" Count="4" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="144" Count="0" />
+      <LineId Id="143" Count="0" />
+      <LineId Id="285" Count="0" />
+      <LineId Id="284" Count="0" />
+    </LineIds>
+    <LineIds Name="fb_Funciones_Paro.aStrFuncParEnviar">
+      <LineId Id="1" Count="0" />
+      <LineId Id="3" Count="10" />
+      <LineId Id="15" Count="0" />
+    </LineIds>
+    <LineIds Name="fb_Funciones_Paro.Fecha_Detec_Up_Pieza">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="fb_Funciones_Paro.Fecha_Inicio_Paro">
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="6" Count="0" />
+    </LineIds>
+    <LineIds Name="fb_Funciones_Paro.Fin_Paro">
+      <LineId Id="8" Count="1" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="15" Count="0" />
+    </LineIds>
+    <LineIds Name="fb_Funciones_Paro.Fin_Produccion">
+      <LineId Id="13" Count="1" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="fb_Funciones_Paro.Mparo_SinParo">
+      <LineId Id="10" Count="0" />
+      <LineId Id="6" Count="3" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+    <LineIds Name="fb_Funciones_Paro.Reset_cnt_piez">
+      <LineId Id="5" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="20" Count="0" />
+    </LineIds>
+    <LineIds Name="fb_Funciones_Paro.Resta_Tiempo_Entre_Piezas">
+      <LineId Id="6" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="39" Count="1" />
+      <LineId Id="42" Count="1" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="28" Count="5" />
+      <LineId Id="27" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

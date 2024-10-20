@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FuncParoNodoCorteH4Remote1" Id="{9c65a0f8-2341-4d6a-a68d-fcc42b6d8542}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM FuncParoNodoCorteH4Remote1
+VAR
+	Funci_CortHum4:fb_Funciones_Paro;
+	
+	//Entradas Corte húmedo 4
+	Ftc_CortHum4: BOOL;	
+	ForzadoFtcCortHum4:BOOL;	
+	Consenso_CortHum4: BOOL;
+	//Entradas fotocelula 2 libre
+	Ftc2_Libre: BOOL;
+	ForzadoFtc2_Libre: BOOL;
+	Consenso_Ftc2_Libre: BOOL;
+	//Entradas fotocelula 3 libre
+	Ftc3_Libre: BOOL;
+	ForzadoFtc3_Libre: BOOL;
+	Consenso_Ftc3_Libre: BOOL;
+	//Entradas fotocelula 4 libre
+	Ftc4_Libre: BOOL;
+	ForzadoFtc4_Libre: BOOL;
+	Consenso_Ftc4_Libre: BOOL;
+	
+//	Estructuras de las variables a enviar  
+	CortHum4StrFuncParoEnviar:StrFuncParoEnviar;
+	Ftc2StrFuncParoEnviar:StrFuncParoEnviar;	
+	Ftc3StrFuncParoEnviar:StrFuncParoEnviar;
+	Ftc4StrFuncParoEnviar:StrFuncParoEnviar;
+END_VAR
+VAR RETAIN
+	HMI_Tiempo_Offset_MParo:INT:=5;
+	HMI_TiempoFiltradoFotocel:TIME:=T#2S;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Funciones de paro para cada zona(Fotocelula)
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>         	Corte húmedo 4         <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Funci_CortHum4(Fotocelula:=Ftc_CortHum4 OR ForzadoFtcCortHum4, 
+					Tiempo_Offset_MParo:=HMI_Tiempo_Offset_MParo, 
+					TiempoFiltradoFotocel:=HMI_TiempoFiltradoFotocel,
+					_StrFuncParoEnviar => CortHum4StrFuncParoEnviar,
+					S_Justi_Paro_Ftc:=Funciones_Comunes.sJustificaParoComun);
+					
+						
+						
+Direccionamiento_variables_com();
+LinkadoEntradas();]]></ST>
+    </Implementation>
+    <Action Name="Direccionamiento_variables_com" Id="{9a5097b9-5e81-4304-8580-b5fdcba6dc39}">
+      <Implementation>
+        <ST><![CDATA[// Direccionamiento de las variables a la marca que les corresponde donde despés se leeran desde el plc maestro
+
+
+
+//								>>>>>>>>>>>>>>>>>>>>>>>>>>>>      WORDS    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+	Var_Com_CH4_MulDis.aWordCom[100]:= INT_TO_WORD (CortHum4StrFuncParoEnviar.Cont_Piezas);	    //Contadores de cada fotocelula 
+	Var_Com_CH4_MulDis.aWordCom[101]:= INT_TO_WORD (Ftc2StrFuncParoEnviar.Cont_Piezas);		//Contadores de cada fotocelula 
+	Var_Com_CH4_MulDis.aWordCom[102]:= INT_TO_WORD (Ftc3StrFuncParoEnviar.Cont_Piezas);		//Contadores de cada fotocelula 
+	Var_Com_CH4_MulDis.aWordCom[103]:= INT_TO_WORD (Ftc4StrFuncParoEnviar.Cont_Piezas);		//Contadores de cada fotocelula 
+	Var_Com_CH4_MulDis.aWordCom[104]:= INT_TO_WORD (CortHum4StrFuncParoEnviar.Min_Parado_Ftc);			//Minutos actuales parado
+	Var_Com_CH4_MulDis.aWordCom[105]:= INT_TO_WORD (Ftc2StrFuncParoEnviar.Min_Parado_Ftc);			//Minutos actuales parado
+	Var_Com_CH4_MulDis.aWordCom[106]:= INT_TO_WORD (Ftc3StrFuncParoEnviar.Min_Parado_Ftc);			//Minutos actuales parado
+	Var_Com_CH4_MulDis.aWordCom[107]:= INT_TO_WORD (Ftc4StrFuncParoEnviar.Min_Parado_Ftc);			//Minutos actuales parado
+	
+	
+	
+//                           	>>>>>>>>>>>>>>>>>>>>>>>>>>>>      TIME   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	
+	
+	Var_Com_CH4_MulDis.aTimeCom[50]:=  CortHum4StrFuncParoEnviar.t_Entre_Piez_Ftc; 			//Tiempo entre piezas
+	Var_Com_CH4_MulDis.aTimeCom[51]:=  Ftc2StrFuncParoEnviar.t_Entre_Piez_Ftc;			//Tiempo entre piezas
+	Var_Com_CH4_MulDis.aTimeCom[52]:= Ftc3StrFuncParoEnviar.t_Entre_Piez_Ftc;				//Tiempo entre piezas
+	Var_Com_CH4_MulDis.aTimeCom[53]:= Ftc4StrFuncParoEnviar.t_Entre_Piez_Ftc;				//Tiempo entre piezas
+	Var_Com_CH4_MulDis.aTimeCom[54]:= CortHum4StrFuncParoEnviar.t_Entr_Piez_Ante_Ftc; 		//Tiempo entre piezas anterior
+	Var_Com_CH4_MulDis.aTimeCom[55]:= Ftc2StrFuncParoEnviar.t_Entr_Piez_Ante_Ftc; 		//Tiempo entre piezas anterior
+	Var_Com_CH4_MulDis.aTimeCom[56]:= Ftc3StrFuncParoEnviar.t_Entr_Piez_Ante_Ftc; 		//Tiempo entre piezas anterior
+	Var_Com_CH4_MulDis.aTimeCom[57]:= Ftc4StrFuncParoEnviar.t_Entr_Piez_Ante_Ftc; 		//Tiempo entre piezas anterior
+	
+	
+	
+	
+//                           	>>>>>>>>>>>>>>>>>>>>>>>>>>>>      STRING  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Var_Com_CH4_MulDis.aStringCom[40] := CortHum4StrFuncParoEnviar.H_InParo_Ftc;         //Hora inicio paro 
+	Var_Com_CH4_MulDis.aStringCom[41] := Ftc2StrFuncParoEnviar.H_InParo_Ftc;         //Hora inicio paro 
+	Var_Com_CH4_MulDis.aStringCom[42] := Ftc3StrFuncParoEnviar.H_InParo_Ftc;         //Hora inicio paro 
+	Var_Com_CH4_MulDis.aStringCom[43] := Ftc4StrFuncParoEnviar.H_InParo_Ftc;         //Hora inicio paro 
+	Var_Com_CH4_MulDis.aStringCom[44] := CortHum4StrFuncParoEnviar.H_FinParo_Ftc;        //Hora Fin paro 
+	Var_Com_CH4_MulDis.aStringCom[45] := Ftc2StrFuncParoEnviar.H_FinParo_Ftc;        //Hora Fin paro 
+	Var_Com_CH4_MulDis.aStringCom[46] := Ftc3StrFuncParoEnviar.H_FinParo_Ftc;        //Hora Fin paro 
+	Var_Com_CH4_MulDis.aStringCom[47] := Ftc4StrFuncParoEnviar.H_FinParo_Ftc;        //Hora Fin paro 
+	Var_Com_CH4_MulDis.aStringCom[48] := CortHum4StrFuncParoEnviar.S_Justi_Paro_Ftc;		//Justificación del paro
+	Var_Com_CH4_MulDis.aStringCom[49] := Ftc2StrFuncParoEnviar.S_Justi_Paro_Ftc;		//Justificación del paro
+	Var_Com_CH4_MulDis.aStringCom[50] := Ftc3StrFuncParoEnviar.S_Justi_Paro_Ftc;		//Justificación del paro
+	Var_Com_CH4_MulDis.aStringCom[51] := Ftc4StrFuncParoEnviar.S_Justi_Paro_Ftc;		//Justificación del paro
+	
+	
+//                           	>>>>>>>>>>>>>>>>>>>>>>>>>>>>      Bool  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<	
+
+	Var_Com_CH4_MulDis.aBoolCom[199] := CortHum4StrFuncParoEnviar.Fotocelula;						//Fotocelula Real
+	Var_Com_CH4_MulDis.aBoolCom[200] := Ftc2StrFuncParoEnviar.Fotocelula;						//Fotocelula Real
+	Var_Com_CH4_MulDis.aBoolCom[201] := Ftc3StrFuncParoEnviar.Fotocelula;						//Fotocelula Real
+	Var_Com_CH4_MulDis.aBoolCom[202] := Ftc4StrFuncParoEnviar.Fotocelula;						//Fotocelula Real
+	Var_Com_CH4_MulDis.aBoolCom[203] := CortHum4StrFuncParoEnviar.MParo_Ftc;				//Marca de paro 
+	Var_Com_CH4_MulDis.aBoolCom[204] := Ftc2StrFuncParoEnviar.MParo_Ftc;				//Marca de paro 
+	Var_Com_CH4_MulDis.aBoolCom[205] := Ftc3StrFuncParoEnviar.MParo_Ftc;				//Marca de paro 
+	Var_Com_CH4_MulDis.aBoolCom[206] := Ftc4StrFuncParoEnviar.MParo_Ftc;				//Marca de paro 
+	Var_Com_CH4_MulDis.aBoolCom[207] := CortHum4StrFuncParoEnviar.M_SinParo_Ftc;			//Marca de sin paro activo
+	Var_Com_CH4_MulDis.aBoolCom[208] := Ftc2StrFuncParoEnviar.M_SinParo_Ftc;			//Marca de sin paro activo
+	Var_Com_CH4_MulDis.aBoolCom[209] := Ftc3StrFuncParoEnviar.M_SinParo_Ftc;			//Marca de sin paro activo
+	Var_Com_CH4_MulDis.aBoolCom[210] := Ftc4StrFuncParoEnviar.M_SinParo_Ftc;			//Marca de sin paro activo
+	Var_Com_CH4_MulDis.aBoolCom[211] := CortHum4StrFuncParoEnviar.tFiltro_up_Ftc;			//Q Temp Up Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[212] := Ftc2StrFuncParoEnviar.tFiltro_up_Ftc;			//Q Temp Up Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[213] := Ftc3StrFuncParoEnviar.tFiltro_up_Ftc;			//Q Temp Up Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[214] := Ftc4StrFuncParoEnviar.tFiltro_up_Ftc;			//Q Temp Up Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[215] := CortHum4StrFuncParoEnviar.tFiltro_down_Ftc;		//Q Temp Down Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[216] := Ftc2StrFuncParoEnviar.tFiltro_down_Ftc;		//Q Temp Down Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[217] := Ftc3StrFuncParoEnviar.tFiltro_down_Ftc;		//Q Temp Down Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[218] := Ftc4StrFuncParoEnviar.tFiltro_down_Ftc;		//Q Temp Down Filtro Fotocelulas]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="LinkadoEntradas" Id="{b69648cb-6431-495f-953a-43362874fee1}">
+      <Implementation>
+        <ST><![CDATA[// Linkado entradas
+
+Ftc_SalGreenCut:=      main.id0Remoto2.0;
+Consenso_SalGreenCut:= TRUE;//main.id0Remoto2.1;
+
+
+Ftc2_EntSecad:=      main.id0Remoto2.2;
+Consenso_EntSecad:= TRUE;// main.id0Remoto2.3;
+
+
+Ftc3_Libre:=      main.id0Remoto2.4;
+Consenso_Ftc3_Libre:= TRUE;// main.id0Remoto2.5;
+
+
+Ftc4_Libre:=      main.id0Remoto2.6;
+Consenso_Ftc4_Libre:= TRUE;// main.id0Remoto2.7;
+
+
+
+
+
+]]></ST>
+      </Implementation>
+    </Action>
+    <LineIds Name="FuncParoNodoCorteH4Remote1">
+      <LineId Id="43" Count="6" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="86" Count="1" />
+      <LineId Id="89" Count="1" />
+    </LineIds>
+    <LineIds Name="FuncParoNodoCorteH4Remote1.Direccionamiento_variables_com">
+      <LineId Id="1" Count="0" />
+      <LineId Id="3" Count="2" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="9" Count="1" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="15" Count="2" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="43" Count="2" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="29" Count="6" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="48" Count="5" />
+      <LineId Id="55" Count="3" />
+      <LineId Id="61" Count="2" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="64" Count="4" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="73" Count="2" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="76" Count="2" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="79" Count="7" />
+      <LineId Id="88" Count="2" />
+    </LineIds>
+    <LineIds Name="FuncParoNodoCorteH4Remote1.LinkadoEntradas">
+      <LineId Id="2" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="3" Count="1" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="5" Count="2" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="8" Count="2" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="11" Count="2" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="14" Count="3" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

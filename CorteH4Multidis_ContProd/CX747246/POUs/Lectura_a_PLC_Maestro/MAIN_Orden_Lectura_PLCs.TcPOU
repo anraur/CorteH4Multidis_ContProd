@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN_Orden_Lectura_PLCs" Id="{2ed88424-2e1b-40b4-a24d-83029be2134a}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN_Orden_Lectura_PLCs
+VAR
+	bHabilitarLecturaDePLCs : BOOL := TRUE;
+	bHabilitaLectura_Maestro : BOOL:=TRUE;
+	State_Lectura_PLC: (READING_PLC_WAITING, READING_PLC_MAESTRO, FINISH_ALL_OK);
+	tReadState_Entre_Lecturas_PLCs:ton:=(PT:=T#5MS);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// POU para ordenar la lectura de los distintos PLCs para que nunca lean a la vez 
+
+CASE State_Lectura_PLC OF 
+
+	READING_PLC_WAITING:tReadState_Entre_Lecturas_PLCs(IN:=FALSE);	
+
+	READING_PLC_MAESTRO:	IF bHabilitaLectura_Maestro THEN
+						tReadState_Entre_Lecturas_PLCs(IN:=TRUE);	
+							IF tReadState_Entre_Lecturas_PLCs.Q THEN 
+								tReadState_Entre_Lecturas_PLCs(IN:=FALSE);
+								Lectura_Maestro();
+								Lectura_Maestro.fbLectura_a_PLC_Maestro.SetStartReading();
+							END_IF
+							IF Lectura_Maestro.bNextBlockToRead_L4_Done THEN
+
+								Lectura_Maestro.fbLectura_a_PLC_Maestro.SetFalseBlockReadDone();
+								State_Lectura_PLC := FINISH_ALL_OK; //Cuando se añada un PLC cambiad el nombre.
+							END_IF
+						ELSE 
+							State_Lectura_PLC := FINISH_ALL_OK; //Cuando se añada un PLC cambiad el nombre.
+							Lectura_Maestro.fbLectura_a_PLC_Maestro.SetFalseBlockReadDone();
+					END_IF
+					
+	FINISH_ALL_OK: tReadState_Entre_Lecturas_PLCs(IN:=FALSE);	
+					State_Lectura_PLC := READING_PLC_Maestro;				
+
+END_CASE
+
+
+
+//Habilitar la lectura de los PLCs
+IF bHabilitarLecturaDePLCs THEN 
+	SetStartReadingPLCs();
+	ELSE
+		State_Lectura_PLC:=READING_PLC_WAITING;
+END_IF
+]]></ST>
+    </Implementation>
+    <Method Name="SetStartReadingPLCs" Id="{194546da-c227-4ee3-b58c-ae619e79be05}">
+      <Declaration><![CDATA[METHOD SetStartReadingPLCs : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF State_Lectura_PLC = READING_PLC_WAITING THEN 
+	State_Lectura_PLC := READING_PLC_Maestro;
+END_IF ]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="MAIN_Orden_Lectura_PLCs">
+      <LineId Id="5" Count="0" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="85" Count="1" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="72" Count="1" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="15" Count="1" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="75" Count="4" />
+      <LineId Id="44" Count="0" />
+    </LineIds>
+    <LineIds Name="MAIN_Orden_Lectura_PLCs.SetStartReadingPLCs">
+      <LineId Id="5" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

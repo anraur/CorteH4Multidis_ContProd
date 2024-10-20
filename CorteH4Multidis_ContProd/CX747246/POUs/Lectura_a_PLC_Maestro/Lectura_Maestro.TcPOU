@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Lectura_Maestro" Id="{61329b2f-9e3b-4ccf-999f-e1fad82321e2}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Lectura_Maestro
+VAR
+	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Estructuras de configuración con la comunicación desde y hacia el PLC Maestro <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	
+	//Recordar que el IDXOFFS debe ser el doble de la posición a la que queréis acceder Ejemplo: para leer los strings a partir de la dirección MW100 Debéis poner 200 en exadecimal (C8)
+	
+	//Configuración de la lectura de las variables Bool, IDXGRP:=16#4020(Hace referencia a la lectura de M),IDXOFFS:=16#B3B0(Offset %MB46000 a %MB46100), LEN : 101 Longitud bools leidos,DESTADDR:= ADR(Lectura_PLCs.aMasterBoolCom) Ubicación del array donde se guarda la lectura
+	Config_Read_ADS_Bools_Maestro:Str_Config_ADS_to_PLC:=(NETID:='192.168.10.71.1.1', PORT:=851, IDXGRP:=16#4020,IDXOFFS:=16#B41E,LEN:=101,DESTADDR:= ADR(Lectura_PLCs.aMasterBoolCom));
+	
+	//Configuración de la lectura de las variables String, IDXGRP:=16#4020(Hace referencia a la lectura de M),IDXOFFS:= 16#13880(Offset %MB80000, %MW40000 a %MW41215 ( 15 word)),Longitud de bytes a leer 1215 bytes = 15 strings que son 81words por cada string. ,DESTADDR:= ADR(Lectura_PLCs.aMasterStringCom) Ubicación del array donde se guarda la lectura
+	Config_Read_ADS_Strings_Maestro:Str_Config_ADS_to_PLC:=(NETID:='192.168.10.71.1.1', PORT:=851, IDXGRP:=16#4020,IDXOFFS:=16#142A8,LEN:=1215,DESTADDR:= ADR(Lectura_PLCs.aMasterStringCom));
+	
+	//Configuración de la lectura de las variables Times, IDXGRP:=16#4020(Hace referencia a la lectura de M),IDXOFFS:=16#16F30 Offset %MB94000, %MW47000 a %MW47204 (204 word),LEN:= 204 Longitud de bytes a leer bytes = 200words    51 componentes,DESTADDR:= ADR(Lectura_PLCs.aMasterTimeCom) Ubicación del array donde se guarda la lectura
+	Config_Read_ADS_Times_Maestro:Str_Config_ADS_to_PLC:=(NETID:='192.168.10.71.1.1', PORT:=851, IDXGRP:=16#4020,IDXOFFS:=16#170D4,LEN:= 204,DESTADDR:= ADR(Lectura_PLCs.aMasterTimeCom));
+	
+	//Configuración de la lectura de las variables Words, IDXGRP:=16#4020(Hace referencia a la lectura de M),IDXOFFS:=16#15F90;//Offset %MB90000, %MW45000 a %MW45040 (40 word),82;//Longitud de bytes a leer 80 bytes = 40words   ,DESTADDR:= ADR(Lectura_PLCs.aMasteWordCom) Ubicación del array donde se guarda la lectura
+	Config_Read_ADS_Words_Maestro:Str_Config_ADS_to_PLC:=(NETID:='192.168.10.71.1.1', PORT:=851, IDXGRP:=16#4020,IDXOFFS:=16#15FF4,LEN:=82,DESTADDR:= ADR(Lectura_PLCs.aMasterWordCom));
+	
+	
+	fbLectura_a_PLC_Maestro:fbLectura_a_PLC;
+	
+
+END_VAR
+VAR_INPUT
+	bNextBlockToRead_L4_Done:BOOL;
+END_VAR
+	]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbLectura_a_PLC_Maestro(
+	Config_PLC_ADS_Bools:=Config_Read_ADS_Bools_Maestro,
+	Config_PLC_ADS_Strings:=Config_Read_ADS_Strings_Maestro,
+	Config_PLC_ADS_Times:=Config_Read_ADS_Times_Maestro,
+	Config_PLC_ADS_Words:=Config_Read_ADS_Words_Maestro,
+ 	TimeReadStateEntreLecturas:=T#20MS,
+	bHabilitadaLectura:=TRUE,
+	);
+	]]></ST>
+    </Implementation>
+    <LineIds Name="Lectura_Maestro">
+      <LineId Id="5" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="42" Count="2" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

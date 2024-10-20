@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="Str_Config_ADS_to_PLC" Id="{ca90f095-bf6d-46a2-8174-694a94803d20}">
+    <Declaration><![CDATA[TYPE Str_Config_ADS_to_PLC :
+STRUCT
+    NETID     : T_AmsNetId;
+    PORT      : T_AmsPort;
+    IDXGRP    : UDINT;
+    IDXOFFS   : UDINT;
+    LEN       : UDINT;
+    DESTADDR  : PVOID;
+    READ      : BOOL;
+    TMOUT     : TIME := DEFAULT_ADS_TIMEOUT;
+	
+//Output
+	BUSY    : BOOL;
+    ERR     : BOOL;
+    ERRID   : UDINT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

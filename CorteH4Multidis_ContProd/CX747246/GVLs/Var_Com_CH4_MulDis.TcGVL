@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="Var_Com_CH4_MulDis" Id="{3f6f8c4e-fc9c-4d9a-928e-5217308b9126}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	// Variables Escritura en PLC Maestro 
+	aStringCom AT %MW2000: ARRAY[0..97] OF STRING;	//(1 string = 81 MW)
+	aWordCom AT %MW10000: ARRAY[0..249] OF WORD;	//(1 Word = 1MW)
+	aBoolCom AT %MB10250: ARRAY[0..499] OF BOOL;	//(1 Bool = 1MB)
+	aTimeCom AT %MW10750: ARRAY[0..124] OF TIME;	//(1 Time = 4MW)
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

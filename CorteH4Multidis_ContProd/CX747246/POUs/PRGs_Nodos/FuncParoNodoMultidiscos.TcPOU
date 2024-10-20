@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FuncParoNodoMultidiscos" Id="{d0803865-fd7d-4a5f-9349-d5e429b8c6ab}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM FuncParoNodoMultidiscos
+VAR
+	Funci_Multidiscos1:fb_Funciones_Paro;
+	Funci_Multidiscos2:fb_Funciones_Paro;
+	//Entradas Multidiscos1
+	Ftc_Multidiscos1: BOOL;	
+	ForzadoFtcMultidiscos1:BOOL;	
+	Consenso_Multidiscos1: BOOL;
+	//Entradas Multidiscos2
+	Ftc2_Multidiscos2: BOOL;
+	ForzadoFtc2_Multidiscos2: BOOL;
+	Consenso_Multidiscos2: BOOL;
+//Entradas Fotocelula libre 1
+	Ftc3: BOOL;
+	ForzadoFtc3: BOOL;
+	Consenso3: BOOL;
+//Entradas Fotocelula libre 2
+	Ftc4: BOOL;
+	ForzadoFtc4: BOOL;
+	Consenso4: BOOL;
+	
+	Multidiscos1StrFuncParoEnviar:StrFuncParoEnviar;
+	Multidiscos2StrFuncParoEnviar:StrFuncParoEnviar;
+	Libre1StrFuncParoEnviar:StrFuncParoEnviar;
+	Libre2StrFuncParoEnviar:StrFuncParoEnviar;
+	
+	
+	
+	
+END_VAR
+VAR RETAIN
+	HMI_Tiempo_Offset_MParo:INT:=5;
+	HMI_TiempoFiltradoFotocel:TIME:=T#2S;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Funciones de paro para cada zona(Fotocelula)
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>         	Multidiscos 1         <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Funci_Multidiscos1(Fotocelula:=Ftc_Multidiscos1 OR ForzadoFtcMultidiscos1, 
+					Tiempo_Offset_MParo:=HMI_Tiempo_Offset_MParo, 
+					TiempoFiltradoFotocel:=HMI_TiempoFiltradoFotocel,
+					_StrFuncParoEnviar => Multidiscos1StrFuncParoEnviar,
+					S_Justi_Paro_Ftc:=Funciones_Comunes.sJustificaParoComun);
+					
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>         	Multidiscos 2        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Funci_Multidiscos2(Fotocelula:= Ftc2_Multidiscos2 OR ForzadoFtc2_Multidiscos2,
+						Tiempo_Offset_MParo:=HMI_Tiempo_Offset_MParo, 
+						TiempoFiltradoFotocel:=HMI_TiempoFiltradoFotocel,
+						_StrFuncParoEnviar => Multidiscos2StrFuncParoEnviar,
+					S_Justi_Paro_Ftc:=Funciones_Comunes.sJustificaParoComun);
+						
+
+										
+Direccionamiento_variables_com();
+Linkado_Entradas();]]></ST>
+    </Implementation>
+    <Action Name="Direccionamiento_variables_com" Id="{ccbcc35e-de58-4535-9514-7aeadbc87591}">
+      <Implementation>
+        <ST><![CDATA[// Direccionamiento de las variables a la marca que les corresponde donde después se leeran desde el plc maestro
+
+
+
+//								>>>>>>>>>>>>>>>>>>>>>>>>>>>>      WORDS    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+	Var_Com_CH4_MulDis.aWordCom[0]:= INT_TO_WORD (Multidiscos1StrFuncParoEnviar.Cont_Piezas);	    //Contadores de cada fotocelula 
+	Var_Com_CH4_MulDis.aWordCom[1]:= INT_TO_WORD (Multidiscos2StrFuncParoEnviar.Cont_Piezas);		//Contadores de cada fotocelula 
+	Var_Com_CH4_MulDis.aWordCom[2]:= INT_TO_WORD (Libre1StrFuncParoEnviar.Cont_Piezas);		//Contadores de cada fotocelula 
+	Var_Com_CH4_MulDis.aWordCom[3]:= INT_TO_WORD (Libre2StrFuncParoEnviar.Cont_Piezas);		//Contadores de cada fotocelula 
+	Var_Com_CH4_MulDis.aWordCom[4]:= INT_TO_WORD (Multidiscos1StrFuncParoEnviar.Min_Parado_Ftc);			//Minutos actuales parado
+	Var_Com_CH4_MulDis.aWordCom[5]:= INT_TO_WORD (Multidiscos2StrFuncParoEnviar.Min_Parado_Ftc);			//Minutos actuales parado
+	Var_Com_CH4_MulDis.aWordCom[6]:= INT_TO_WORD (Libre1StrFuncParoEnviar.Min_Parado_Ftc);			//Minutos actuales parado
+	Var_Com_CH4_MulDis.aWordCom[7]:= INT_TO_WORD (Libre2StrFuncParoEnviar.Min_Parado_Ftc);			//Minutos actuales parado
+	
+	
+	
+//                           	>>>>>>>>>>>>>>>>>>>>>>>>>>>>      TIME   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	
+	
+	Var_Com_CH4_MulDis.aTimeCom[0]:=  Multidiscos1StrFuncParoEnviar.t_Entre_Piez_Ftc; 			//Tiempo entre piezas
+	Var_Com_CH4_MulDis.aTimeCom[1]:=  Multidiscos2StrFuncParoEnviar.t_Entre_Piez_Ftc;			//Tiempo entre piezas
+	Var_Com_CH4_MulDis.aTimeCom[2]:= Libre1StrFuncParoEnviar.t_Entre_Piez_Ftc;				//Tiempo entre piezas
+	Var_Com_CH4_MulDis.aTimeCom[3]:= Libre2StrFuncParoEnviar.t_Entre_Piez_Ftc;				//Tiempo entre piezas
+	Var_Com_CH4_MulDis.aTimeCom[4]:= Multidiscos1StrFuncParoEnviar.t_Entr_Piez_Ante_Ftc; 		//Tiempo entre piezas anterior
+	Var_Com_CH4_MulDis.aTimeCom[5]:= Multidiscos2StrFuncParoEnviar.t_Entr_Piez_Ante_Ftc; 		//Tiempo entre piezas anterior
+	Var_Com_CH4_MulDis.aTimeCom[6]:= Libre1StrFuncParoEnviar.t_Entr_Piez_Ante_Ftc; 		//Tiempo entre piezas anterior
+	Var_Com_CH4_MulDis.aTimeCom[7]:= Libre2StrFuncParoEnviar.t_Entr_Piez_Ante_Ftc; 		//Tiempo entre piezas anterior
+	
+	
+	
+	
+//                           	>>>>>>>>>>>>>>>>>>>>>>>>>>>>      STRING  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Var_Com_CH4_MulDis.aStringCom[0] := Multidiscos1StrFuncParoEnviar.H_InParo_Ftc;         //Hora inicio paro 
+	Var_Com_CH4_MulDis.aStringCom[1] := Multidiscos2StrFuncParoEnviar.H_InParo_Ftc;         //Hora inicio paro 
+	Var_Com_CH4_MulDis.aStringCom[2] := Libre1StrFuncParoEnviar.H_InParo_Ftc;         //Hora inicio paro 
+	Var_Com_CH4_MulDis.aStringCom[3] := Libre2StrFuncParoEnviar.H_InParo_Ftc;         //Hora inicio paro 
+	Var_Com_CH4_MulDis.aStringCom[4] := Multidiscos1StrFuncParoEnviar.H_FinParo_Ftc;        //Hora Fin paro 
+	Var_Com_CH4_MulDis.aStringCom[5] := Multidiscos2StrFuncParoEnviar.H_FinParo_Ftc;        //Hora Fin paro 
+	Var_Com_CH4_MulDis.aStringCom[6] := Libre1StrFuncParoEnviar.H_FinParo_Ftc;        //Hora Fin paro 
+	Var_Com_CH4_MulDis.aStringCom[7] := Libre2StrFuncParoEnviar.H_FinParo_Ftc;        //Hora Fin paro 
+	Var_Com_CH4_MulDis.aStringCom[8] := Multidiscos1StrFuncParoEnviar.S_Justi_Paro_Ftc;		//Justificación del paro
+	Var_Com_CH4_MulDis.aStringCom[9] := Multidiscos2StrFuncParoEnviar.S_Justi_Paro_Ftc;		//Justificación del paro
+	Var_Com_CH4_MulDis.aStringCom[10] := Libre1StrFuncParoEnviar.S_Justi_Paro_Ftc;		//Justificación del paro
+	Var_Com_CH4_MulDis.aStringCom[11] := Libre2StrFuncParoEnviar.S_Justi_Paro_Ftc;		//Justificación del paro
+	
+	
+//                           	>>>>>>>>>>>>>>>>>>>>>>>>>>>>      Bool  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<	
+
+	Var_Com_CH4_MulDis.aBoolCom[0] := Multidiscos1StrFuncParoEnviar.Fotocelula;						//Fotocelula Real
+	Var_Com_CH4_MulDis.aBoolCom[1] := Multidiscos2StrFuncParoEnviar.Fotocelula;						//Fotocelula Real
+	Var_Com_CH4_MulDis.aBoolCom[2] := Libre1StrFuncParoEnviar.Fotocelula;						//Fotocelula Real
+	Var_Com_CH4_MulDis.aBoolCom[3] := Libre2StrFuncParoEnviar.Fotocelula;						//Fotocelula Real
+	Var_Com_CH4_MulDis.aBoolCom[4] := Multidiscos1StrFuncParoEnviar.MParo_Ftc;				//Marca de paro 
+	Var_Com_CH4_MulDis.aBoolCom[5] := Multidiscos2StrFuncParoEnviar.MParo_Ftc;				//Marca de paro 
+	Var_Com_CH4_MulDis.aBoolCom[6] := Libre1StrFuncParoEnviar.MParo_Ftc;				//Marca de paro 
+	Var_Com_CH4_MulDis.aBoolCom[7] := Libre2StrFuncParoEnviar.MParo_Ftc;				//Marca de paro 
+	Var_Com_CH4_MulDis.aBoolCom[8] := Multidiscos1StrFuncParoEnviar.M_SinParo_Ftc;			//Marca de sin paro activo
+	Var_Com_CH4_MulDis.aBoolCom[9] := Multidiscos2StrFuncParoEnviar.M_SinParo_Ftc;			//Marca de sin paro activo
+	Var_Com_CH4_MulDis.aBoolCom[10] := Libre1StrFuncParoEnviar.M_SinParo_Ftc;			//Marca de sin paro activo
+	Var_Com_CH4_MulDis.aBoolCom[11] := Libre2StrFuncParoEnviar.M_SinParo_Ftc;			//Marca de sin paro activo
+	Var_Com_CH4_MulDis.aBoolCom[12] := Multidiscos1StrFuncParoEnviar.tFiltro_up_Ftc;			//Q Temp Up Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[13] := Multidiscos2StrFuncParoEnviar.tFiltro_up_Ftc;			//Q Temp Up Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[14] := Libre1StrFuncParoEnviar.tFiltro_up_Ftc;			//Q Temp Up Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[15] := Libre2StrFuncParoEnviar.tFiltro_up_Ftc;			//Q Temp Up Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[16] := Multidiscos1StrFuncParoEnviar.tFiltro_down_Ftc;		//Q Temp Down Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[17] := Multidiscos2StrFuncParoEnviar.tFiltro_down_Ftc;		//Q Temp Down Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[18] := Libre1StrFuncParoEnviar.tFiltro_down_Ftc;		//Q Temp Down Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[19] := Libre2StrFuncParoEnviar.tFiltro_down_Ftc;		//Q Temp Down Filtro Fotocelulas]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="Linkado_Entradas" Id="{b378cb5d-7ade-49b1-a85b-b3810e171ed5}">
+      <Implementation>
+        <ST><![CDATA[// Linkado entradas
+Ftc_Multidiscos1:=     MAIN.id0Local.0;
+Consenso_Multidiscos1:= TRUE;// main.id0Local2.1;
+
+
+Ftc2_Multidiscos2:=      MAIN.id0Local.2;
+Consenso_Multidiscos2:= TRUE;// main.id0Local2.3;
+
+
+Ftc3:=      main.id0Local.4;
+Consenso3:= TRUE;// main.id0Local2.5;
+
+
+Ftc4:=      main.id0Local.6;
+Consenso4:= TRUE;// main.id0Local2.7;
+
+
+
+
+]]></ST>
+      </Implementation>
+    </Action>
+    <LineIds Name="FuncParoNodoMultidiscos">
+      <LineId Id="32" Count="0" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="30" Count="1" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="199" Count="0" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="105" Count="1" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="200" Count="0" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="202" Count="0" />
+      <LineId Id="161" Count="0" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="163" Count="0" />
+    </LineIds>
+    <LineIds Name="FuncParoNodoMultidiscos.Direccionamiento_variables_com">
+      <LineId Id="1" Count="0" />
+      <LineId Id="3" Count="2" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="9" Count="1" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="15" Count="2" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="43" Count="2" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="29" Count="6" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="48" Count="5" />
+      <LineId Id="55" Count="3" />
+      <LineId Id="61" Count="2" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="64" Count="4" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="73" Count="2" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="76" Count="2" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="79" Count="7" />
+      <LineId Id="88" Count="2" />
+    </LineIds>
+    <LineIds Name="FuncParoNodoMultidiscos.Linkado_Entradas">
+      <LineId Id="2" Count="2" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="5" Count="2" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="8" Count="2" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="11" Count="2" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="16" Count="1" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

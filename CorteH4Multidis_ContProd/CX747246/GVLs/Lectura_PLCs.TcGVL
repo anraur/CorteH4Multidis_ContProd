@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="Lectura_PLCs" Id="{2cdedccf-ee02-4c45-880f-780c38557cd0}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+										//	Variables Lectura de PLC Maestro
+									
+//Las marcas a las que hace referencia del plc Maestro para las Bool van de la %MB46110 a %MB46210
+	aMasterBoolCom:ARRAY[0..100] OF BOOL;
+	
+//Las marcas a las que hace referencia del plc Maestro para las string van de la %MW41300 a %MW42515   
+	aMasterStringCom:ARRAY[0..14] OF STRING;
+	
+//Las marcas a las que hace rreferencia del plc Maestro para las Time van de la %MW47210 a %MW47414
+	aMasterTimeCom:ARRAY[0..50]OF TIME;	
+	
+//Las marcas a las que hace referencia del plc Maestro para las Words van de la %MW45050 a %MW45090
+	aMasterWordCom:ARRAY[0..40] OF WORD;	
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

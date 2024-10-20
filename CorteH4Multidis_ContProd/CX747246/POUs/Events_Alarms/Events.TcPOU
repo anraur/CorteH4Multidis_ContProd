@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Events" Id="{3aea86a1-2655-45e3-a454-ba7e0e35b89c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Events
+VAR
+	fbEventosGenerales_PLC:Eventos_PLC;
+	bResetArrayAvisos:BOOL;
+	bClearEvents:BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Eventos Linea 4
+
+fbEventosGenerales_PLC(bClearEvents:=bClearEvents,bResetArrayAvisos:=bResetArrayAvisos);
+]]></ST>
+    </Implementation>
+    <LineIds Name="Events">
+      <LineId Id="12" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="27" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

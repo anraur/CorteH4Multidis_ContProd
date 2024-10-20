@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{ed129647-f36b-4013-ad91-896499ac6390}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+			// UPS variables persistentes
+	fbUPS: FB_S_UPS_CX81xx;//Instancia de la UPS
+	// Entradas
+	id0Local   AT %I*: BYTE;
+	id0Remoto1 AT %I*: BYTE;
+	// Salidas
+	od0Local   AT %Q*: BYTE;
+	od0Remoto1 AT %Q*: BYTE;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MAIN_Orden_Lectura_PLCs();]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

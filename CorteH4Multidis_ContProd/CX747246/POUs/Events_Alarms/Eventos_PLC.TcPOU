@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Eventos_PLC" Id="{98e2f037-c32c-4c67-8faa-8f8fcffc9bcf}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Eventos_PLC 
+VAR_INPUT
+	bResetArrayAvisos:BOOL;
+	bClearEvents:BOOL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	fbMessage : FB_TcMessage;
+	fbAlarm : FB_TcAlarm;
+	fbTcEventLogger: FB_TcEventLogger;
+    ITcClearLoggedEventsSettings : I_TcClearLoggedEventsSettings;
+	fbAdsReadEvents:FB_AdsReadEvents;
+	ArrayAvisos:ARRAY [1..100] OF BOOL;
+	ArrayAlarmas:ARRAY [1..100] OF BOOL;
+	i:INT;
+	FalloPrueba:BOOL;
+	bReadEvent: BOOL;
+	//Prueba
+    bReadEvents          : BOOL;
+    bClear               : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Llamadas de funciones 
+Llamadas_Y_funciones();
+
+//  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Avisos <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//Los avisos solo son a modo informativo. 
+
+
+
+
+//Aviso 1        Lectura a PLC a maestro deshabilitada
+IF NOT MAIN_Orden_Lectura_PLCs.bHabilitaLectura_Maestro AND NOT ArrayAvisos[1] THEN 
+	ArrayAvisos[1]:=TRUE;
+	fbMessage.CreateEx(TC_Events.My_Events.Lectura_PLC_Maestro_deshabilitada, 0);
+	SendAviso();
+END_IF
+//Aviso 2        Lectura a PLCs deshabilitada
+IF NOT MAIN_Orden_Lectura_PLCs.bHabilitarLecturaDePLCs AND NOT ArrayAvisos[2] THEN 
+	ArrayAvisos[2]:=TRUE;
+	fbMessage.CreateEx(TC_Events.My_Events.LecturaPLCsDeshabilitada, 0);
+	SendAviso();
+END_IF
+
+
+//  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Alarmas <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//Son fallos críticos. 
+
+//Alarma 1  Fallo comunicación con PLC Maestro
+ IF Lectura_Maestro.fbLectura_a_PLC_Maestro.AlarmaFalloComunicacion  AND NOT ArrayAlarmas[1] THEN 
+	ArrayAlarmas[1]:=TRUE;
+	fbAlarm.CreateEx(TC_Events.My_Events.FalloLecturaPLC_Maestro, FALSE ,0);
+	SendAlarma();
+END_IF
+
+//Alarma 2 Prueba 
+IF FalloPrueba AND NOT ArrayAlarmas[2] THEN 
+	ArrayAlarmas[2]:=TRUE;
+	fbAlarm.CreateEx(TC_EVENTS.My_Events.Prueba,FALSE,0);
+	SendAlarma();
+END_IF
+]]></ST>
+    </Implementation>
+    <Method Name="BorraEventos" Id="{f5274ab3-21ca-4503-b70c-058d78dea58e}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD BorraEventos : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbTcEventLogger.ClearLoggedEvents(ipClearSettings:= ITcClearLoggedEventsSettings);]]></ST>
+      </Implementation>
+    </Method>
+    <Action Name="Llamadas_Y_funciones" Id="{87bab000-2c8c-4caf-886b-ce6b2d9f5f18}">
+      <Implementation>
+        <ST><![CDATA[//Reset array de los avisos    <<<<<<<<<<<<<<<   utilizados para que solo se envíe un mensaje y no esté continuamente enviando 
+IF bResetArrayAvisos THEN 
+	ResetArrayEvents();
+END_IF
+
+//Borrar avisos del HMI 
+IF bClearEvents THEN 
+	BorraEventos();
+	ResetArrayEvents();
+END_IF
+
+]]></ST>
+      </Implementation>
+    </Action>
+    <Method Name="ResetArrayEvents" Id="{30ab97c2-6826-44d9-ad0b-d9aad256c76d}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD ResetArrayEvents : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR i := 1 TO 100 BY 1 DO 
+	ArrayAvisos[i]:= FALSE;
+	ArrayAlarmas[i]:=FALSE;
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SendAlarma" Id="{fdb62939-b029-4f72-a768-915bbf038581}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD SendAlarma : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbAlarm.Raise(0);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SendAviso" Id="{ecc7c34c-76c7-48bd-90b5-fffa4044d2f0}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD SendAviso : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbMessage.Send(0);]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="Eventos_PLC">
+      <LineId Id="50" Count="1" />
+      <LineId Id="54" Count="12" />
+      <LineId Id="94" Count="4" />
+      <LineId Id="67" Count="10" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="138" Count="1" />
+      <LineId Id="166" Count="1" />
+      <LineId Id="141" Count="0" />
+      <LineId Id="147" Count="0" />
+      <LineId Id="142" Count="0" />
+      <LineId Id="115" Count="0" />
+    </LineIds>
+    <LineIds Name="Eventos_PLC.BorraEventos">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="Eventos_PLC.Llamadas_Y_funciones">
+      <LineId Id="2" Count="8" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+    <LineIds Name="Eventos_PLC.ResetArrayEvents">
+      <LineId Id="5" Count="2" />
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="Eventos_PLC.SendAlarma">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="Eventos_PLC.SendAviso">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

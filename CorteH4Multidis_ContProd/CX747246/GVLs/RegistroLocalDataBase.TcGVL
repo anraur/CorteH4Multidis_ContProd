@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="RegistroLocalDataBase" Id="{e7b74591-066a-48b3-b74e-419c2f8db103}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	aValoresTurnosAnt: ARRAY [0..50] OF StrFuncParoEnviar;//Cada fin de turno se envía los valores de la ultima tabla que ha psado y se queda guardado en esta array para enseñarlo por el Scada
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

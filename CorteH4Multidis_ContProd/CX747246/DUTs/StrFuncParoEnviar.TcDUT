@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="StrFuncParoEnviar" Id="{5fee6a80-9a52-42ba-9bdb-2f55b7761db5}">
+    <Declaration><![CDATA[TYPE StrFuncParoEnviar :
+STRUCT
+	Cont_Piezas:INT;//Numero de piezas actuales
+	Min_Parado_Ftc:INT;//Minutos actuales parado
+	t_Entr_Piez_Ante_Ftc:TIME;//Tiempo entre piezas tabla anterior
+	t_Entre_Piez_Ftc:TIME;//Tiempo actual entre piezas
+	H_InParo_Ftc:STRING;//Variable de la hora de inicio del paro tipo STRING
+	H_FinParo_Ftc:STRING;//Hora Fin del paro
+	S_Justi_Paro_Ftc:STRING;//Justificación del paro string
+	Fotocelula:BOOL;//Fotocelula física
+	MParo_Ftc:BOOL;//Marca de paro 
+	M_SinParo_Ftc:BOOL;//Marca de sin paro activo
+	tFiltro_up_Ftc:BOOL;//Q del temporizador Up filtro fotocelula 
+	tFiltro_down_Ftc:BOOL;//Q del temporizador Down filtro fotocelula 	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

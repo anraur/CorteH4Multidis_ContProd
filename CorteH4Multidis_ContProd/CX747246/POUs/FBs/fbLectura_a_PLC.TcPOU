@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="fbLectura_a_PLC" Id="{b3d30f52-93d5-4a19-8e97-9ca818c8838b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK fbLectura_a_PLC
+VAR_INPUT
+	TimeReadStateEntreLecturas:TIME;
+	//Estructuras para la configuración de la lectura de lsa ubicaciones de las variables y los tipos en el PLC 
+	Config_PLC_ADS_Bools:Str_Config_ADS_to_PLC;
+	Config_PLC_ADS_Strings:Str_Config_ADS_to_PLC;
+	Config_PLC_ADS_Times:Str_Config_ADS_to_PLC;
+	Config_PLC_ADS_Words:Str_Config_ADS_to_PLC;
+	bHabilitadaLectura:BOOL;	
+END_VAR 
+
+VAR_OUTPUT
+	AlarmaFalloComunicacion:BOOL;
+END_VAR
+VAR
+
+
+	
+	//Tiempos para el control de las lecturas de los diferentes tipos de variables
+	tReadState_Entre_Lecturas:ton;
+	eReadState : (EN_ESPERA,READING_BOOLS,READING_STRINGS,READING_TIMES,READING_WORDS,END_ALL_OK);
+	//Bits de activación de lectura de las variables
+	Execute_Read_Bools:BOOL;
+	Execute_Read_Strings:BOOL;
+	Execute_Read_Times:BOOL;
+	Execute_Read_Words:BOOL;
+	
+	//Alarmas Errores en las lecturas al PLC 
+	Err_fbLecturaBools: BOOL;
+	Err_ID_fbLecturaBools: UDINT;
+	Err_fbLecturaStrings: BOOL;
+	Err_ID_fbLecturaStrings: UDINT;
+	Err_fbLecturaTimes: BOOL;
+	Err_ID_fbLecturaTimes: UDINT;
+	Err_fbLecturaWords: BOOL;
+	Err_ID_fbLecturaWords: UDINT;
+	
+	
+	//Instancias de las funciones de lectura
+	fbLecturaWords:        adsRead;	
+	fbLecturaTimes:        adsRead;	
+	fbLecturaStrings:      adsRead;
+	fbLecturaBools:        adsRead;
+	bBlock_Read_Done : BOOL;
+		//Comprobaciones 
+	Cont_Bool:INT;
+	Cont_Str:INT;
+	Cont_Word:INT;
+	Cont_Time:INT;
+	
+	fptReadState_Entre_Lecturas:R_trig;
+
+END_VAR
+VAR PERSISTENT
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[tReadState_Entre_Lecturas(PT:=TimeReadStateEntreLecturas);
+CASE eReadState OF 
+	EN_ESPERA :   	tReadState_Entre_Lecturas(IN:=FALSE);
+
+	READING_BOOLS : tReadState_Entre_Lecturas(IN:=TRUE);
+					Read_Bools();
+					IF tReadState_Entre_Lecturas.Q THEN
+						tReadState_Entre_Lecturas(IN:=FALSE);
+					    Cont_Bool:=Cont_Bool + 1;
+						Execute_Read_Bools:=TRUE;
+ 						eReadState := READING_STRINGS;
+					END_IF
+	
+	READING_STRINGS :tReadState_Entre_Lecturas(IN:=TRUE);
+						Read_Strings();
+					IF tReadState_Entre_Lecturas.Q THEN 
+					    tReadState_Entre_Lecturas(IN:=FALSE);
+						Execute_Read_Strings:=TRUE;
+						Cont_Str:=Cont_Str + 1;	
+						eReadState := READING_TIMES;
+			
+					END_IF
+					
+	READING_TIMES : tReadState_Entre_Lecturas(IN:=TRUE);
+					Read_Times();
+					IF tReadState_Entre_Lecturas.Q THEN 
+						tReadState_Entre_Lecturas(IN:=FALSE);
+						Execute_Read_Times:=TRUE;
+						Cont_Time:=Cont_Time + 1;	
+						eReadState := READING_WORDS;	
+					END_IF
+					
+	READING_WORDS : tReadState_Entre_Lecturas(IN:=TRUE);
+					Read_Words();
+					IF tReadState_Entre_Lecturas.Q THEN 
+						tReadState_Entre_Lecturas(IN:=FALSE);
+						Execute_Read_Words:=TRUE;
+						Cont_Word:=Cont_Word + 1;	
+						eReadState := END_ALL_OK;	
+									
+					END_IF
+
+	END_ALL_OK :// eReadState := READING_BOOLS;
+				bBlock_Read_Done:=TRUE;
+END_CASE
+
+//En espera en caso de estar deshabilitado
+IF NOT bHabilitadaLectura THEN
+		eReadState:= EN_ESPERA;
+END_IF
+IF Err_fbLecturaBools OR Err_fbLecturaStrings OR Err_fbLecturaTimes OR Err_fbLecturaWords THEN 
+	AlarmaFalloComunicacion:=TRUE;
+	ELSE 
+		AlarmaFalloComunicacion:=false;
+END_IF]]></ST>
+    </Implementation>
+    <Method Name="Read_Bools" Id="{5d66429c-ae58-4725-8616-72aedd27c92f}">
+      <Declaration><![CDATA[METHOD Read_Bools : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbLecturaBools.NETID:=  Config_PLC_ADS_Bools.NETID;//Lee del equipo remoto los Bool 
+fbLecturaBools.PORT:=   Config_PLC_ADS_Bools.PORT;
+fbLecturaBools.IDXGRP:= Config_PLC_ADS_Bools.IDXGRP;//Variables %M
+fbLecturaBools.IDXOFFS:= Config_PLC_ADS_Bools.IDXOFFS;//Offset de la marca que empieza a leer
+fbLecturaBools.LEN:= Config_PLC_ADS_Bools.LEN;//Longitud de bits a leer
+fbLecturaBools.DESTADDR:= ADR(Lectura_PLCs.aMasterBoolCom);//Numero componentes
+fbLecturaBools.READ:=     Execute_Read_Bools;//Bit de ejecutar la lectura 
+fbLecturaBools();
+Err_fbLecturaBools := fbLecturaBools.ERR;
+Err_ID_fbLecturaBools := fbLecturaBools.ERRID;
+
+Execute_Read_Bools := FALSE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Read_Strings" Id="{8e527949-76ca-45dd-823a-a13350747372}">
+      <Declaration><![CDATA[METHOD Read_Strings : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbLecturaStrings.NETID:=  Config_PLC_ADS_Strings.NETID;//Lee del equipo remoto String
+fbLecturaStrings.PORT:=   Config_PLC_ADS_Strings.PORT;
+fbLecturaStrings.IDXGRP:= Config_PLC_ADS_Strings.IDXGRP;//Variables %M
+fbLecturaStrings.IDXOFFS:= Config_PLC_ADS_Strings.IDXOFFS;//Offset 
+fbLecturaStrings.LEN:= Config_PLC_ADS_Strings.LEN;//Longitud de bytes a leer 
+fbLecturaStrings.DESTADDR:= ADR(Lectura_PLCs.aMasterStringCom);//componentes
+fbLecturaStrings.READ:=     Execute_Read_Strings;
+fbLecturaStrings();
+Err_fbLecturaStrings:= fbLecturaStrings.ERR;
+Err_ID_fbLecturaStrings:= fbLecturaStrings.ERRID;
+
+
+Execute_Read_Strings:=FALSE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Read_Times" Id="{9687b15f-12db-4e20-9a8f-93cda5e2337f}">
+      <Declaration><![CDATA[METHOD Read_Times : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbLecturaTimes.NETID:=  Config_PLC_ADS_Times.NETID;//Lee del equipo remoto variables time
+fbLecturaTimes.PORT:=   Config_PLC_ADS_Times.Port; //Puerto a leer
+fbLecturaTimes.IDXGRP:= Config_PLC_ADS_Times.IDXGRP;//Variables %M
+fbLecturaTimes.IDXOFFS:= Config_PLC_ADS_Times.IDXOFFS;//Offset 
+fbLecturaTimes.LEN:= Config_PLC_ADS_Times.LEN;//Longitud de bytes a leer 
+fbLecturaTimes.DESTADDR:= ADR(Lectura_PLCs.aMasterTimeCom);// componentes
+fbLecturaTimes.READ:=    Execute_Read_Times;
+fbLecturaTimes();
+Err_fbLecturaTimes:= fbLecturaTimes.ERR;
+Err_ID_fbLecturaTimes:= fbLecturaTimes.ERRID;
+
+Execute_Read_Times:=FALSE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Read_Words" Id="{1017183a-a561-4fb4-ab3b-d5cf16a37eee}">
+      <Declaration><![CDATA[METHOD Read_Words : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+fbLecturaWords.NETID:=  Config_PLC_ADS_Words.NETID;//Lee del equipo remoto variables words
+fbLecturaWords.PORT:=   Config_PLC_ADS_Words.Port; //Puerto
+fbLecturaWords.IDXGRP:= Config_PLC_ADS_Words.IDXGRP;//Variables %M
+fbLecturaWords.IDXOFFS:= Config_PLC_ADS_Words.IDXOFFS;//Offset 
+fbLecturaWords.LEN:= Config_PLC_ADS_Words.LEN;//Longitud de bytes a leer 
+fbLecturaWords.DESTADDR:= ADR(Lectura_PLCs.aMasterWordCom);//Componentes
+fbLecturaWords.READ:=  Execute_Read_Words ;
+fbLecturaWords();
+Err_fbLecturaWords:= fbLecturaWords.ERR;
+Err_ID_fbLecturaWords:= fbLecturaWords.ERRID;
+
+Execute_Read_Words:=FALSE;	]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetFalseBlockReadDone" Id="{97c0c75b-4b86-44c9-b478-61780dcaca06}">
+      <Declaration><![CDATA[METHOD SetFalseBlockReadDone : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[	bBlock_Read_Done := FALSE;
+	Execute_Read_Bools:= FALSE;
+	Execute_Read_Strings:= FALSE;
+	Execute_Read_Times:= FALSE;
+	Execute_Read_Words:= FALSE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetStartReading" Id="{c31216be-772d-41f7-a9ac-b7d5c1e7ba0d}">
+      <Declaration><![CDATA[METHOD SetStartReading : BOOL
+VAR_INPUT
+	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF eReadState = EN_ESPERA OR eReadState = END_ALL_OK THEN
+	eReadState := READING_BOOLS;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="fbLectura_a_PLC">
+      <LineId Id="14" Count="0" />
+      <LineId Id="19" Count="1" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="37" Count="1" />
+      <LineId Id="198" Count="0" />
+      <LineId Id="215" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="54" Count="4" />
+      <LineId Id="199" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="190" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="60" Count="4" />
+      <LineId Id="200" Count="0" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="191" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="66" Count="4" />
+      <LineId Id="201" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="192" Count="0" />
+      <LineId Id="26" Count="2" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="287" Count="0" />
+      <LineId Id="284" Count="2" />
+      <LineId Id="283" Count="0" />
+      <LineId Id="405" Count="0" />
+      <LineId Id="408" Count="0" />
+      <LineId Id="410" Count="1" />
+      <LineId Id="406" Count="0" />
+    </LineIds>
+    <LineIds Name="fbLectura_a_PLC.Read_Bools">
+      <LineId Id="9" Count="10" />
+      <LineId Id="23" Count="0" />
+    </LineIds>
+    <LineIds Name="fbLectura_a_PLC.Read_Strings">
+      <LineId Id="9" Count="11" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="fbLectura_a_PLC.Read_Times">
+      <LineId Id="9" Count="11" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="fbLectura_a_PLC.Read_Words">
+      <LineId Id="9" Count="11" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="fbLectura_a_PLC.SetFalseBlockReadDone">
+      <LineId Id="5" Count="0" />
+      <LineId Id="10" Count="2" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="fbLectura_a_PLC.SetStartReading">
+      <LineId Id="14" Count="2" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

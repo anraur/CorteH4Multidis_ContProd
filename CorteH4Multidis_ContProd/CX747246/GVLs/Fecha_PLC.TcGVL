@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="Fecha_PLC" Id="{d6363836-6737-4300-93e3-cc50dfb68ce9}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	fbGetLocalSystemTime:FB_LocalSystemTime; //Lee la hora local del PLC 
+	Fecha_Segundos:DINT;
+	StringDateTime:STRING;
+	StringDateHourMin:STRING;
+	StringDate:STRING;
+	StringTime:STRING;
+	StringHora:STRING;
+	StringMinutos:STRING;
+	StringSegundos:STRING;
+	StringMes:STRING;
+	StringDia:STRING;
+	StringAno:STRING;
+	
+	//concatenaciones de strings
+	Mes_Dia_Hora_Min_Real:STRING;
+	//Tipo time para poder restar horas 
+	Fecha_Entera_Dt:DT;	
+	Fecha_Struct: Tc2_Utilities.TIMESTRUCT;
+	Fecha_Time_PLC:TIME;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
