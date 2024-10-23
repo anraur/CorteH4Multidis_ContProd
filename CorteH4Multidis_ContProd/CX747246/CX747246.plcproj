@@ -60,6 +60,18 @@
     <Compile Include="POUs\FBs\FinProduccionTemporizado.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\FBs\FuncGeneralesCortHum4.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FBs\FuncGeneralesMultidisc1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Funciones comunes\Fecha_Hora_PLC.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Funciones comunes\Utilidades.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Lectura_a_PLC_Maestro\Lectura_Maestro.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -74,6 +86,13 @@
     </Compile>
     <Compile Include="POUs\PRGs_Nodos\FuncParoNodoCorteH4Remote1.TcPOU">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Utilidades_1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="VISUs\DiagnosticoFB.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="VISUs\Home.TcVIS">
       <SubType>Code</SubType>
@@ -92,6 +111,7 @@
     <Folder Include="POUs\Events_Alarms" />
     <Folder Include="POUs\FBs" />
     <Folder Include="POUs\Lectura_a_PLC_Maestro" />
+    <Folder Include="POUs\Funciones comunes" />
     <Folder Include="POUs\PRGs_Nodos" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />

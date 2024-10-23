@@ -2,6 +2,67 @@
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.42">
 	<DataTypes>
 		<DataType>
+			<Name GUID="{6D1C8CFE-89A1-B3C2-9414-12D6CD53C177}" Namespace="Tc2_Utilities" AutoDeleteType="true">TIMESTRUCT</Name>
+			<Comment><![CDATA[ System Time Structure ]]></Comment>
+			<BitSize>128</BitSize>
+			<SubItem>
+				<Name>wYear</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
+				<Comment><![CDATA[ Year: 1970..2106 ]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>wMonth</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
+				<Comment><![CDATA[ Month: 1..12 (January = 1, February = 2 and so on) ]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>wDayOfWeek</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
+				<Comment><![CDATA[ Day of the week: 0..6 (Sunday = 0, Monday = 1, .. , Saturday = 6 and so on) ]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>wDay</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
+				<Comment><![CDATA[ Day of the month: 1..31 ]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>48</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>wHour</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
+				<Comment><![CDATA[ Hour: 0..23 ]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>wMinute</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
+				<Comment><![CDATA[ Minute: 0..59 ]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>80</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>wSecond</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
+				<Comment><![CDATA[ Second: 0..59 ]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>96</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>wMilliseconds</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
+				<Comment><![CDATA[ Milliseconds: 0..999 ]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>112</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
 			<Name GUID="{4EC8674C-D37B-4A2D-8012-7AC99C02312A}" PersistentType="true">My_Events</Name>
 			<DisplayName TxtId=""><![CDATA[NewEventClass_DisplayText]]></DisplayName>
 			<EventId>
@@ -52,7 +113,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{37105E22-1437-468C-9BD4-3FEDC08B4CED}" Name="CX747246" PrjFilePath="CX747246\CX747246.plcproj" TmcFilePath="CX747246\CX747246.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="CX747246\CX747246.tmc" TmcHash="{05B23E55-5F27-DDD3-CDDE-7D7250A0FEED}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="CX747246\CX747246.tmc" TmcHash="{3D5394ED-10E3-F540-9B90-93553BAA8F95}">
 					<Name>CX747246 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -77,6 +138,111 @@
 						<Var>
 							<Name>MAIN.od0Remoto1</Name>
 							<Type>BYTE</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="8" AreaNo="4">
+						<Name>PlcTask Retains</Name>
+						<Var>
+							<Name>FuncParoNodoCorteH4Remote1.Funci_CortHum4.Cont_Piezas_Ftc</Name>
+							<Comment><![CDATA[Contador de piezas 				]]></Comment>
+							<Type>INT</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>FuncParoNodoCorteH4Remote1.Funci_CortHum4.t_Entr_Piez_Ante_Ftc</Name>
+							<Comment><![CDATA[Minutos entre piezas tabla anterior 		]]></Comment>
+							<Type>TIME</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>FuncParoNodoCorteH4Remote1.Funci_CortHum4.tH_InParo_Ftc</Name>
+							<Comment><![CDATA[Variable de la hora de inicio del paro tipo STRING ]]></Comment>
+							<Type>STRING(80)</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>FuncParoNodoCorteH4Remote1.Funci_CortHum4.t_InParo_Ftc_Entera</Name>
+							<Type>STRING(80)</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>FuncParoNodoCorteH4Remote1.Funci_CortHum4.t_InParo_Ftc_Ent_Syst</Name>
+							<Type GUID="{6D1C8CFE-89A1-B3C2-9414-12D6CD53C177}" Namespace="Tc2_Utilities">TIMESTRUCT</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>FuncParoNodoCorteH4Remote1.Funci_CortHum4.H_InParo_Ftc</Name>
+							<Comment><![CDATA[Variable de la hora de inicio del paro]]></Comment>
+							<Type>STRING(80)</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>FuncParoNodoMultidiscos.Funci_Multidiscos1.Cont_Piezas_Ftc</Name>
+							<Comment><![CDATA[Contador de piezas 				]]></Comment>
+							<Type>INT</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>FuncParoNodoMultidiscos.Funci_Multidiscos1.t_Entr_Piez_Ante_Ftc</Name>
+							<Comment><![CDATA[Minutos entre piezas tabla anterior 		]]></Comment>
+							<Type>TIME</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>FuncParoNodoMultidiscos.Funci_Multidiscos1.tH_InParo_Ftc</Name>
+							<Comment><![CDATA[Variable de la hora de inicio del paro tipo STRING ]]></Comment>
+							<Type>STRING(80)</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>FuncParoNodoMultidiscos.Funci_Multidiscos1.t_InParo_Ftc_Entera</Name>
+							<Type>STRING(80)</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>FuncParoNodoMultidiscos.Funci_Multidiscos1.t_InParo_Ftc_Ent_Syst</Name>
+							<Type GUID="{6D1C8CFE-89A1-B3C2-9414-12D6CD53C177}" Namespace="Tc2_Utilities">TIMESTRUCT</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>FuncParoNodoMultidiscos.Funci_Multidiscos1.H_InParo_Ftc</Name>
+							<Comment><![CDATA[Variable de la hora de inicio del paro]]></Comment>
+							<Type>STRING(80)</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>FuncParoNodoMultidiscos.Funci_Multidiscos2.Cont_Piezas_Ftc</Name>
+							<Comment><![CDATA[Contador de piezas 				]]></Comment>
+							<Type>INT</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>FuncParoNodoMultidiscos.Funci_Multidiscos2.t_Entr_Piez_Ante_Ftc</Name>
+							<Comment><![CDATA[Minutos entre piezas tabla anterior 		]]></Comment>
+							<Type>TIME</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>FuncParoNodoMultidiscos.Funci_Multidiscos2.tH_InParo_Ftc</Name>
+							<Comment><![CDATA[Variable de la hora de inicio del paro tipo STRING ]]></Comment>
+							<Type>STRING(80)</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>FuncParoNodoMultidiscos.Funci_Multidiscos2.t_InParo_Ftc_Entera</Name>
+							<Type>STRING(80)</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>FuncParoNodoMultidiscos.Funci_Multidiscos2.t_InParo_Ftc_Ent_Syst</Name>
+							<Type GUID="{6D1C8CFE-89A1-B3C2-9414-12D6CD53C177}" Namespace="Tc2_Utilities">TIMESTRUCT</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>FuncParoNodoMultidiscos.Funci_Multidiscos2.H_InParo_Ftc</Name>
+							<Comment><![CDATA[Variable de la hora de inicio del paro]]></Comment>
+							<Type>STRING(80)</Type>
+							<InOut>7</InOut>
 						</Var>
 					</Vars>
 					<Contexts>
@@ -334,4 +500,44 @@
 			</Device>
 		</Io>
 	</Project>
+	<Mappings>
+		<OwnerA Name="TIPC^CX747246^CX747246 Instance">
+			<OwnerB Name="TIID^Device 2 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL1859)">
+				<Link VarA="PlcTask Inputs^MAIN.id0Local" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^MAIN.id0Local" VarB="Channel 2^Input" Size="1" OffsA="1"/>
+				<Link VarA="PlcTask Inputs^MAIN.id0Local" VarB="Channel 3^Input" Size="1" OffsA="2"/>
+				<Link VarA="PlcTask Inputs^MAIN.id0Local" VarB="Channel 4^Input" Size="1" OffsA="3"/>
+				<Link VarA="PlcTask Inputs^MAIN.id0Local" VarB="Channel 5^Input" Size="1" OffsA="4"/>
+				<Link VarA="PlcTask Inputs^MAIN.id0Local" VarB="Channel 6^Input" Size="1" OffsA="5"/>
+				<Link VarA="PlcTask Inputs^MAIN.id0Local" VarB="Channel 7^Input" Size="1" OffsA="6"/>
+				<Link VarA="PlcTask Inputs^MAIN.id0Local" VarB="Channel 8^Input" Size="1" OffsA="7"/>
+				<Link VarA="PlcTask Outputs^MAIN.od0Local" VarB="Channel 10^Output" Size="1" OffsA="1"/>
+				<Link VarA="PlcTask Outputs^MAIN.od0Local" VarB="Channel 11^Output" Size="1" OffsA="2"/>
+				<Link VarA="PlcTask Outputs^MAIN.od0Local" VarB="Channel 12^Output" Size="1" OffsA="3"/>
+				<Link VarA="PlcTask Outputs^MAIN.od0Local" VarB="Channel 13^Output" Size="1" OffsA="4"/>
+				<Link VarA="PlcTask Outputs^MAIN.od0Local" VarB="Channel 14^Output" Size="1" OffsA="5"/>
+				<Link VarA="PlcTask Outputs^MAIN.od0Local" VarB="Channel 15^Output" Size="1" OffsA="6"/>
+				<Link VarA="PlcTask Outputs^MAIN.od0Local" VarB="Channel 16^Output" Size="1" OffsA="7"/>
+				<Link VarA="PlcTask Outputs^MAIN.od0Local" VarB="Channel 9^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 2 (EtherCAT)^Term 4 (EK1100)^Term 5 (EL1859)">
+				<Link VarA="PlcTask Inputs^MAIN.id0Remoto1" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^MAIN.id0Remoto1" VarB="Channel 2^Input" Size="1" OffsA="1"/>
+				<Link VarA="PlcTask Inputs^MAIN.id0Remoto1" VarB="Channel 3^Input" Size="1" OffsA="2"/>
+				<Link VarA="PlcTask Inputs^MAIN.id0Remoto1" VarB="Channel 4^Input" Size="1" OffsA="3"/>
+				<Link VarA="PlcTask Inputs^MAIN.id0Remoto1" VarB="Channel 5^Input" Size="1" OffsA="4"/>
+				<Link VarA="PlcTask Inputs^MAIN.id0Remoto1" VarB="Channel 6^Input" Size="1" OffsA="5"/>
+				<Link VarA="PlcTask Inputs^MAIN.id0Remoto1" VarB="Channel 7^Input" Size="1" OffsA="6"/>
+				<Link VarA="PlcTask Inputs^MAIN.id0Remoto1" VarB="Channel 8^Input" Size="1" OffsA="7"/>
+				<Link VarA="PlcTask Outputs^MAIN.od0Remoto1" VarB="Channel 10^Output" Size="1" OffsA="1"/>
+				<Link VarA="PlcTask Outputs^MAIN.od0Remoto1" VarB="Channel 11^Output" Size="1" OffsA="2"/>
+				<Link VarA="PlcTask Outputs^MAIN.od0Remoto1" VarB="Channel 12^Output" Size="1" OffsA="3"/>
+				<Link VarA="PlcTask Outputs^MAIN.od0Remoto1" VarB="Channel 13^Output" Size="1" OffsA="4"/>
+				<Link VarA="PlcTask Outputs^MAIN.od0Remoto1" VarB="Channel 14^Output" Size="1" OffsA="5"/>
+				<Link VarA="PlcTask Outputs^MAIN.od0Remoto1" VarB="Channel 15^Output" Size="1" OffsA="6"/>
+				<Link VarA="PlcTask Outputs^MAIN.od0Remoto1" VarB="Channel 16^Output" Size="1" OffsA="7"/>
+				<Link VarA="PlcTask Outputs^MAIN.od0Remoto1" VarB="Channel 9^Output"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
 </TcSmProject>

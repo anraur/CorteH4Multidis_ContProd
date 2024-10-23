@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FuncGeneralesMultidisc1" Id="{202f2458-e1f8-4dbc-bbad-08ad70ca02eb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FuncGeneralesMultidisc1
+VAR_INPUT
+
+	
+END_VAR
+VAR_OUTPUT	
+	s_ModeloActualTabla:STRING;
+	s_ModeloEleccionTabla:STRING;
+	s_JustificaParoComun:STRING;
+	s_FechaInicModeloTab:STRING;
+END_VAR
+VAR
+	Reset_Fin_Prod:BOOL;
+	P_FinProduccion:BOOL;
+	P_EscribirModelo:BOOL;
+	sModeloEleccionTabla:STRING;
+	pul_Justif_Paro:BOOL;
+END_VAR
+VAR PERSISTENT 
+
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//                             >>>>>>>>>>>>>>>> Modelo de la tabla <<<<<<<<<<<<<<<<<
+
+//Fin de producción 		
+IF P_FinProduccion THEN 
+Fin_Produccion();
+END_IF;
+IF P_EscribirModelo THEN 
+	Inicio_Nuevo_Modelo();
+END_IF
+
+
+Direccionamiento_variables_com();]]></ST>
+    </Implementation>
+    <Action Name="Direccionamiento_variables_com" Id="{832475eb-2cbd-47c0-b591-9cc7574195f8}">
+      <Implementation>
+        <ST><![CDATA[	//                           	>>>>>>>>>>>>>>>>>>>>>>>>>>>>      STRING  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Var_Com_CH4_MulDis.aStringCom[80] := s_ModeloActualTabla;
+	Var_Com_CH4_MulDis.aStringCom[81] := s_JustificaParoComun;
+	Var_Com_CH4_MulDis.aStringCom[82] := s_FechaInicModeloTab;
+
+	
+	]]></ST>
+      </Implementation>
+    </Action>
+    <Method Name="Fin_Produccion" Id="{f98c57f5-c388-4d9e-982c-a29b2c0a8627}">
+      <Declaration><![CDATA[METHOD Fin_Produccion : BOOL
+VAR_INPUT	
+END_VAR
+var
+	Puls_Fin_Produccion:BOOL;	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Llamada a la función de fin de producción de Corte húmedo 4
+FuncParoNodoCorteH4Remote1.Funci_CortHum4.Fin_Produccion();
+
+
+
+s_ModeloActualTabla:= 'Sin modelo de pieza';
+//	FechaInicModeloTab:= 'Sin modelo de pieza';
+s_ModeloEleccionTabla:= 'Sin modelo de pieza';
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Inicio_Nuevo_Modelo" Id="{9af42117-f1fa-463c-9afb-b86795815813}">
+      <Declaration><![CDATA[METHOD Inicio_Nuevo_Modelo : BOOL
+VAR_INPUT
+END_VAR
+VAR
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+// Envías la fecha de inicio modelo de tabla 
+s_FechaInicModeloTab:=Fecha_PLC.Mes_Dia_Hora_Min_Real;
+
+//Envías el modelo de la tabla de la variable preelección  
+s_ModeloActualTabla:=sModeloEleccionTabla;
+
+
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FuncGeneralesMultidisc1">
+      <LineId Id="25" Count="10" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FuncGeneralesMultidisc1.Direccionamiento_variables_com">
+      <LineId Id="2" Count="0" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="4" Count="1" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="6" Count="1" />
+    </LineIds>
+    <LineIds Name="FuncGeneralesMultidisc1.Fin_Produccion">
+      <LineId Id="59" Count="0" />
+      <LineId Id="57" Count="1" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="45" Count="2" />
+      <LineId Id="41" Count="0" />
+    </LineIds>
+    <LineIds Name="FuncGeneralesMultidisc1.Inicio_Nuevo_Modelo">
+      <LineId Id="8" Count="1" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="13" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

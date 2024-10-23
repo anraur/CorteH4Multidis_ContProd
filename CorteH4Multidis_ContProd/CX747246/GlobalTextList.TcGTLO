@@ -71,6 +71,11 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"137"</v>
+              <v n="TextDefault">"Corte húmedo 4"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"448"</v>
               <v n="TextDefault">"Delay Escritura"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -226,6 +231,16 @@ Máximo 5 palabras."</v>
             <o>
               <v n="TextID">"12"</v>
               <v n="TextDefault">"Modelo de la tabla "</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"228"</v>
+              <v n="TextDefault">"Multidiscos 1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"118"</v>
+              <v n="TextDefault">"Multidiscos 2"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

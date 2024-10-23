@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<TcEventSources Version="2">
+	<Source>
+		<GUID>{4EC8674C-D37B-4A2D-8012-7AC99C02312A}</GUID>
+		<Name LcId="1033">NewEventClass_DisplayText</Name>
+		<Event>
+			<Id>1</Id>
+			<Message LcId="1033">Lectura de variables al PLC del Maestro deshabilitada</Message>
+			<Detail>
+				<Name>Comment</Name>
+				<Text LcId="1033">La lectura del PLC del Maestro está deshabilitada por pantalla, hay que habilitarla por pantalla.</Text>
+			</Detail>
+		</Event>
+		<Event>
+			<Id>2</Id>
+			<Message LcId="1033">Fallo lectura del PLC Maestro</Message>
+			<Detail>
+				<Name>Comment</Name>
+				<Text LcId="1033">Se ha producido un fallo con la lectura de las variables del PLC Maestro. Puede que no tenga tensión el cuadro del PLC Maestro.</Text>
+			</Detail>
+		</Event>
+		<Event>
+			<Id>3</Id>
+			<Message LcId="1033">My_EventsEvent3_DisplayText</Message>
+			<Detail>
+				<Name>Comment</Name>
+				<Text LcId="1033">Se ha deshabilitado la lectura de las variables de los PLC de la lineas hacia el PLC Corte húmedo 4 / multidisco. Hay que habilitarlo por pantalla.</Text>
+			</Detail>
+		</Event>
+		<Event>
+			<Id>4</Id>
+			<Message LcId="1033">My_EventsEvent4_DisplayText</Message>
+			<Detail>
+				<Name>Comment</Name>
+				<Text LcId="1033">Prueba</Text>
+			</Detail>
+		</Event>
+	</Source>
+</TcEventSources>

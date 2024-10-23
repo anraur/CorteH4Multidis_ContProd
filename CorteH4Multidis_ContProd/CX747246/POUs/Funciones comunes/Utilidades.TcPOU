@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Utilidades" Id="{63cd07ee-28a3-4f22-aefc-aaddc9ee9d5c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Utilidades
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[GVL_Funciones_Paro.Temporizador1min(IN:=not GVL_Funciones_Paro.Temporizador1min.Q , PT:= T#60s, Q=> , ET=> );]]></ST>
+    </Implementation>
+    <LineIds Name="Utilidades">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

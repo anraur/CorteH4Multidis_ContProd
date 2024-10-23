@@ -4,7 +4,7 @@
     <Declaration><![CDATA[PROGRAM FuncParoNodoCorteH4Remote1
 VAR
 	Funci_CortHum4:fb_Funciones_Paro;
-	
+	FunGeneCortHum4: FuncGeneralesCortHum4;
 	//Entradas Corte húmedo 4
 	Ftc_CortHum4: BOOL;	
 	ForzadoFtcCortHum4:BOOL;	
@@ -29,8 +29,15 @@ VAR
 	Ftc4StrFuncParoEnviar:StrFuncParoEnviar;
 END_VAR
 VAR RETAIN
+END_VAR
+VAR PERSISTENT 
 	HMI_Tiempo_Offset_MParo:INT:=5;
 	HMI_TiempoFiltradoFotocel:TIME:=T#2S;
+// Generales 
+	sModeloActualTabla:STRING;
+	sModeloEleccionTabla:STRING;
+	sFechaInicModeloTab:STRING;
+	sJustificaParoComun:STRING;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -41,12 +48,15 @@ Funci_CortHum4(Fotocelula:=Ftc_CortHum4 OR ForzadoFtcCortHum4,
 					Tiempo_Offset_MParo:=HMI_Tiempo_Offset_MParo, 
 					TiempoFiltradoFotocel:=HMI_TiempoFiltradoFotocel,
 					_StrFuncParoEnviar => CortHum4StrFuncParoEnviar,
-					S_Justi_Paro_Ftc:=Funciones_Comunes.sJustificaParoComun);
+					S_Justi_Paro_Ftc:=FunGeneCortHum4.s_JustificaParoComun);
 					
 						
 						
 Direccionamiento_variables_com();
-LinkadoEntradas();]]></ST>
+LinkadoEntradas();
+FunGeneCortHum4(s_JustificaParoComun => sJustificaParoComun,s_ModeloActualTabla => sModeloActualTabla,s_ModeloEleccionTabla => sModeloEleccionTabla,s_FechaInicModeloTab=>sFechaInicModeloTab);
+
+]]></ST>
     </Implementation>
     <Action Name="Direccionamiento_variables_com" Id="{9a5097b9-5e81-4304-8580-b5fdcba6dc39}">
       <Implementation>
@@ -125,20 +135,20 @@ LinkadoEntradas();]]></ST>
       <Implementation>
         <ST><![CDATA[// Linkado entradas
 
-Ftc_SalGreenCut:=      main.id0Remoto2.0;
-Consenso_SalGreenCut:= TRUE;//main.id0Remoto2.1;
+Ftc_CortHum4:=      main.id0Remoto1.0;
+Consenso_CortHum4:= TRUE;//main.id0Remoto1.1;
 
 
-Ftc2_EntSecad:=      main.id0Remoto2.2;
-Consenso_EntSecad:= TRUE;// main.id0Remoto2.3;
+Ftc2_Libre:=      main.id0Remoto1.2;
+Consenso_Ftc3_Libre:= TRUE;// main.id0Remoto1.3;
 
 
-Ftc3_Libre:=      main.id0Remoto2.4;
-Consenso_Ftc3_Libre:= TRUE;// main.id0Remoto2.5;
+Ftc3_Libre:=      main.id0Remoto1.4;
+Consenso_Ftc3_Libre:= TRUE;// main.id0Remoto1.5;
 
 
-Ftc4_Libre:=      main.id0Remoto2.6;
-Consenso_Ftc4_Libre:= TRUE;// main.id0Remoto2.7;
+Ftc4_Libre:=      main.id0Remoto1.6;
+Consenso_Ftc4_Libre:= TRUE;// main.id0Remoto1.7;
 
 
 
@@ -153,6 +163,9 @@ Consenso_Ftc4_Libre:= TRUE;// main.id0Remoto2.7;
       <LineId Id="50" Count="0" />
       <LineId Id="86" Count="1" />
       <LineId Id="89" Count="1" />
+      <LineId Id="154" Count="0" />
+      <LineId Id="163" Count="0" />
+      <LineId Id="162" Count="0" />
     </LineIds>
     <LineIds Name="FuncParoNodoCorteH4Remote1.Direccionamiento_variables_com">
       <LineId Id="1" Count="0" />

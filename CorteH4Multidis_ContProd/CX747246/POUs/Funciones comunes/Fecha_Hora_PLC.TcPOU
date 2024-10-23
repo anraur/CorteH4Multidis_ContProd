@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Fecha_Hora_PLC" Id="{f851efe8-ffb2-40b6-993d-2b966bfb1ad6}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Fecha_Hora_PLC
+VAR
+END_VAR
+VAR_TEMP
+	HoraTemporal: STRING;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Función para leer la fecha y hora del PLC 
+Fecha_PLC.fbGetLocalSystemTime(
+	sNetID:= , 
+	bEnable:=TRUE , 
+	dwCycle:=1 , 
+	dwOpt:= , 
+	tTimeout:= , 
+	bValid=> , 
+	systemTime=> , 
+	tzID=> );
+	
+//Enviar la fecha y hora a una STRING
+Fecha_PLC.StringDateTime:= SYSTEMTIME_TO_STRING(Fecha_PLC.fbGetLocalSystemTime.systemTime);
+
+//Convertir a time la hora actual para poder realizar las restas entre fechas
+Fecha_PLC.Fecha_Struct :=Fecha_PLC.fbGetLocalSystemTime.systemTime;
+Fecha_PLC.Fecha_Entera_Dt:= SYSTEMTIME_TO_DT (Fecha_PLC.Fecha_Struct);
+Fecha_PLC.Fecha_Time_PLC := DT_TO_TIME (Fecha_PLC.Fecha_Entera_Dt);
+
+
+//Dividir en variables la fecha y hora STRING
+Fecha_PLC.StringDate := MID(STR:= Fecha_PLC.StringDateTime, LEN:= 10, POS:= 1);
+Fecha_PLC.StringDateHourMin := MID(STR:= Fecha_PLC.StringDateTime, LEN:= 19, POS:= 1);
+Fecha_PLC.StringTime := MID(STR:= Fecha_PLC.StringDateTime, LEN:= 8, POS:= 12);
+Fecha_PLC.StringAno := MID(STR:= Fecha_PLC.StringDateTime, LEN:= 4, POS:= 1);
+Fecha_PLC.StringMes := MID(STR:= Fecha_PLC.StringDateTime, LEN:= 2, POS:= 6);
+Fecha_PLC.StringDia := MID(STR:= Fecha_PLC.StringDateTime, LEN:= 2, POS:= 9);
+Fecha_PLC.StringHora := MID(STR:= Fecha_PLC.StringDateTime, LEN:= 1, POS:= 12);
+IF Fecha_PLC.StringHora = '0' THEN 
+	Fecha_PLC.StringHora := MID(STR:= Fecha_PLC.StringDateTime, LEN:= 1, POS:= 13);
+	ELSE 
+		Fecha_PLC.StringHora := MID(STR:= Fecha_PLC.StringDateTime, LEN:= 2, POS:= 12);
+END_IF
+Fecha_PLC.StringMinutos := MID(STR:= Fecha_PLC.StringDateTime, LEN:= 2, POS:= 15);
+Fecha_PLC.StringSegundos := MID(STR:= Fecha_PLC.StringDateTime, LEN:= 2, POS:= 18);
+
+//Concatenacion de strings
+	//Mes_Dia Hora:Minutos
+	Fecha_PLC.Mes_Dia_Hora_Min_Real := concat(Fecha_PLC.StringDia,'_');
+	Fecha_PLC.Mes_Dia_Hora_Min_Real:= concat(Fecha_PLC.Mes_Dia_Hora_Min_Real,Fecha_PLC.StringMes); 
+	Fecha_PLC.Mes_Dia_Hora_Min_Real:= concat(Fecha_PLC.Mes_Dia_Hora_Min_Real,'  ');
+	Fecha_PLC.Mes_Dia_Hora_Min_Real:= concat(Fecha_PLC.Mes_Dia_Hora_Min_Real,Fecha_PLC.StringHora);
+	Fecha_PLC.Mes_Dia_Hora_Min_Real:= concat(Fecha_PLC.Mes_Dia_Hora_Min_Real,':');
+	Fecha_PLC.Mes_Dia_Hora_Min_Real:= concat(Fecha_PLC.Mes_Dia_Hora_Min_Real,Fecha_PLC.StringMinutos);]]></ST>
+    </Implementation>
+    <LineIds Name="Fecha_Hora_PLC">
+      <LineId Id="6" Count="12" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="20" Count="1" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="22" Count="10" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="56" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

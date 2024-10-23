@@ -5,6 +5,7 @@
 VAR
 	Funci_Multidiscos1:fb_Funciones_Paro;
 	Funci_Multidiscos2:fb_Funciones_Paro;
+	FunGeneMultidiscos1:FuncGeneralesMultidisc1;
 	//Entradas Multidiscos1
 	Ftc_Multidiscos1: BOOL;	
 	ForzadoFtcMultidiscos1:BOOL;	
@@ -25,16 +26,20 @@ VAR
 	Multidiscos1StrFuncParoEnviar:StrFuncParoEnviar;
 	Multidiscos2StrFuncParoEnviar:StrFuncParoEnviar;
 	Libre1StrFuncParoEnviar:StrFuncParoEnviar;
-	Libre2StrFuncParoEnviar:StrFuncParoEnviar;
-	
-	
-	
-	
+	Libre2StrFuncParoEnviar:StrFuncParoEnviar;	
 END_VAR
 VAR RETAIN
+END_VAR
+VAR PERSISTENT 
 	HMI_Tiempo_Offset_MParo:INT:=5;
 	HMI_TiempoFiltradoFotocel:TIME:=T#2S;
-END_VAR]]></Declaration>
+// Generales 
+	sModeloActualTabla:STRING;
+	sModeloEleccionTabla:STRING;
+	sFechaInicModeloTab:STRING;
+	sJustificaParoComun:STRING;
+END_VAR
+]]></Declaration>
     <Implementation>
       <ST><![CDATA[//Funciones de paro para cada zona(Fotocelula)
 
@@ -43,19 +48,20 @@ Funci_Multidiscos1(Fotocelula:=Ftc_Multidiscos1 OR ForzadoFtcMultidiscos1,
 					Tiempo_Offset_MParo:=HMI_Tiempo_Offset_MParo, 
 					TiempoFiltradoFotocel:=HMI_TiempoFiltradoFotocel,
 					_StrFuncParoEnviar => Multidiscos1StrFuncParoEnviar,
-					S_Justi_Paro_Ftc:=Funciones_Comunes.sJustificaParoComun);
+					S_Justi_Paro_Ftc:=FuncParoNodoCorteH4Remote1.sJustificaParoComun);
 					
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>         	Multidiscos 2        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 Funci_Multidiscos2(Fotocelula:= Ftc2_Multidiscos2 OR ForzadoFtc2_Multidiscos2,
 						Tiempo_Offset_MParo:=HMI_Tiempo_Offset_MParo, 
 						TiempoFiltradoFotocel:=HMI_TiempoFiltradoFotocel,
 						_StrFuncParoEnviar => Multidiscos2StrFuncParoEnviar,
-					S_Justi_Paro_Ftc:=Funciones_Comunes.sJustificaParoComun);
+					S_Justi_Paro_Ftc:=FuncParoNodoMultidiscos.sJustificaParoComun);
 						
 
 										
 Direccionamiento_variables_com();
-Linkado_Entradas();]]></ST>
+Linkado_Entradas();
+//FunGeneMultidiscos1(s_JustificaParoComun => sJustificaParoComun,s_ModeloActualTabla => sModeloActualTabla,s_ModeloEleccionTabla => sModeloEleccionTabla);]]></ST>
     </Implementation>
     <Action Name="Direccionamiento_variables_com" Id="{ccbcc35e-de58-4535-9514-7aeadbc87591}">
       <Implementation>
@@ -173,6 +179,7 @@ Consenso4:= TRUE;// main.id0Local2.7;
       <LineId Id="161" Count="0" />
       <LineId Id="164" Count="0" />
       <LineId Id="163" Count="0" />
+      <LineId Id="236" Count="0" />
     </LineIds>
     <LineIds Name="FuncParoNodoMultidiscos.Direccionamiento_variables_com">
       <LineId Id="1" Count="0" />
