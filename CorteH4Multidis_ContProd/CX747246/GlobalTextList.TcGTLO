@@ -41,6 +41,21 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"177"</v>
+              <v n="TextDefault">"%s 	Contador piezas corte húmedo 4 "</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"125"</v>
+              <v n="TextDefault">"%s 	Contador piezas multidiscos 1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"246"</v>
+              <v n="TextDefault">"%s 	Contador piezas multidiscos 2"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"633"</v>
               <v n="TextDefault">"%t[s,ms]"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -83,6 +98,11 @@
             <o>
               <v n="TextID">"737"</v>
               <v n="TextDefault">"Diagnostico"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"29"</v>
+              <v n="TextDefault">"Elección modelo de la tabla CORTE HÚMEDO 4"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -304,6 +324,13 @@ para evitar parpadeos"</v>
               <v n="TextID">"501"</v>
               <v n="TextDefault">"Tiempo para empezar 
 a contar como paro"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"138"</v>
+              <v n="TextDefault">"Vas a finalizar la producción de este modelo de tabla.
+¿Estas seguro que no queda ninguna tabla 
+en toda la línea?"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

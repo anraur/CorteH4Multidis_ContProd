@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Task Name="Lectura_PLCs_1" Id="{ea3ace6b-4a00-4d26-9c34-c0962baa9e42}">
+    <!--CycleTime in micro seconds.-->
+    <CycleTime>10000</CycleTime>
+    <Priority>1</Priority>
+    <PouCall>
+      <Name>MAIN_Orden_Lectura_PLCs</Name>
+    </PouCall>
+    <TaskFBGuid>{3189d5c4-d29a-41ac-8d66-a9f0a66193db}</TaskFBGuid>
+    <Fb_init>{6aacc986-79a9-480c-8dcf-f1b45b14ffa8}</Fb_init>
+    <Fb_exit>{db99491d-66cc-4823-9b67-f63b693b4ee9}</Fb_exit>
+    <CycleUpdate>{0e1551d9-f21a-4231-852c-703ecaf263f8}</CycleUpdate>
+    <PostCycleUpdate>{eb4a924d-1412-43b4-840a-00047eb30f09}</PostCycleUpdate>
+  </Task>
+</TcPlcObject>

@@ -15,15 +15,13 @@ END_VAR
 
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[MAIN_Orden_Lectura_PLCs();
-fbUPS(iPLCPort:= 851,);
+      <ST><![CDATA[fbUPS(iPLCPort:= 851,);
 Fecha_Hora_PLC();
 FuncParoNodoCorteH4Remote1();
 Events();
 ]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
-      <LineId Id="2" Count="0" />
       <LineId Id="17" Count="0" />
       <LineId Id="19" Count="1" />
       <LineId Id="16" Count="0" />

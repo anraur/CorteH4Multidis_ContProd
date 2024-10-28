@@ -6,6 +6,9 @@ Id;Default
 52;%s $TContador fotocelula entrada secadero
 78;%s $TContador fotocelula salida airless 2
 348;%s $TContador fotocelula salida prensa 
+177;%s $TContador piezas corte húmedo 4 
+125;%s $TContador piezas multidiscos 1
+246;%s $TContador piezas multidiscos 2
 633;%t[s,ms]
 13;Aceptar
 801;AJUSTES
@@ -15,6 +18,7 @@ Id;Default
 137;Corte húmedo 4
 448;Delay Escritura
 737;Diagnostico
+29;Elección modelo de la tabla CORTE HÚMEDO 4
 16;Elección modelo de la tabla LINEA 4
 360;Elige la opción de fin de producción $R$Ndel modelo actual.
 32;En cuanto pulsas Reset paso a paso contadores se resetea $R$Ncontador fotocelula salida prensa,$R$N  a los 10 min de no notar pieza en la entrada del secadero se resetea $R$Ncontador entrada secadero,$R$N pasados 35 min sin notar pieza en salida airless 2 resetea $R$Ncontador salida airless 2. $R$NA los 15 min que el contador de reset salida airless 2 se haya reseteado$R$N se resetea contador fotocelula entrada horno inferior. 
@@ -55,6 +59,7 @@ Id;Default
 55;Tiempo entre Piezas$R$NAnterior
 649;Tiempo filtrado fotocelulas$R$Npara evitar parpadeos
 501;Tiempo para empezar $R$Na contar como paro
+138;Vas a finalizar la producción de este modelo de tabla.$R$N¿Estas seguro que no queda ninguna tabla $R$Nen toda la línea?
 58;Vas a finalizar la producción de este modelo de tabla.$R$N¿Estas seguro que no queda ninguna tabla $R$Nentre la prensa y la entrada del horno?
 729;Zona entrada horno
 278;Zona presa

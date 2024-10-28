@@ -82,7 +82,7 @@ END_VAR]]></Declaration>
 s_FechaInicModeloTab:=Fecha_PLC.Mes_Dia_Hora_Min_Real;
 
 //Envías el modelo de la tabla de la variable preelección  
-s_ModeloActualTabla:=sModeloEleccionTabla;
+s_ModeloActualTabla:=s_ModeloEleccionTabla;
 
 
 
