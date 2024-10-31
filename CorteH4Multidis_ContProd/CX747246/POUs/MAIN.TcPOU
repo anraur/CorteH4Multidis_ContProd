@@ -11,6 +11,7 @@ VAR
 	// Salidas
 	od0Local   AT %Q*: BYTE;
 	od0Remoto1 AT %Q*: BYTE;
+	fbUtilidades: Utilidades;
 END_VAR
 
 ]]></Declaration>
@@ -19,7 +20,7 @@ END_VAR
 Fecha_Hora_PLC();
 FuncParoNodoCorteH4Remote1();
 Events();
-]]></ST>
+fbUtilidades();]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="17" Count="0" />

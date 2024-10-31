@@ -126,7 +126,7 @@ fbLecturaBools.PORT:=   Config_PLC_ADS_Bools.PORT;
 fbLecturaBools.IDXGRP:= Config_PLC_ADS_Bools.IDXGRP;//Variables %M
 fbLecturaBools.IDXOFFS:= Config_PLC_ADS_Bools.IDXOFFS;//Offset de la marca que empieza a leer
 fbLecturaBools.LEN:= Config_PLC_ADS_Bools.LEN;//Longitud de bits a leer
-fbLecturaBools.DESTADDR:= ADR(Lectura_PLCs.aMasterBoolCom);//Numero componentes
+fbLecturaBools.DESTADDR:= Config_PLC_ADS_Bools.DESTADDR;//Numero componentes
 fbLecturaBools.READ:=     Execute_Read_Bools;//Bit de ejecutar la lectura 
 fbLecturaBools();
 Err_fbLecturaBools := fbLecturaBools.ERR;
@@ -146,7 +146,7 @@ fbLecturaStrings.PORT:=   Config_PLC_ADS_Strings.PORT;
 fbLecturaStrings.IDXGRP:= Config_PLC_ADS_Strings.IDXGRP;//Variables %M
 fbLecturaStrings.IDXOFFS:= Config_PLC_ADS_Strings.IDXOFFS;//Offset 
 fbLecturaStrings.LEN:= Config_PLC_ADS_Strings.LEN;//Longitud de bytes a leer 
-fbLecturaStrings.DESTADDR:= ADR(Lectura_PLCs.aMasterStringCom);//componentes
+fbLecturaStrings.DESTADDR:= Config_PLC_ADS_Strings.DESTADDR;//componentes
 fbLecturaStrings.READ:=     Execute_Read_Strings;
 fbLecturaStrings();
 Err_fbLecturaStrings:= fbLecturaStrings.ERR;
@@ -168,7 +168,7 @@ fbLecturaTimes.PORT:=   Config_PLC_ADS_Times.Port; //Puerto a leer
 fbLecturaTimes.IDXGRP:= Config_PLC_ADS_Times.IDXGRP;//Variables %M
 fbLecturaTimes.IDXOFFS:= Config_PLC_ADS_Times.IDXOFFS;//Offset 
 fbLecturaTimes.LEN:= Config_PLC_ADS_Times.LEN;//Longitud de bytes a leer 
-fbLecturaTimes.DESTADDR:= ADR(Lectura_PLCs.aMasterTimeCom);// componentes
+fbLecturaTimes.DESTADDR:= Config_PLC_ADS_Times.DESTADDR;// componentes
 fbLecturaTimes.READ:=    Execute_Read_Times;
 fbLecturaTimes();
 Err_fbLecturaTimes:= fbLecturaTimes.ERR;
@@ -189,7 +189,7 @@ fbLecturaWords.PORT:=   Config_PLC_ADS_Words.Port; //Puerto
 fbLecturaWords.IDXGRP:= Config_PLC_ADS_Words.IDXGRP;//Variables %M
 fbLecturaWords.IDXOFFS:= Config_PLC_ADS_Words.IDXOFFS;//Offset 
 fbLecturaWords.LEN:= Config_PLC_ADS_Words.LEN;//Longitud de bytes a leer 
-fbLecturaWords.DESTADDR:= ADR(Lectura_PLCs.aMasterWordCom);//Componentes
+fbLecturaWords.DESTADDR:= Config_PLC_ADS_Words.DESTADDR;//Componentes
 fbLecturaWords.READ:=  Execute_Read_Words ;
 fbLecturaWords();
 Err_fbLecturaWords:= fbLecturaWords.ERR;
@@ -263,7 +263,9 @@ END_IF
       <LineId Id="406" Count="0" />
     </LineIds>
     <LineIds Name="fbLectura_a_PLC.Read_Bools">
-      <LineId Id="9" Count="10" />
+      <LineId Id="9" Count="4" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="15" Count="4" />
       <LineId Id="23" Count="0" />
     </LineIds>
     <LineIds Name="fbLectura_a_PLC.Read_Strings">

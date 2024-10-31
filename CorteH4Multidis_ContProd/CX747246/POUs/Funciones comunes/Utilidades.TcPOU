@@ -7,14 +7,16 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	
+
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[GVL_Funciones_Paro.Temporizador1min(IN:=not GVL_Funciones_Paro.Temporizador1min.Q , PT:= T#60s, Q=> , ET=> );]]></ST>
+      <ST><![CDATA[//Direccionamiento de variables para enviar 
+Var_Com_CH4_MulDis.aStringCom[62] := Fecha_PLC.StringDateHourMin;]]></ST>
     </Implementation>
     <LineIds Name="Utilidades">
-      <LineId Id="9" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="21" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

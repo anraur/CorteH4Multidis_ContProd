@@ -87,9 +87,6 @@
     <Compile Include="POUs\PRGs_Nodos\FuncParoNodoCorteH4Remote1.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Utilidades_1.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="VISUs\DiagnosticoFB.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>

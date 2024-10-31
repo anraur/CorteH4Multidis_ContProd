@@ -66,69 +66,69 @@ FunGeneCortHum4(s_JustificaParoComun => sJustificaParoComun,s_ModeloActualTabla 
 
 //								>>>>>>>>>>>>>>>>>>>>>>>>>>>>      WORDS    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-	Var_Com_CH4_MulDis.aWordCom[100]:= INT_TO_WORD (CortHum4StrFuncParoEnviar.Cont_Piezas);	    //Contadores de cada fotocelula 
-	Var_Com_CH4_MulDis.aWordCom[101]:= INT_TO_WORD (Ftc2StrFuncParoEnviar.Cont_Piezas);		//Contadores de cada fotocelula 
-	Var_Com_CH4_MulDis.aWordCom[102]:= INT_TO_WORD (Ftc3StrFuncParoEnviar.Cont_Piezas);		//Contadores de cada fotocelula 
-	Var_Com_CH4_MulDis.aWordCom[103]:= INT_TO_WORD (Ftc4StrFuncParoEnviar.Cont_Piezas);		//Contadores de cada fotocelula 
-	Var_Com_CH4_MulDis.aWordCom[104]:= INT_TO_WORD (CortHum4StrFuncParoEnviar.Min_Parado_Ftc);			//Minutos actuales parado
-	Var_Com_CH4_MulDis.aWordCom[105]:= INT_TO_WORD (Ftc2StrFuncParoEnviar.Min_Parado_Ftc);			//Minutos actuales parado
-	Var_Com_CH4_MulDis.aWordCom[106]:= INT_TO_WORD (Ftc3StrFuncParoEnviar.Min_Parado_Ftc);			//Minutos actuales parado
-	Var_Com_CH4_MulDis.aWordCom[107]:= INT_TO_WORD (Ftc4StrFuncParoEnviar.Min_Parado_Ftc);			//Minutos actuales parado
+	Var_Com_CH4_MulDis.aWordCom[50]:= INT_TO_WORD (CortHum4StrFuncParoEnviar.Cont_Piezas);	    //Contadores de cada fotocelula 
+	Var_Com_CH4_MulDis.aWordCom[51]:= INT_TO_WORD (Ftc2StrFuncParoEnviar.Cont_Piezas);		//Contadores de cada fotocelula 
+	Var_Com_CH4_MulDis.aWordCom[52]:= INT_TO_WORD (Ftc3StrFuncParoEnviar.Cont_Piezas);		//Contadores de cada fotocelula 
+	Var_Com_CH4_MulDis.aWordCom[53]:= INT_TO_WORD (Ftc4StrFuncParoEnviar.Cont_Piezas);		//Contadores de cada fotocelula 
+	Var_Com_CH4_MulDis.aWordCom[54]:= INT_TO_WORD (CortHum4StrFuncParoEnviar.Min_Parado_Ftc);			//Minutos actuales parado
+	Var_Com_CH4_MulDis.aWordCom[55]:= INT_TO_WORD (Ftc2StrFuncParoEnviar.Min_Parado_Ftc);			//Minutos actuales parado
+	Var_Com_CH4_MulDis.aWordCom[56]:= INT_TO_WORD (Ftc3StrFuncParoEnviar.Min_Parado_Ftc);			//Minutos actuales parado
+	Var_Com_CH4_MulDis.aWordCom[57]:= INT_TO_WORD (Ftc4StrFuncParoEnviar.Min_Parado_Ftc);			//Minutos actuales parado
 	
 	
 	
 //                           	>>>>>>>>>>>>>>>>>>>>>>>>>>>>      TIME   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 	
 	
-	Var_Com_CH4_MulDis.aTimeCom[50]:=  CortHum4StrFuncParoEnviar.t_Entre_Piez_Ftc; 			//Tiempo entre piezas
-	Var_Com_CH4_MulDis.aTimeCom[51]:=  Ftc2StrFuncParoEnviar.t_Entre_Piez_Ftc;			//Tiempo entre piezas
-	Var_Com_CH4_MulDis.aTimeCom[52]:= Ftc3StrFuncParoEnviar.t_Entre_Piez_Ftc;				//Tiempo entre piezas
-	Var_Com_CH4_MulDis.aTimeCom[53]:= Ftc4StrFuncParoEnviar.t_Entre_Piez_Ftc;				//Tiempo entre piezas
-	Var_Com_CH4_MulDis.aTimeCom[54]:= CortHum4StrFuncParoEnviar.t_Entr_Piez_Ante_Ftc; 		//Tiempo entre piezas anterior
-	Var_Com_CH4_MulDis.aTimeCom[55]:= Ftc2StrFuncParoEnviar.t_Entr_Piez_Ante_Ftc; 		//Tiempo entre piezas anterior
-	Var_Com_CH4_MulDis.aTimeCom[56]:= Ftc3StrFuncParoEnviar.t_Entr_Piez_Ante_Ftc; 		//Tiempo entre piezas anterior
-	Var_Com_CH4_MulDis.aTimeCom[57]:= Ftc4StrFuncParoEnviar.t_Entr_Piez_Ante_Ftc; 		//Tiempo entre piezas anterior
+	Var_Com_CH4_MulDis.aTimeCom[25]:=  CortHum4StrFuncParoEnviar.t_Entre_Piez_Ftc; 			//Tiempo entre piezas
+	Var_Com_CH4_MulDis.aTimeCom[26]:=  Ftc2StrFuncParoEnviar.t_Entre_Piez_Ftc;			//Tiempo entre piezas
+	Var_Com_CH4_MulDis.aTimeCom[27]:= Ftc3StrFuncParoEnviar.t_Entre_Piez_Ftc;				//Tiempo entre piezas
+	Var_Com_CH4_MulDis.aTimeCom[28]:= Ftc4StrFuncParoEnviar.t_Entre_Piez_Ftc;				//Tiempo entre piezas
+	Var_Com_CH4_MulDis.aTimeCom[29]:= CortHum4StrFuncParoEnviar.t_Entr_Piez_Ante_Ftc; 		//Tiempo entre piezas anterior
+	Var_Com_CH4_MulDis.aTimeCom[30]:= Ftc2StrFuncParoEnviar.t_Entr_Piez_Ante_Ftc; 		//Tiempo entre piezas anterior
+	Var_Com_CH4_MulDis.aTimeCom[31]:= Ftc3StrFuncParoEnviar.t_Entr_Piez_Ante_Ftc; 		//Tiempo entre piezas anterior
+	Var_Com_CH4_MulDis.aTimeCom[32]:= Ftc4StrFuncParoEnviar.t_Entr_Piez_Ante_Ftc; 		//Tiempo entre piezas anterior
 	
 	
 	
 	
 //                           	>>>>>>>>>>>>>>>>>>>>>>>>>>>>      STRING  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    Var_Com_CH4_MulDis.aStringCom[40] := CortHum4StrFuncParoEnviar.H_InParo_Ftc;         //Hora inicio paro 
-	Var_Com_CH4_MulDis.aStringCom[41] := Ftc2StrFuncParoEnviar.H_InParo_Ftc;         //Hora inicio paro 
-	Var_Com_CH4_MulDis.aStringCom[42] := Ftc3StrFuncParoEnviar.H_InParo_Ftc;         //Hora inicio paro 
-	Var_Com_CH4_MulDis.aStringCom[43] := Ftc4StrFuncParoEnviar.H_InParo_Ftc;         //Hora inicio paro 
-	Var_Com_CH4_MulDis.aStringCom[44] := CortHum4StrFuncParoEnviar.H_FinParo_Ftc;        //Hora Fin paro 
-	Var_Com_CH4_MulDis.aStringCom[45] := Ftc2StrFuncParoEnviar.H_FinParo_Ftc;        //Hora Fin paro 
-	Var_Com_CH4_MulDis.aStringCom[46] := Ftc3StrFuncParoEnviar.H_FinParo_Ftc;        //Hora Fin paro 
-	Var_Com_CH4_MulDis.aStringCom[47] := Ftc4StrFuncParoEnviar.H_FinParo_Ftc;        //Hora Fin paro 
-	Var_Com_CH4_MulDis.aStringCom[48] := CortHum4StrFuncParoEnviar.S_Justi_Paro_Ftc;		//Justificación del paro
-	Var_Com_CH4_MulDis.aStringCom[49] := Ftc2StrFuncParoEnviar.S_Justi_Paro_Ftc;		//Justificación del paro
-	Var_Com_CH4_MulDis.aStringCom[50] := Ftc3StrFuncParoEnviar.S_Justi_Paro_Ftc;		//Justificación del paro
-	Var_Com_CH4_MulDis.aStringCom[51] := Ftc4StrFuncParoEnviar.S_Justi_Paro_Ftc;		//Justificación del paro
+    Var_Com_CH4_MulDis.aStringCom[20] := CortHum4StrFuncParoEnviar.H_InParo_Ftc;         //Hora inicio paro 
+	Var_Com_CH4_MulDis.aStringCom[21] := Ftc2StrFuncParoEnviar.H_InParo_Ftc;         //Hora inicio paro 
+	Var_Com_CH4_MulDis.aStringCom[22] := Ftc3StrFuncParoEnviar.H_InParo_Ftc;         //Hora inicio paro 
+	Var_Com_CH4_MulDis.aStringCom[23] := Ftc4StrFuncParoEnviar.H_InParo_Ftc;         //Hora inicio paro 
+	Var_Com_CH4_MulDis.aStringCom[24] := CortHum4StrFuncParoEnviar.H_FinParo_Ftc;        //Hora Fin paro 
+	Var_Com_CH4_MulDis.aStringCom[25] := Ftc2StrFuncParoEnviar.H_FinParo_Ftc;        //Hora Fin paro 
+	Var_Com_CH4_MulDis.aStringCom[26] := Ftc3StrFuncParoEnviar.H_FinParo_Ftc;        //Hora Fin paro 
+	Var_Com_CH4_MulDis.aStringCom[27] := Ftc4StrFuncParoEnviar.H_FinParo_Ftc;        //Hora Fin paro 
+	Var_Com_CH4_MulDis.aStringCom[28] := CortHum4StrFuncParoEnviar.S_Justi_Paro_Ftc;		//Justificación del paro
+	Var_Com_CH4_MulDis.aStringCom[29] := Ftc2StrFuncParoEnviar.S_Justi_Paro_Ftc;		//Justificación del paro
+	Var_Com_CH4_MulDis.aStringCom[30] := Ftc3StrFuncParoEnviar.S_Justi_Paro_Ftc;		//Justificación del paro
+	Var_Com_CH4_MulDis.aStringCom[31] := Ftc4StrFuncParoEnviar.S_Justi_Paro_Ftc;		//Justificación del paro
 	
 	
 //                           	>>>>>>>>>>>>>>>>>>>>>>>>>>>>      Bool  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 
-	Var_Com_CH4_MulDis.aBoolCom[199] := CortHum4StrFuncParoEnviar.Fotocelula;						//Fotocelula Real
-	Var_Com_CH4_MulDis.aBoolCom[200] := Ftc2StrFuncParoEnviar.Fotocelula;						//Fotocelula Real
-	Var_Com_CH4_MulDis.aBoolCom[201] := Ftc3StrFuncParoEnviar.Fotocelula;						//Fotocelula Real
-	Var_Com_CH4_MulDis.aBoolCom[202] := Ftc4StrFuncParoEnviar.Fotocelula;						//Fotocelula Real
-	Var_Com_CH4_MulDis.aBoolCom[203] := CortHum4StrFuncParoEnviar.MParo_Ftc;				//Marca de paro 
-	Var_Com_CH4_MulDis.aBoolCom[204] := Ftc2StrFuncParoEnviar.MParo_Ftc;				//Marca de paro 
-	Var_Com_CH4_MulDis.aBoolCom[205] := Ftc3StrFuncParoEnviar.MParo_Ftc;				//Marca de paro 
-	Var_Com_CH4_MulDis.aBoolCom[206] := Ftc4StrFuncParoEnviar.MParo_Ftc;				//Marca de paro 
-	Var_Com_CH4_MulDis.aBoolCom[207] := CortHum4StrFuncParoEnviar.M_SinParo_Ftc;			//Marca de sin paro activo
-	Var_Com_CH4_MulDis.aBoolCom[208] := Ftc2StrFuncParoEnviar.M_SinParo_Ftc;			//Marca de sin paro activo
-	Var_Com_CH4_MulDis.aBoolCom[209] := Ftc3StrFuncParoEnviar.M_SinParo_Ftc;			//Marca de sin paro activo
-	Var_Com_CH4_MulDis.aBoolCom[210] := Ftc4StrFuncParoEnviar.M_SinParo_Ftc;			//Marca de sin paro activo
-	Var_Com_CH4_MulDis.aBoolCom[211] := CortHum4StrFuncParoEnviar.tFiltro_up_Ftc;			//Q Temp Up Filtro Fotocelulas
-	Var_Com_CH4_MulDis.aBoolCom[212] := Ftc2StrFuncParoEnviar.tFiltro_up_Ftc;			//Q Temp Up Filtro Fotocelulas
-	Var_Com_CH4_MulDis.aBoolCom[213] := Ftc3StrFuncParoEnviar.tFiltro_up_Ftc;			//Q Temp Up Filtro Fotocelulas
-	Var_Com_CH4_MulDis.aBoolCom[214] := Ftc4StrFuncParoEnviar.tFiltro_up_Ftc;			//Q Temp Up Filtro Fotocelulas
-	Var_Com_CH4_MulDis.aBoolCom[215] := CortHum4StrFuncParoEnviar.tFiltro_down_Ftc;		//Q Temp Down Filtro Fotocelulas
-	Var_Com_CH4_MulDis.aBoolCom[216] := Ftc2StrFuncParoEnviar.tFiltro_down_Ftc;		//Q Temp Down Filtro Fotocelulas
-	Var_Com_CH4_MulDis.aBoolCom[217] := Ftc3StrFuncParoEnviar.tFiltro_down_Ftc;		//Q Temp Down Filtro Fotocelulas
-	Var_Com_CH4_MulDis.aBoolCom[218] := Ftc4StrFuncParoEnviar.tFiltro_down_Ftc;		//Q Temp Down Filtro Fotocelulas]]></ST>
+	Var_Com_CH4_MulDis.aBoolCom[99] := CortHum4StrFuncParoEnviar.Fotocelula;						//Fotocelula Real
+	Var_Com_CH4_MulDis.aBoolCom[100] := Ftc2StrFuncParoEnviar.Fotocelula;						//Fotocelula Real
+	Var_Com_CH4_MulDis.aBoolCom[101] := Ftc3StrFuncParoEnviar.Fotocelula;						//Fotocelula Real
+	Var_Com_CH4_MulDis.aBoolCom[102] := Ftc4StrFuncParoEnviar.Fotocelula;						//Fotocelula Real
+	Var_Com_CH4_MulDis.aBoolCom[103] := CortHum4StrFuncParoEnviar.MParo_Ftc;				//Marca de paro 
+	Var_Com_CH4_MulDis.aBoolCom[104] := Ftc2StrFuncParoEnviar.MParo_Ftc;				//Marca de paro 
+	Var_Com_CH4_MulDis.aBoolCom[105] := Ftc3StrFuncParoEnviar.MParo_Ftc;				//Marca de paro 
+	Var_Com_CH4_MulDis.aBoolCom[106] := Ftc4StrFuncParoEnviar.MParo_Ftc;				//Marca de paro 
+	Var_Com_CH4_MulDis.aBoolCom[107] := CortHum4StrFuncParoEnviar.M_SinParo_Ftc;			//Marca de sin paro activo
+	Var_Com_CH4_MulDis.aBoolCom[108] := Ftc2StrFuncParoEnviar.M_SinParo_Ftc;			//Marca de sin paro activo
+	Var_Com_CH4_MulDis.aBoolCom[109] := Ftc3StrFuncParoEnviar.M_SinParo_Ftc;			//Marca de sin paro activo
+	Var_Com_CH4_MulDis.aBoolCom[110] := Ftc4StrFuncParoEnviar.M_SinParo_Ftc;			//Marca de sin paro activo
+	Var_Com_CH4_MulDis.aBoolCom[111] := CortHum4StrFuncParoEnviar.tFiltro_up_Ftc;			//Q Temp Up Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[112] := Ftc2StrFuncParoEnviar.tFiltro_up_Ftc;			//Q Temp Up Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[113] := Ftc3StrFuncParoEnviar.tFiltro_up_Ftc;			//Q Temp Up Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[114] := Ftc4StrFuncParoEnviar.tFiltro_up_Ftc;			//Q Temp Up Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[115] := CortHum4StrFuncParoEnviar.tFiltro_down_Ftc;		//Q Temp Down Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[116] := Ftc2StrFuncParoEnviar.tFiltro_down_Ftc;		//Q Temp Down Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[117] := Ftc3StrFuncParoEnviar.tFiltro_down_Ftc;		//Q Temp Down Filtro Fotocelulas
+	Var_Com_CH4_MulDis.aBoolCom[118] := Ftc4StrFuncParoEnviar.tFiltro_down_Ftc;		//Q Temp Down Filtro Fotocelulas]]></ST>
       </Implementation>
     </Action>
     <Action Name="LinkadoEntradas" Id="{b69648cb-6431-495f-953a-43362874fee1}">
