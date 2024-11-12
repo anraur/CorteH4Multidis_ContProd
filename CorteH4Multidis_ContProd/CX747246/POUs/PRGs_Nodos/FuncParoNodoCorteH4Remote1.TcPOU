@@ -33,9 +33,13 @@ END_VAR
 VAR PERSISTENT 
 	HMI_Tiempo_Offset_MParo:INT:=5;
 	HMI_TiempoFiltradoFotocel:TIME:=T#2S;
-// Generales 
+// Modelo de la tabla y fecha cambio de modelo
 	sModeloActualTabla:STRING;
 	sModeloEleccionTabla:STRING;
+	sFormatoActualTabla:STRING;
+	sFormatoEleccionTabla:STRING;
+	sEspesorActualTabla:STRING;
+	sEspesorEleccionTabla:STRING;
 	sFechaInicModeloTab:STRING;
 	sJustificaParoComun:STRING;
 END_VAR
@@ -48,13 +52,13 @@ Funci_CortHum4(Fotocelula:=Ftc_CortHum4 OR ForzadoFtcCortHum4,
 					Tiempo_Offset_MParo:=HMI_Tiempo_Offset_MParo, 
 					TiempoFiltradoFotocel:=HMI_TiempoFiltradoFotocel,
 					_StrFuncParoEnviar => CortHum4StrFuncParoEnviar,
-					S_Justi_Paro_Ftc:=FunGeneCortHum4.s_JustificaParoComun);
+					S_Justi_Paro_Ftc:= main.fbUtilidades.sJustificaParoComun );
 					
 						
 						
 Direccionamiento_variables_com();
 LinkadoEntradas();
-FunGeneCortHum4(s_JustificaParoComun => sJustificaParoComun,s_ModeloActualTabla => sModeloActualTabla,s_ModeloEleccionTabla => sModeloEleccionTabla,s_FechaInicModeloTab=>sFechaInicModeloTab);
+FunGeneCortHum4(s_ModeloActualTabla => sModeloActualTabla,s_ModeloEleccionTabla => sModeloEleccionTabla,s_FechaInicModeloTab=>sFechaInicModeloTab,s_FormatoActualTabla=>sFormatoActualTabla,s_FormatoEleccionTabla=>sFormatoEleccionTabla,s_EspesorActualTabla=>sEspesorActualTabla,s_EspesorEleccionTabla=>sEspesorEleccionTabla);
 
 ]]></ST>
     </Implementation>

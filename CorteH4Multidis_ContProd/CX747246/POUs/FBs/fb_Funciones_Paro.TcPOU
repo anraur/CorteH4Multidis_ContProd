@@ -22,6 +22,7 @@ VAR_OUTPUT
 	M_Delay_Esc_Ftc:BOOL;//Delay escritura 	
 	Delay_Esc_Ftc:ton;// tiempo Delay escritura 
 	_StrFuncParoEnviar:StrFuncParoEnviar;
+	
 END_VAR
 VAR RETAIN
 	Cont_Piezas_Ftc:INT;	//Contador de piezas 				
@@ -44,6 +45,8 @@ VAR
 	tHora:TIME;
 	sHora: STRING(255);
 	ResetContPiez:BOOL;
+	s_Entr_Piez_Ante_Ftc:TIME;
+	S_Entre_Piez_Ftc:TIME;
 	Cont:INT;
 
 END_VAR
@@ -252,6 +255,7 @@ Time_InParo_Entera:= DT_TO_TIME(Dt_InParo_Entera);
 
 // Resta de la fecha de inicio entera Time menos fecha actual entera time
 t_Entre_Piez_Ftc:= Fecha_PLC.Fecha_Time_PLC - Time_InParo_Entera ;
+//t_Entre_Piez_Ftc:= Delete(t_Entre_Piez_Ftc,LEN:=2,POS:=1);
 ]]></ST>
       </Implementation>
     </Method>
@@ -330,6 +334,7 @@ t_Entre_Piez_Ftc:= Fecha_PLC.Fecha_Time_PLC - Time_InParo_Entera ;
       <LineId Id="35" Count="0" />
       <LineId Id="34" Count="0" />
       <LineId Id="28" Count="5" />
+      <LineId Id="53" Count="0" />
       <LineId Id="27" Count="0" />
     </LineIds>
   </POU>

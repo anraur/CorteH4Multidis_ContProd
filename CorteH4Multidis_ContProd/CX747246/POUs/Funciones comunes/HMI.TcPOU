@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="HMI" Id="{69636261-3123-453c-af0c-f3ab55ea0690}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM HMI
+VAR
+
+//OpenDialog:FbOpenDialog;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="HMI">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

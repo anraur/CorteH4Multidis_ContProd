@@ -7,6 +7,9 @@
     <PouCall>
       <Name>VisuElems.Visu_Prg</Name>
     </PouCall>
+    <PouCall>
+      <Name>HMI</Name>
+    </PouCall>
     <TaskFBGuid>{9e744dbc-0d4d-4af0-b7b5-bf927ba9547e}</TaskFBGuid>
     <Fb_init>{fe2d5844-fb77-46bd-bdf9-621571f1a7fc}</Fb_init>
     <Fb_exit>{4f907d19-eeb4-40c6-83ce-321c4cc74078}</Fb_exit>

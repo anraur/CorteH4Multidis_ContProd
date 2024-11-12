@@ -10,6 +10,7 @@ Id;Default
 125;%s $TContador piezas multidiscos 1
 246;%s $TContador piezas multidiscos 2
 633;%t[s,ms]
+577;//Quito las letras T# de la palabra a enviar$R$Nt_Entre_Piez_Ftc := DELETE(t_Entre_Piez_Ftc, LEN := 2, POS := 1)$;
 13;Aceptar
 801;AJUSTES
 152;Ajustes
@@ -23,42 +24,64 @@ Id;Default
 360;Elige la opción de fin de producción $R$Ndel modelo actual.
 32;En cuanto pulsas Reset paso a paso contadores se resetea $R$Ncontador fotocelula salida prensa,$R$N  a los 10 min de no notar pieza en la entrada del secadero se resetea $R$Ncontador entrada secadero,$R$N pasados 35 min sin notar pieza en salida airless 2 resetea $R$Ncontador salida airless 2. $R$NA los 15 min que el contador de reset salida airless 2 se haya reseteado$R$N se resetea contador fotocelula entrada horno inferior. 
 172;En cuanto se rearme la marcha se cerrará esta ventana.$R$NDe no haberte dado tiempo a justificar el paro deberas ir a $R$N$"Registro tablas y justificación de paro$" para introducirlo en la linea manualmente. 
+630;En producción
+432;En producción todo OK
+466;Entre Piez %s
+850;Entre Piez Anterior %s
 692;Esmaltado
+631;Espesor
+639;Espesor de la tabla 
 765;Exit
+394;Fecha inicio del modelo actual
 297;Filtro Down
 866;Filtro Up
 872;Fin de producción
+796;Fin de producción del modelo
 570;Fin de producción temp
 678;Fin producción temporizado
 493;Finalizar la producción$R$N mientras todavía quedan $R$Npiezas por la línea $R$Npero la prensa $R$Nya ha parado.
 806;Finalizar la producción inmediatamente.$R$NNo deben haber tablas entre la prensa y$R$Nel horno de destino.   
+300;Finalizar modelo
+419;Formato
+215;Formato de la tabla 
 884;Forzar Fotocelula
 998;GreenCut
 621;Habilitar lectura del$R$NPLC Maestro
 681;Hora Fin Paro
+553;Hora Inicio del paro
 340;Hora Inicio Paro
 226;Horno Inferior
 412;Horno Superior
 1115;Justifica brevemente el motivo del paro de la Linea.$R$NMáximo 5 palabras.
+266;JUSTIFICAR EL PARO ACTUAL
+366;Línea  en paro
+67;Línea en paro
 227;Marca Paro 
 911;Marca Sin Paro 
 316;Min
 914;Minutos Parado
+735;Modelo actual
 12;Modelo de la tabla 
 228;Multidiscos 1
 118;Multidiscos 2
+364;Número de piezas 
+700;Número de tablas
+490;Paro activo
+329;Prensa
 732;Reset contador
 722;Reset contador 
 20;Reset paso a paso contadores
 224;Ruta hacia horno
 299;Secadero
 403;Seg
+225;Sensor presencia tabla 
 864;Si
 64;tiempo entre Piezas
 906;Tiempo entre Piezas
 55;Tiempo entre Piezas$R$NAnterior
 649;Tiempo filtrado fotocelulas$R$Npara evitar parpadeos
 501;Tiempo para empezar $R$Na contar como paro
+433;Total piezas
 138;Vas a finalizar la producción de este modelo de tabla.$R$N¿Estas seguro que no queda ninguna tabla $R$Nen toda la línea?
 58;Vas a finalizar la producción de este modelo de tabla.$R$N¿Estas seguro que no queda ninguna tabla $R$Nentre la prensa y la entrada del horno?
 729;Zona entrada horno

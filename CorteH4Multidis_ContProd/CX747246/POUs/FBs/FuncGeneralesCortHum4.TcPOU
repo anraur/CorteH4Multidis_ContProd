@@ -6,8 +6,14 @@ VAR_INPUT
 
 END_VAR
 VAR_OUTPUT
+	//Modelo dividido en strings para DataBase
 	s_ModeloActualTabla:STRING;
+	s_FormatoActualTabla:STRING;
+	s_EspesorActualTabla:STRING;
 	s_ModeloEleccionTabla:STRING;
+	s_FormatoEleccionTabla:STRING;
+	s_EspesorEleccionTabla:STRING;
+	//Comunes
 	s_JustificaParoComun:STRING;
 	s_FechaInicModeloTab:STRING;
 END_VAR
@@ -15,7 +21,6 @@ VAR
 	Reset_Fin_Prod:BOOL;
 	P_FinProduccion:BOOL;
 	P_EscribirModelo:BOOL;
-	sModeloEleccionTabla:STRING;
 	pul_Justif_Paro:BOOL;
 	Cont:INT;
 	Cont1:INT;
@@ -42,11 +47,12 @@ Direccionamiento_variables_com();]]></ST>
     </Implementation>
     <Action Name="Direccionamiento_variables_com" Id="{4cb71bcf-b2bc-47a4-9856-c8a61ddd8fd6}">
       <Implementation>
-        <ST><![CDATA[	//                           	>>>>>>>>>>>>>>>>>>>>>>>>>>>>      STRING  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        <ST><![CDATA[	//                           	>>>>>>>>>>>>>>>>>>>>>>>>>>>>      STRING      <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     Var_Com_CH4_MulDis.aStringCom[80] := s_ModeloActualTabla;
-	Var_Com_CH4_MulDis.aStringCom[81] := s_ModeloEleccionTabla;
-	Var_Com_CH4_MulDis.aStringCom[82] := s_FechaInicModeloTab;
+	Var_Com_CH4_MulDis.aStringCom[81] := s_FormatoActualTabla;
+	Var_Com_CH4_MulDis.aStringCom[82] := s_EspesorActualTabla;
 	Var_Com_CH4_MulDis.aStringCom[83] := s_FechaInicModeloTab;
+	
 	
 	]]></ST>
       </Implementation>
@@ -59,15 +65,18 @@ var
 	Puls_Fin_Produccion:BOOL;	
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//Llamada a la función de fin de producción de Corte húmedo 4
-FuncParoNodoCorteH4Remote1.Funci_CortHum4.Fin_Produccion();
-
-
+        <ST><![CDATA[//Valores por defecto del modelo y fecha de inicio modelo
 
 s_ModeloActualTabla:= 'Sin modelo de pieza';
-//	FechaInicModeloTab:= 'Sin modelo de pieza';
 s_ModeloEleccionTabla:= 'Sin modelo de pieza';
-]]></ST>
+s_FormatoActualTabla:= 'Sin modelo de pieza';
+s_FormatoEleccionTabla:= 'Sin modelo de pieza';
+s_EspesorActualTabla:= 'Sin modelo de pieza';
+s_EspesorEleccionTabla:= 'Sin modelo de pieza';
+s_FechaInicModeloTab:= 'Sin modelo de pieza';
+ 
+//Reset contador de piezas 
+FuncParoNodoCorteH4Remote1.Funci_CortHum4.Fin_Produccion();]]></ST>
       </Implementation>
     </Method>
     <Method Name="Inicio_Nuevo_Modelo" Id="{71048897-297a-4d08-9c81-7534270db74f}">
@@ -83,7 +92,8 @@ s_FechaInicModeloTab:=Fecha_PLC.Mes_Dia_Hora_Min_Real;
 
 //Envías el modelo de la tabla de la variable preelección  
 s_ModeloActualTabla:=s_ModeloEleccionTabla;
-
+s_FormatoActualTabla:=s_FormatoEleccionTabla;
+s_EspesorActualTabla:= s_EspesorEleccionTabla;
 
 
 ]]></ST>
@@ -96,17 +106,22 @@ s_ModeloActualTabla:=s_ModeloEleccionTabla;
     <LineIds Name="FuncGeneralesCortHum4.Direccionamiento_variables_com">
       <LineId Id="2" Count="0" />
       <LineId Id="1" Count="0" />
-      <LineId Id="4" Count="1" />
-      <LineId Id="8" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="12" Count="1" />
+      <LineId Id="9" Count="0" />
       <LineId Id="6" Count="1" />
     </LineIds>
     <LineIds Name="FuncGeneralesCortHum4.Fin_Produccion">
-      <LineId Id="59" Count="0" />
-      <LineId Id="57" Count="1" />
       <LineId Id="49" Count="0" />
       <LineId Id="48" Count="0" />
-      <LineId Id="45" Count="2" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="68" Count="1" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="66" Count="0" />
       <LineId Id="41" Count="0" />
+      <LineId Id="71" Count="1" />
     </LineIds>
     <LineIds Name="FuncGeneralesCortHum4.Inicio_Nuevo_Modelo">
       <LineId Id="8" Count="1" />
@@ -115,6 +130,7 @@ s_ModeloActualTabla:=s_ModeloEleccionTabla;
       <LineId Id="11" Count="0" />
       <LineId Id="10" Count="0" />
       <LineId Id="20" Count="0" />
+      <LineId Id="25" Count="0" />
       <LineId Id="19" Count="0" />
       <LineId Id="14" Count="0" />
       <LineId Id="13" Count="0" />
