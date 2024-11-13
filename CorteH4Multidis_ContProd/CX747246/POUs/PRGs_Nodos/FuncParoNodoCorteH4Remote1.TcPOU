@@ -52,7 +52,7 @@ Funci_CortHum4(Fotocelula:=Ftc_CortHum4 OR ForzadoFtcCortHum4,
 					Tiempo_Offset_MParo:=HMI_Tiempo_Offset_MParo, 
 					TiempoFiltradoFotocel:=HMI_TiempoFiltradoFotocel,
 					_StrFuncParoEnviar => CortHum4StrFuncParoEnviar,
-					S_Justi_Paro_Ftc:= main.fbUtilidades.sJustificaParoComun );
+					S_Justi_Paro_Ftc:= FuncParoNodoCorteH4Remote1.sJustificaParoComun );
 					
 						
 						
