@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FuncGeneralesMult1" Id="{6a4fa433-a52e-4c56-9647-cdea5d53b1c1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FuncGeneralesMult1
+VAR_INPUT
+IndexListFormatoTabla:INT;
+END_VAR
+VAR_OUTPUT
+	//Modelo dividido en strings para DataBase
+	s_ModeloActualTabla:STRING;
+	s_FormatoActualTabla:STRING;
+	s_EspesorActualTabla:STRING;
+	s_ModeloEleccionTabla:STRING;
+	s_FormatoEleccionTabla:STRING;
+	s_EspesorEleccionTabla:STRING;
+	//Comunes
+	s_JustificaParoComun:STRING;
+	s_FechaInicModeloTab:STRING;
+END_VAR
+VAR
+	Reset_Fin_Prod:BOOL;
+	P_FinProduccion:BOOL;
+	P_EscribirModelo:BOOL;
+	pul_Justif_Paro:BOOL;
+	Cont1:INT;
+	Cont2:INT;
+	Cont3:INT;
+	Cont4:INT;
+END_VAR
+VAR PERSISTENT 
+END_VAR
+	]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//                             >>>>>>>>>>>>>>>> Modelo de la tabla <<<<<<<<<<<<<<<<<
+
+//Fin de producción 		
+IF P_FinProduccion THEN 
+Fin_Produccion();
+END_IF;
+IF P_EscribirModelo THEN
+	ListFormatoTabla(); 
+	Inicio_Nuevo_Modelo();
+	
+END_IF
+
+
+Direccionamiento_variables_com();
+]]></ST>
+    </Implementation>
+    <Action Name="Direccionamiento_variables_com" Id="{d80a4069-f791-46e0-a27d-84bf7440f518}">
+      <Implementation>
+        <ST><![CDATA[	//                           	>>>>>>>>>>>>>>>>>>>>>>>>>>>>      STRING      <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Var_Com_CH4_MulDis.aStringCom[84] := s_ModeloActualTabla;
+	Var_Com_CH4_MulDis.aStringCom[85] := s_FormatoActualTabla;
+	Var_Com_CH4_MulDis.aStringCom[86] := s_EspesorActualTabla;
+	Var_Com_CH4_MulDis.aStringCom[87] := s_FechaInicModeloTab;
+	
+	
+	]]></ST>
+      </Implementation>
+    </Action>
+    <Method Name="Fin_Produccion" Id="{151b4432-5067-4cea-932c-ed66c439015d}">
+      <Declaration><![CDATA[METHOD Fin_Produccion : BOOL
+VAR_INPUT	
+END_VAR
+var
+	Puls_Fin_Produccion:BOOL;	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Valores por defecto del modelo y fecha de inicio modelo
+
+s_ModeloActualTabla:= 'Sin modelo de pieza';
+s_ModeloEleccionTabla:= 'Sin modelo de pieza';
+s_FormatoActualTabla:= 'Sin modelo de pieza';
+s_FormatoEleccionTabla:= 'Sin modelo de pieza';
+s_EspesorActualTabla:= 'Sin modelo de pieza';
+s_EspesorEleccionTabla:= 'Sin modelo de pieza';
+s_FechaInicModeloTab:= 'Sin modelo de pieza';
+ 
+//Reset contador de piezas 
+FuncParoNodoMultidiscos.Funci_Multidiscos1.Fin_Produccion();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Inicio_Nuevo_Modelo" Id="{51e5d153-14d3-404b-8808-f3d5c1fd21fe}">
+      <Declaration><![CDATA[METHOD Inicio_Nuevo_Modelo : BOOL
+VAR_INPUT
+END_VAR
+VAR
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+// Envías la fecha de inicio modelo de tabla 
+s_FechaInicModeloTab:=Fecha_PLC.Mes_Dia_Hora_Min_Real;
+
+//Envías el modelo de la tabla de la variable preelección  
+s_ModeloActualTabla:=s_ModeloEleccionTabla;
+s_FormatoActualTabla:=s_FormatoEleccionTabla;
+s_EspesorActualTabla:= s_EspesorEleccionTabla;
+
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ListFormatoTabla" Id="{3ee6d767-e3d5-4153-8bce-361393d25efb}">
+      <Declaration><![CDATA[METHOD ListFormatoTabla : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Función para poder realizar el desplegable de formato de la tabla en el Visu
+IF IndexListFormatoTabla <> 6 THEN 
+	IF IndexListFormatoTabla = 1 THEN 
+		s_FormatoEleccionTabla:='17x17';
+		Cont1:=Cont1+1;
+	END_IF
+	IF IndexListFormatoTabla = 2 THEN 
+		s_FormatoEleccionTabla:='20x65';
+		Cont2:=Cont2+1;
+	END_IF
+	IF IndexListFormatoTabla = 3 THEN 
+		s_FormatoEleccionTabla:='30x15';
+	END_IF
+	IF IndexListFormatoTabla = 4 THEN 
+		s_FormatoEleccionTabla:='30x30';
+	END_IF
+	IF IndexListFormatoTabla = 5 THEN 
+		s_FormatoEleccionTabla:='03x03';
+	END_IF
+
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FuncGeneralesMult1">
+      <LineId Id="25" Count="6" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="33" Count="2" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="71" Count="0" />
+    </LineIds>
+    <LineIds Name="FuncGeneralesMult1.Direccionamiento_variables_com">
+      <LineId Id="2" Count="0" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="12" Count="1" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="6" Count="1" />
+    </LineIds>
+    <LineIds Name="FuncGeneralesMult1.Fin_Produccion">
+      <LineId Id="49" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="68" Count="1" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="71" Count="1" />
+    </LineIds>
+    <LineIds Name="FuncGeneralesMult1.Inicio_Nuevo_Modelo">
+      <LineId Id="8" Count="1" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="13" Count="0" />
+    </LineIds>
+    <LineIds Name="FuncGeneralesMult1.ListFormatoTabla">
+      <LineId Id="5" Count="0" />
+      <LineId Id="10" Count="1" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="16" Count="1" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="19" Count="1" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="22" Count="1" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="25" Count="1" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

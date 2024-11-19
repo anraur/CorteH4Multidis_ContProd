@@ -1,3 +1,5 @@
+ImagePool; ;Exclamación;pngegg.png;
+ImagePool; ;Neolith_Largo;neolith-logo-300x213.jpg;
 __VisualizationStyle; ;Element-BarDisplayImage-Yellow-Horizontal;element-bardisplayimage-yellow-horizontal.svg;
 __VisualizationStyle; ;Element-BarDisplayImage-Yellow-Vertical;element-bardisplayimage-yellow-vertical.svg;
 __VisualizationStyle; ;Element-BarDisplayImage-Red-Horizontal;element-bardisplayimage-red-horizontal.svg;
@@ -162,7 +164,6 @@ __VisualizationStyle; ;RadioButtonUnchecked;radiobuttonunchecked.svg;
 __VisualizationStyle; ;RadioButtonChecked;radiobuttonchecked.svg;
 __VisualizationStyle; ;CheckboxUnchecked;checkboxunchecked.svg;
 __VisualizationStyle; ;CheckboxChecked;checkboxchecked.svg;
-ImagePool; ;Exclamación;pngegg.png;
 IP_ElementImages;VisuElemMeter;Histogram;histogram.svg;
 IP_ElementImages;VisuElems;RoundRectangle;roundrectangle.svg;
 IP_ElementImages;VisuElems;Ellipse;ellipse.svg;

@@ -3,7 +3,7 @@
   <POU Name="FuncGeneralesCortHum4" Id="{497e5837-1248-4be6-b299-ef2f796ca598}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FuncGeneralesCortHum4
 VAR_INPUT
-
+IndexListFormatoTabla:INT;
 END_VAR
 VAR_OUTPUT
 	//Modelo dividido en strings para DataBase
@@ -22,7 +22,6 @@ VAR
 	P_FinProduccion:BOOL;
 	P_EscribirModelo:BOOL;
 	pul_Justif_Paro:BOOL;
-	Cont:INT;
 	Cont1:INT;
 	Cont2:INT;
 	Cont3:INT;
@@ -38,12 +37,15 @@ END_VAR
 IF P_FinProduccion THEN 
 Fin_Produccion();
 END_IF;
-IF P_EscribirModelo THEN 
+IF P_EscribirModelo THEN
+	ListFormatoTabla(); 
 	Inicio_Nuevo_Modelo();
+	
 END_IF
 
 
-Direccionamiento_variables_com();]]></ST>
+Direccionamiento_variables_com();
+]]></ST>
     </Implementation>
     <Action Name="Direccionamiento_variables_com" Id="{4cb71bcf-b2bc-47a4-9856-c8a61ddd8fd6}">
       <Implementation>
@@ -99,9 +101,44 @@ s_EspesorActualTabla:= s_EspesorEleccionTabla;
 ]]></ST>
       </Implementation>
     </Method>
+    <Method Name="ListFormatoTabla" Id="{ad82df9c-8c85-4830-8ee3-7fc3df4fd5f5}">
+      <Declaration><![CDATA[METHOD ListFormatoTabla : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Función para poder realizar el desplegable de formato de la tabla en el Visu
+IF IndexListFormatoTabla <> 6 THEN 
+	IF IndexListFormatoTabla = 1 THEN 
+		s_FormatoEleccionTabla:='17x17';
+		Cont1:=Cont1+1;
+	END_IF
+	IF IndexListFormatoTabla = 2 THEN 
+		s_FormatoEleccionTabla:='20x65';
+		Cont2:=Cont2+1;
+	END_IF
+	IF IndexListFormatoTabla = 3 THEN 
+		s_FormatoEleccionTabla:='30x15';
+	END_IF
+	IF IndexListFormatoTabla = 4 THEN 
+		s_FormatoEleccionTabla:='30x30';
+	END_IF
+	IF IndexListFormatoTabla = 5 THEN 
+		s_FormatoEleccionTabla:='03x03';
+	END_IF
+
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
     <LineIds Name="FuncGeneralesCortHum4">
-      <LineId Id="25" Count="10" />
+      <LineId Id="25" Count="6" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="33" Count="2" />
       <LineId Id="9" Count="0" />
+      <LineId Id="71" Count="0" />
     </LineIds>
     <LineIds Name="FuncGeneralesCortHum4.Direccionamiento_variables_com">
       <LineId Id="2" Count="0" />
@@ -134,6 +171,25 @@ s_EspesorActualTabla:= s_EspesorEleccionTabla;
       <LineId Id="19" Count="0" />
       <LineId Id="14" Count="0" />
       <LineId Id="13" Count="0" />
+    </LineIds>
+    <LineIds Name="FuncGeneralesCortHum4.ListFormatoTabla">
+      <LineId Id="5" Count="0" />
+      <LineId Id="10" Count="1" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="16" Count="1" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="19" Count="1" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="22" Count="1" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="25" Count="1" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="9" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

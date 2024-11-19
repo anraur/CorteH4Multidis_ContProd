@@ -27,6 +27,13 @@ VAR
 	Ftc2StrFuncParoEnviar:StrFuncParoEnviar;	
 	Ftc3StrFuncParoEnviar:StrFuncParoEnviar;
 	Ftc4StrFuncParoEnviar:StrFuncParoEnviar;
+	
+
+END_VAR
+VAR_INPUT
+	sFormatoEleccionTabla:STRING;
+	sModeloEleccionTabla:STRING;
+	sEspesorEleccionTabla:STRING;
 END_VAR
 VAR RETAIN
 END_VAR
@@ -35,11 +42,8 @@ VAR PERSISTENT
 	HMI_TiempoFiltradoFotocel:TIME:=T#2S;
 // Modelo de la tabla y fecha cambio de modelo
 	sModeloActualTabla:STRING;
-	sModeloEleccionTabla:STRING;
 	sFormatoActualTabla:STRING;
-	sFormatoEleccionTabla:STRING;
 	sEspesorActualTabla:STRING;
-	sEspesorEleccionTabla:STRING;
 	sFechaInicModeloTab:STRING;
 	sJustificaParoComun:STRING;
 END_VAR
@@ -51,8 +55,7 @@ END_VAR
 Funci_CortHum4(Fotocelula:=Ftc_CortHum4 OR ForzadoFtcCortHum4, 
 					Tiempo_Offset_MParo:=HMI_Tiempo_Offset_MParo, 
 					TiempoFiltradoFotocel:=HMI_TiempoFiltradoFotocel,
-					_StrFuncParoEnviar => CortHum4StrFuncParoEnviar,
-					S_Justi_Paro_Ftc:= FuncParoNodoCorteH4Remote1.sJustificaParoComun );
+					_StrFuncParoEnviar => CortHum4StrFuncParoEnviar );
 					
 						
 						
@@ -162,9 +165,7 @@ Consenso_Ftc4_Libre:= TRUE;// main.id0Remoto1.7;
       </Implementation>
     </Action>
     <LineIds Name="FuncParoNodoCorteH4Remote1">
-      <LineId Id="43" Count="6" />
-      <LineId Id="122" Count="0" />
-      <LineId Id="50" Count="0" />
+      <LineId Id="43" Count="7" />
       <LineId Id="86" Count="1" />
       <LineId Id="89" Count="1" />
       <LineId Id="154" Count="0" />

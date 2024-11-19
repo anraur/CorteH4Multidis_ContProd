@@ -1,0 +1,9 @@
+Id;Default
+0;Sin seleccionar
+1;17x17
+2;20x65
+3;30x15
+4;30x30
+5;03x03
+6;Ninguno de la lista
+;

@@ -4,23 +4,28 @@
     <XmlArchive>
       <Data>
         <o xml:space="preserve" t="ImagePoolObject">
-          <v n="UniqueIdGenerator">"5"</v>
+          <v n="UniqueIdGenerator">"10"</v>
           <l n="BitmapPool" t="ArrayList" cet="ImagePoolItem">
             <o>
               <v n="BitmapID">"Exclamación"</v>
               <v n="FileID">"5ce3da45-db07-42e7-a21c-a00fff4ed8f6|C:\Users\a.ramo\Downloads\pngegg.png"</v>
-              <v n="ItemID">1</v>
+              <v n="ItemID">6</v>
+            </o>
+            <o>
+              <v n="BitmapID">"Neolith_Largo"</v>
+              <v n="FileID">"5ce3da45-db07-42e7-a21c-a00fff4ed8f6|C:\Users\a.ramo\Downloads\neolith-logo-300x213.jpg"</v>
+              <v n="ItemID">7</v>
             </o>
             <o>
               <v n="BitmapID">""</v>
               <v n="FileID">""</v>
-              <v n="ItemID">2</v>
+              <v n="ItemID">8</v>
             </o>
           </l>
           <v n="GuidInit">{dad03abe-0305-4b85-89d4-b5b556a53dc8}</v>
           <v n="GuidReInit">{f82ea203-84ea-4dff-9113-c660f2a03dd7}</v>
           <v n="GuidExitX">{9c99f73d-cd16-449d-a7a0-444b27a72d36}</v>
-          <v n="ValidIds">false</v>
+          <v n="ValidIds">true</v>
         </o>
       </Data>
       <TypeList>

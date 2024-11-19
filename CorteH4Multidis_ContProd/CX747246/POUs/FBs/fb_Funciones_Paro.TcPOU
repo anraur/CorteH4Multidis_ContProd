@@ -48,7 +48,12 @@ VAR
 	s_Entr_Piez_Ante_Ftc:TIME;
 	S_Entre_Piez_Ftc:TIME;
 	Cont:INT;
-
+	//Comprobaciones de los retardos de envio de frase a mysql a traves del maestro 
+		TonAscendente:ton;
+	Tiempo_Sumando:TIME:=T#1S;
+	Tiempo_A_Sumar:TIME:=T#1.25S;
+	ContandoComprobador:BOOL;
+	bCompFuncEnvDataBase:BIT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -56,10 +61,10 @@ END_VAR
 	//Llamada a los temporizadores Declaración de tiempos
 		tFiltro_up_Ftc(PT:=TiempoFiltradoFotocel); 
 		tFiltro_down_Ftc(PT:=TiempoFiltradoFotocel);
-		Delay_Esc_Ftc(PT:=T#1S);
+		Delay_Esc_Ftc(PT:=T#2S);
 		
 	// Temporizador para empezar a detectar pieza en paro (filtro de parpadeos) Up
-	IF 	Fotocelula OR NOT tFiltro_down_Ftc.Q THEN 
+	IF 	Fotocelula OR NOT tFiltro_down_Ftc.Q or ContandoComprobador THEN 
 		tFiltro_up_Ftc.IN:=TRUE;
 		ELSE
 			 tFiltro_up_Ftc.IN:=FALSE;
@@ -86,15 +91,15 @@ END_VAR
 		FlancoFiltDoFtc(CLK:=tFiltro_down_Ftc.Q);	
 		
 //BIT Delay para Restar la hora inicio paro a la hora actual para sacar tiempo entre piezas(Dar tiempo a que el otro plc lea el valor de la variable antes del reset)
-	IF FlancoFiltUpFtc.Q  THEN
+	IF FlancoFiltUpFtc.Q THEN
 		 M_Delay_Esc_Ftc:= TRUE;			
 	END_IF
 	//Temporizador de retardo reset inicio del paro
 	 	Delay_Esc_Ftc(IN:=M_Delay_Esc_Ftc);
-	//Inserta en fecha inicio paro la hora actual
+	//Inserta en fecha inicio paro la hora actual y reset de valores
 	IF Delay_Esc_Ftc.Q THEN
 		Fecha_Inicio_Paro();
-		S_Justi_Paro_Ftc:='.';		
+		Reset_Justif_Paro();		
 		Min_Parado_Ftc:= 0;
 		M_Delay_Esc_Ftc:= FALSE;
 	END_IF
@@ -121,7 +126,10 @@ Temporizador1min(IN:=NOT Temporizador1min.Q , PT:= T#60S, Q=> , ET=> );
 // Enviar constantemente la Fecha a Hora fin de paro 
 Fin_Paro();
 //Estructura de variables que luego de las cuales el PLC maestro leerá toda la información del paro
-aStrFuncParEnviar();]]></ST>
+aStrFuncParEnviar();
+IF  bCompFuncEnvDataBase THEN 
+CompEnvContDataBase();	
+END_IF]]></ST>
     </Implementation>
     <Action Name="aStrFuncParEnviar" Id="{24851889-a132-475f-ba31-aaf74f0c9c17}">
       <Implementation>
@@ -140,6 +148,27 @@ _StrFuncParoEnviar.tFiltro_up_Ftc:= tFiltro_up_Ftc.Q;
 ]]></ST>
       </Implementation>
     </Action>
+    <Method Name="CompEnvContDataBase" Id="{57ba8b7c-ae40-4d7f-9749-72a60ac2b3f8}">
+      <Declaration><![CDATA[METHOD CompEnvContDataBase : BOOL
+VAR_INPUT
+END_VAR
+VAR 
+
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Está funcion está hecha para comprobar si los tiempos de retardo para la lectura a plc desde el plc esclavo al plc maestro junto los los retardos que tenga el maestro funcionan bien
+//Cada cierto tiempo se va a incrementar en 10ms el temporizador , que será el encargado de forzar la fotocélula para enviar StrFuncParoEnviar.
+TonAscendente(IN:=ContandoComprobador,PT:=Tiempo_Sumando);
+ContandoComprobador:=TRUE;
+if TonAscendente.Q then 
+	Tiempo_Sumando:=Tiempo_Sumando + Tiempo_A_Sumar; 
+	ContandoComprobador:=FALSE;
+END_IF
+IF Tiempo_Sumando > T#10S THEN 
+	Tiempo_Sumando:=T#1.25S;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Fecha_Detec_Up_Pieza" Id="{19ee1d4b-6d23-4ab0-a151-d18d72257434}">
       <Declaration><![CDATA[METHOD Fecha_Detec_Up_Pieza : BOOL
 VAR_INPUT
@@ -228,6 +257,15 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
+    <Method Name="Reset_Justif_Paro" Id="{27659362-54e2-4128-ae7c-c099466f8f66}">
+      <Declaration><![CDATA[METHOD Reset_Justif_Paro : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[S_Justi_Paro_Ftc:='.';]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Resta_Tiempo_Entre_Piezas" Id="{f6cdbfcd-7ab1-4542-8887-f432efb0a690}">
       <Declaration><![CDATA[METHOD Resta_Tiempo_Entre_Piezas
 VAR_INPUT 
@@ -279,11 +317,22 @@ t_Entre_Piez_Ftc:= Fecha_PLC.Fecha_Time_PLC - Time_InParo_Entera ;
       <LineId Id="143" Count="0" />
       <LineId Id="285" Count="0" />
       <LineId Id="284" Count="0" />
+      <LineId Id="389" Count="2" />
     </LineIds>
     <LineIds Name="fb_Funciones_Paro.aStrFuncParEnviar">
       <LineId Id="1" Count="0" />
       <LineId Id="3" Count="10" />
       <LineId Id="15" Count="0" />
+    </LineIds>
+    <LineIds Name="fb_Funciones_Paro.CompEnvContDataBase">
+      <LineId Id="5" Count="0" />
+      <LineId Id="8" Count="1" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="13" Count="1" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="19" Count="1" />
     </LineIds>
     <LineIds Name="fb_Funciones_Paro.Fecha_Detec_Up_Pieza">
       <LineId Id="5" Count="0" />
@@ -323,6 +372,9 @@ t_Entre_Piez_Ftc:= Fecha_PLC.Fecha_Time_PLC - Time_InParo_Entera ;
       <LineId Id="21" Count="0" />
       <LineId Id="11" Count="0" />
       <LineId Id="20" Count="0" />
+    </LineIds>
+    <LineIds Name="fb_Funciones_Paro.Reset_Justif_Paro">
+      <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="fb_Funciones_Paro.Resta_Tiempo_Entre_Piezas">
       <LineId Id="6" Count="0" />

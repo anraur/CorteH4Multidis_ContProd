@@ -5,7 +5,8 @@
 VAR
 	Funci_Multidiscos1:fb_Funciones_Paro;
 	Funci_Multidiscos2:fb_Funciones_Paro;
-	FunGeneMultidiscos1:FuncGeneralesMultidisc1;
+	FunGeneMultidiscos1:FuncGeneralesMult1;
+	FunGeneMultidiscos2:FuncGeneralesMult2;
 	//Entradas Multidiscos1
 	Ftc_Multidiscos1: BOOL;	
 	ForzadoFtcMultidiscos1:BOOL;	
@@ -30,14 +31,31 @@ VAR
 END_VAR
 VAR RETAIN
 END_VAR
+VAR_INPUT
+//Multidiscos 1
+	sFormatoEleccionTabla_MD1:STRING;
+	sModeloEleccionTabla_MD1:STRING;
+	sEspesorEleccionTabla_MD1:STRING;
+//Multidiscos 2
+	sFormatoEleccionTabla_MD2:STRING;
+	sModeloEleccionTabla_MD2:STRING;
+	sEspesorEleccionTabla_MD2:STRING;
+END_VAR
 VAR PERSISTENT 
 	HMI_Tiempo_Offset_MParo:INT:=5;
 	HMI_TiempoFiltradoFotocel:TIME:=T#2S;
-// Generales 
-	sModeloActualTabla:STRING;
-	sModeloEleccionTabla:STRING;
-	sFechaInicModeloTab:STRING;
-	sJustificaParoComun:STRING;
+// Generales multidoscos 1
+	sModeloActualTabla_MD1:STRING;
+	sFormatoActualTabla_MD1:STRING;
+	sEspesorActualTabla_MD1:STRING;
+	sFechaInicModeloTab_MD1:STRING;
+	sJustificaParoComun_MD1:STRING;
+// Generales multidoscos 2
+	sModeloActualTabla_MD2:STRING;
+	sFormatoActualTabla_MD2:STRING;
+	sEspesorActualTabla_MD2:STRING;
+	sFechaInicModeloTab_MD2:STRING;
+	sJustificaParoComun_MD2:STRING;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -47,21 +65,21 @@ END_VAR
 Funci_Multidiscos1(Fotocelula:=Ftc_Multidiscos1 OR ForzadoFtcMultidiscos1, 
 					Tiempo_Offset_MParo:=HMI_Tiempo_Offset_MParo, 
 					TiempoFiltradoFotocel:=HMI_TiempoFiltradoFotocel,
-					_StrFuncParoEnviar => Multidiscos1StrFuncParoEnviar,
-					S_Justi_Paro_Ftc:=FuncParoNodoCorteH4Remote1.sJustificaParoComun);
+					_StrFuncParoEnviar => Multidiscos1StrFuncParoEnviar,);
 					
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>         	Multidiscos 2        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 Funci_Multidiscos2(Fotocelula:= Ftc2_Multidiscos2 OR ForzadoFtc2_Multidiscos2,
 						Tiempo_Offset_MParo:=HMI_Tiempo_Offset_MParo, 
 						TiempoFiltradoFotocel:=HMI_TiempoFiltradoFotocel,
-						_StrFuncParoEnviar => Multidiscos2StrFuncParoEnviar,
-					S_Justi_Paro_Ftc:=FuncParoNodoMultidiscos.sJustificaParoComun);
+						_StrFuncParoEnviar => Multidiscos2StrFuncParoEnviar,);
 						
 
 										
 Direccionamiento_variables_com();
 Linkado_Entradas();
-//FunGeneMultidiscos1(s_JustificaParoComun => sJustificaParoComun,s_ModeloActualTabla => sModeloActualTabla,s_ModeloEleccionTabla => sModeloEleccionTabla);]]></ST>
+FunGeneMultidiscos1(s_ModeloActualTabla => sModeloActualTabla_MD1,s_ModeloEleccionTabla => sModeloEleccionTabla_MD1,s_FechaInicModeloTab=>sFechaInicModeloTab_MD1,s_FormatoActualTabla=>sFormatoActualTabla_MD1,s_FormatoEleccionTabla=>sFormatoEleccionTabla_MD1,s_EspesorActualTabla=>sEspesorActualTabla_MD1,s_EspesorEleccionTabla=>sEspesorEleccionTabla_MD1);
+FunGeneMultidiscos2(s_ModeloActualTabla => sModeloActualTabla_MD2,s_ModeloEleccionTabla => sModeloEleccionTabla_MD2,s_FechaInicModeloTab=>sFechaInicModeloTab_MD2,s_FormatoActualTabla=>sFormatoActualTabla_MD2,s_FormatoEleccionTabla=>sFormatoEleccionTabla_MD2,s_EspesorActualTabla=>sEspesorActualTabla_MD2,s_EspesorEleccionTabla=>sEspesorEleccionTabla_MD2);
+]]></ST>
     </Implementation>
     <Action Name="Direccionamiento_variables_com" Id="{ccbcc35e-de58-4535-9514-7aeadbc87591}">
       <Implementation>
@@ -167,18 +185,18 @@ Consenso4:= TRUE;// main.id0Local2.7;
       <LineId Id="5" Count="0" />
       <LineId Id="30" Count="1" />
       <LineId Id="36" Count="0" />
-      <LineId Id="199" Count="0" />
       <LineId Id="117" Count="0" />
       <LineId Id="28" Count="0" />
       <LineId Id="92" Count="0" />
       <LineId Id="105" Count="1" />
       <LineId Id="104" Count="0" />
-      <LineId Id="200" Count="0" />
       <LineId Id="116" Count="0" />
       <LineId Id="202" Count="0" />
       <LineId Id="161" Count="0" />
       <LineId Id="164" Count="0" />
       <LineId Id="163" Count="0" />
+      <LineId Id="281" Count="0" />
+      <LineId Id="283" Count="0" />
       <LineId Id="236" Count="0" />
     </LineIds>
     <LineIds Name="FuncParoNodoMultidiscos.Direccionamiento_variables_com">

@@ -374,19 +374,19 @@
                     </o>
                     <o>
                       <v n="Id">1649127785L</v>
-                      <v n="Value">1469</v>
+                      <v n="Value">793</v>
                     </o>
                     <o>
                       <v n="Id">357335551L</v>
-                      <v n="Value">160</v>
+                      <v n="Value">507</v>
                     </o>
                     <o>
                       <v n="Id">2422045748L</v>
-                      <v n="Value">415</v>
+                      <v n="Value">399</v>
                     </o>
                     <o>
                       <v n="Id">2134141914L</v>
-                      <v n="Value">277</v>
+                      <v n="Value">117</v>
                     </o>
                     <o>
                       <v n="Id">1651471674L</v>
@@ -430,11 +430,11 @@
                     </o>
                     <o>
                       <v n="Id">550940142L</v>
-                      <v n="Value">1676</v>
+                      <v n="Value">984</v>
                     </o>
                     <o>
                       <v n="Id">1473355128L</v>
-                      <v n="Value">298</v>
+                      <v n="Value">485</v>
                     </o>
                     <o>
                       <v n="Id">493260384L</v>
@@ -698,11 +698,11 @@
                     </o>
                     <o>
                       <v n="Id">1649127785L</v>
-                      <v n="Value">293</v>
+                      <v n="Value">270</v>
                     </o>
                     <o>
                       <v n="Id">357335551L</v>
-                      <v n="Value">620</v>
+                      <v n="Value">963</v>
                     </o>
                     <o>
                       <v n="Id">2422045748L</v>
@@ -732,11 +732,11 @@
                     </o>
                     <o>
                       <v n="Id">550940142L</v>
-                      <v n="Value">638</v>
+                      <v n="Value">615</v>
                     </o>
                     <o>
                       <v n="Id">1473355128L</v>
-                      <v n="Value">649</v>
+                      <v n="Value">992</v>
                     </o>
                     <o>
                       <v n="Id">2678395525L</v>
@@ -861,11 +861,11 @@
                     </o>
                     <o>
                       <v n="Id">1649127785L</v>
-                      <v n="Value">1028</v>
+                      <v n="Value">1005</v>
                     </o>
                     <o>
                       <v n="Id">357335551L</v>
-                      <v n="Value">600</v>
+                      <v n="Value">943</v>
                     </o>
                     <o>
                       <v n="Id">2422045748L</v>
@@ -917,11 +917,11 @@
                     </o>
                     <o>
                       <v n="Id">550940142L</v>
-                      <v n="Value">1162</v>
+                      <v n="Value">1139</v>
                     </o>
                     <o>
                       <v n="Id">1473355128L</v>
-                      <v n="Value">645</v>
+                      <v n="Value">988</v>
                     </o>
                     <o>
                       <v n="Id">493260384L</v>
@@ -1232,6 +1232,10 @@
                       <v n="Value">"FuncParoNodoCorteH4Remote1.FunGeneCortHum4.s_FormatoEleccionTabla"</v>
                     </o>
                     <o>
+                      <v n="Id">2496894244L</v>
+                      <v n="Value">"FuncParoNodoCorteH4Remote1.FunGeneCortHum4.IndexListFormatoTabla&lt;&gt;6"</v>
+                    </o>
+                    <o>
                       <v n="Id">823443203L</v>
                       <v n="Value">"650"</v>
                     </o>
@@ -1243,8 +1247,8 @@
                 <v n="VisualElementIdentifier">"GenElemInst_49"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="InputBoxInputAction[]">
-                  <v>OnMouseDown</v>
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseUp</v>
                   <a cet="InputBoxInputAction">
                     <o>
                       <v n="InputBoxVariable">""</v>
@@ -1254,7 +1258,7 @@
                       <v n="InputBoxDialogTitle">""</v>
                       <v n="Password">false</v>
                       <v n="UseTextOutputVariable">true</v>
-                      <v n="TextOutputVariableInitialized">true</v>
+                      <v n="TextOutputVariableInitialized">false</v>
                       <v n="OtherVarConversion">""</v>
                       <v n="Format">""</v>
                       <v n="DialogPosition" t="DialogPositionSetting">UseGlobalSetting</v>
@@ -1732,13 +1736,13 @@
                 <v n="VisualElementIdentifier">"GenElemInst_56"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="ChangeVisuInputAction[]">
                   <v>OnMouseClick</v>
                   <a cet="ChangeVisuInputAction">
                     <o>
                       <v n="AssignExpr">""</v>
                       <n n="Assign" />
-                      <v n="Assign33">"Home"</v>
+                      <v n="Assign33">"Home_CortH4"</v>
                       <v n="Type" t="ChangeVisuType">Assignment</v>
                     </o>
                   </a>
@@ -1748,6 +1752,192 @@
                 <a n="LMGuids" et="Guid" />
                 <d n="SubElements" t="Hashtable" />
                 <v n="VisualElementId">54</v>
+                <l n="UserManagementAccessRights" t="ArrayList" />
+              </o>
+              <o>
+                <a n="ConfiguredComplexInputs" et="ComplexInput" />
+                <l n="Elements" t="ArrayList" />
+                <n n="VisualElementDescription" />
+                <o n="VisualElemMemberList" t="VisualElemMemberList">
+                  <l n="VisualElemMemberList" t="VisualElemMemberCollection" cet="VisualElemMember">
+                    <o>
+                      <v n="Id">707399976L</v>
+                      <v n="Value" t="Int16">-1</v>
+                    </o>
+                    <o>
+                      <v n="Id">1795088690L</v>
+                      <v n="Value" t="Int16">-1</v>
+                    </o>
+                    <o>
+                      <v n="Id">3929720075L</v>
+                      <v n="Value" t="Int16">-1</v>
+                    </o>
+                    <o>
+                      <v n="Id">565784572L</v>
+                      <v n="Value" t="Int16">-1</v>
+                    </o>
+                    <o>
+                      <v n="Id">1182657236L</v>
+                      <v n="Value" t="Int16">-1</v>
+                    </o>
+                    <o>
+                      <v n="Id">2168378147L</v>
+                      <v n="Value" t="Int16">7</v>
+                    </o>
+                    <o>
+                      <v n="Id">4063738070L</v>
+                      <v n="Value">false</v>
+                    </o>
+                    <o>
+                      <v n="Id">1007499258L</v>
+                      <v n="Value" t="Int16">0</v>
+                    </o>
+                    <o>
+                      <v n="Id">1791101126L</v>
+                      <v n="Value" t="Int16">20</v>
+                    </o>
+                    <o>
+                      <v n="Id">686910351L</v>
+                      <v n="Value">"STYLE"</v>
+                    </o>
+                    <o>
+                      <v n="Id">2028009121L</v>
+                      <v n="Value">"HCENTER"</v>
+                    </o>
+                    <o>
+                      <v n="Id">3191134607L</v>
+                      <v n="Value">"VCENTER"</v>
+                    </o>
+                    <o>
+                      <v n="Id">3218484809L</v>
+                      <v n="Value">"NONE"</v>
+                    </o>
+                    <o>
+                      <v n="Id">2919971128L</v>
+                      <v n="Value">"Arial"</v>
+                    </o>
+                    <o>
+                      <v n="Id">1546705513L</v>
+                      <v n="Value" t="Int16">12</v>
+                    </o>
+                    <o>
+                      <v n="Id">3398726742L</v>
+                      <v n="Value">0U</v>
+                    </o>
+                    <o>
+                      <v n="Id">596717991L</v>
+                      <v n="Value">0U</v>
+                    </o>
+                    <o>
+                      <v n="Id">2814868741L</v>
+                      <v n="Value">4278190080U</v>
+                    </o>
+                    <o>
+                      <v n="Id">2812299069L</v>
+                      <v n="Value">4294967295U</v>
+                    </o>
+                    <o>
+                      <v n="Id">494569607L</v>
+                      <v n="Value">4278190080U</v>
+                    </o>
+                    <o>
+                      <v n="Id">3719097617L</v>
+                      <v n="Value">0</v>
+                    </o>
+                    <o>
+                      <v n="Id">1649127785L</v>
+                      <v n="Value">1463</v>
+                    </o>
+                    <o>
+                      <v n="Id">357335551L</v>
+                      <v n="Value">271</v>
+                    </o>
+                    <o>
+                      <v n="Id">2422045748L</v>
+                      <v n="Value">389</v>
+                    </o>
+                    <o>
+                      <v n="Id">2134141914L</v>
+                      <v n="Value">79</v>
+                    </o>
+                    <o>
+                      <v n="Id">4010712728L</v>
+                      <v n="Value">true</v>
+                    </o>
+                    <o>
+                      <v n="Id">2703123772L</v>
+                      <l n="Value" t="ArrayList" cet="NamedStyleFont">
+                        <o>
+                          <v n="FontStyle">0</v>
+                          <v n="AdditionalFontStyle" t="UInt16">0</v>
+                          <v n="ExplicitColor">-16777216</v>
+                          <v n="CanonicalName">"Font-Standard"</v>
+                          <v n="FontName">"Arial"</v>
+                          <v n="FontSize">12</v>
+                          <v n="ScriptIdentification">0</v>
+                          <v n="DoubleFontSize" t="Double">0</v>
+                          <n n="NamedColor" />
+                        </o>
+                      </l>
+                    </o>
+                    <o>
+                      <v n="Id">493260384L</v>
+                      <v n="Value">4294967295U</v>
+                    </o>
+                    <o>
+                      <v n="Id">135947015L</v>
+                      <v n="Value">4278190080U</v>
+                    </o>
+                    <o>
+                      <v n="Id">2678395525L</v>
+                      <v n="Value">1U</v>
+                    </o>
+                    <o>
+                      <v n="Id">2340015797L</v>
+                      <v n="Value">"HCENTER"</v>
+                    </o>
+                    <o>
+                      <v n="Id">2565699834L</v>
+                      <v n="Value">"VCENTER"</v>
+                    </o>
+                    <o>
+                      <v n="Id">390574330L</v>
+                      <v n="Value">""</v>
+                    </o>
+                    <o>
+                      <v n="Id">571893170L</v>
+                      <v n="Value">""</v>
+                    </o>
+                    <o>
+                      <v n="Id">2597686782L</v>
+                      <v n="Value">false</v>
+                    </o>
+                    <o>
+                      <v n="Id">2114174855L</v>
+                      <v n="Value">"'FormatoTabla'"</v>
+                    </o>
+                    <o>
+                      <v n="Id">397264524L</v>
+                      <v n="Value">"FuncParoNodoCorteH4Remote1.FunGeneCortHum4.IndexListFormatoTabla"</v>
+                    </o>
+                    <o>
+                      <v n="Id">1158228618L</v>
+                      <v n="Value">false</v>
+                    </o>
+                  </l>
+                </o>
+                <v n="VisualElementName">"ComboBoxInteger"</v>
+                <v n="VisualElementTypeName">"VisuFbComboBoxInteger"</v>
+                <v n="VisualElementIsRectangle">true</v>
+                <v n="VisualElementIdentifier">"GenElemInst_58"</v>
+                <n n="VisualElementOfflinePaintCommands" />
+                <n n="VisualElementFrameInformation" />
+                <d n="VisualElementInputActions" t="Hashtable" />
+                <v n="VisualElementIdentification">{24cb626f-216b-4c81-9b3b-fd9aca23efb8}</v>
+                <v n="VisualElementOwningObjectGuid">{80a4b618-84b7-4e17-b8f6-ff374c3b94b8}</v>
+                <a n="LMGuids" et="Guid" />
+                <d n="SubElements" t="Hashtable" />
+                <v n="VisualElementId">56</v>
                 <l n="UserManagementAccessRights" t="ArrayList" />
               </o>
             </l>
@@ -1891,7 +2081,7 @@
             </o>
             <v n="DialogDut">{a55a50e8-5413-4f7a-ac50-3f4aacad2ab4}</v>
           </o>
-          <v n="LastUsedIdForIdentifier">56</v>
+          <v n="LastUsedIdForIdentifier">58</v>
           <o n="TextDocument" t="TextDocument">
             <a n="TextLines" cet="TextLine">
               <o>
@@ -1947,6 +2137,7 @@
         <Type n="Boolean">System.Boolean</Type>
         <Type n="CaseInsensitiveHashtable">{7df88604-7ac5-4e36-91c4-55e4fdad3e68}</Type>
         <Type n="ChangeVisuInputAction">{b4c3a27b-74e5-4a67-bfa9-12f8c8cda31f}</Type>
+        <Type n="ChangeVisuInputAction[]">_3S.CoDeSys.VisualElem.ChangeVisuInputAction[], VisualElem.plugin, Version=3.5.13.32, Culture=neutral, PublicKeyToken=null</Type>
         <Type n="ChangeVisuType">{a418300c-fdec-47d4-86a4-53b5a5f941fa}</Type>
         <Type n="ComplexInput">{1de566f6-72a7-494c-9353-9a418172c96e}</Type>
         <Type n="DialogPositionSetting">{16f3f59a-37ad-4991-a1af-cc2926974e08}</Type>

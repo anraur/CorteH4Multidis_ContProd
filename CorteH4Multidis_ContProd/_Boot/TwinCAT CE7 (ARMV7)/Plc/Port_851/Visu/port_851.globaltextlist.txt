@@ -19,6 +19,8 @@ Id;Default
 137;Corte húmedo 4
 448;Delay Escritura
 737;Diagnostico
+40;Diagnostíco 
+35;Diagnóstico
 29;Elección modelo de la tabla CORTE HÚMEDO 4
 16;Elección modelo de la tabla LINEA 4
 360;Elige la opción de fin de producción $R$Ndel modelo actual.
@@ -46,6 +48,11 @@ Id;Default
 215;Formato de la tabla 
 884;Forzar Fotocelula
 998;GreenCut
+93;Habilitar lectura a$R$NPLC CorteH4
+841;Habilitar lectura a$R$NPLC L4
+332;Habilitar lectura a$R$NPLCs
+780;Habilitar lectura al$R$NPLC
+34;Habilitar lectura al$R$NPLC Maestro
 621;Habilitar lectura del$R$NPLC Maestro
 681;Hora Fin Paro
 553;Hora Inicio del paro
@@ -62,18 +69,23 @@ Id;Default
 914;Minutos Parado
 735;Modelo actual
 12;Modelo de la tabla 
+96;Multidiscos
+616;Multidiscos 
 228;Multidiscos 1
 118;Multidiscos 2
+77;Multidoscos
 364;Número de piezas 
 700;Número de tablas
 490;Paro activo
 329;Prensa
+600;Página de diagnóstico
 732;Reset contador
 722;Reset contador 
 20;Reset paso a paso contadores
 224;Ruta hacia horno
 299;Secadero
 403;Seg
+59;Selecciona la máquina con la que vas a trabajar
 225;Sensor presencia tabla 
 864;Si
 64;tiempo entre Piezas

@@ -64,7 +64,10 @@
     <Compile Include="POUs\FBs\FuncGeneralesCortHum4.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FBs\FuncGeneralesMultidisc1.TcPOU">
+    <Compile Include="POUs\FBs\FuncGeneralesMult1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FBs\FuncGeneralesMult2.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Funciones comunes\Fecha_Hora_PLC.TcPOU">
@@ -91,28 +94,59 @@
     <Compile Include="POUs\PRGs_Nodos\FuncParoNodoCorteH4Remote1.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="VISUs\Ajustes_Multidiscos.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
+    </Compile>
     <Compile Include="VISUs\DiagnosticoFB.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
     </Compile>
-    <Compile Include="VISUs\Home.TcVIS">
+    <Compile Include="VISUs\Home_CortH4.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="VISUs\Home_Multidis1.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="VISUs\Home_Multidis2.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="VISUs\ImagePool.TcIPO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="VISUs\Listas_Para_Desplegables\FormatoTabla.TcTLO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="VISUs\Modelo_Tabla.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="VISUs\Ajustes_CorteH4.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="VISUs\Home_Sel_Maq.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="VISUs\VisualizationManager.TcVMO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="VISUs\V_Emergente_Fin_Produccion.TcVIS">
+    <Compile Include="VISUs\V_Emerg_Fin_Prod_Ch4.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
       <External>false</External>
+    </Compile>
+    <Compile Include="VISUs\V_Emerg_Fin_Prod_Md2.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="VISUs\V_Emerg_Fin_Prod_Md1.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="VISU_TASK.TcTTO">
       <SubType>Code</SubType>
@@ -128,6 +162,7 @@
     <Folder Include="POUs\PRGs_Nodos" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
+    <Folder Include="VISUs\Listas_Para_Desplegables" />
   </ItemGroup>
   <ItemGroup>
     <PlaceholderReference Include="CmpBitmapPool">
@@ -229,8 +264,8 @@
   <ProjectExtensions>
     <PlcProjectOptions>
       <XmlArchive>
-  <Data>
-    <o xml:space="preserve" t="OptionKey">
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
       <v n="Name">"&lt;ProjectRoot&gt;"</v>
       <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
         <v>{192FAD59-8248-4824-A8DE-9177C94C195A}</v>
@@ -279,14 +314,14 @@
       </d>
       <d n="Values" t="Hashtable" />
     </o>
-  </Data>
-  <TypeList>
-    <Type n="Boolean">System.Boolean</Type>
-    <Type n="Hashtable">System.Collections.Hashtable</Type>
-    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
-    <Type n="String">System.String</Type>
-  </TypeList>
-</XmlArchive>
+        </Data>
+        <TypeList>
+          <Type n="Boolean">System.Boolean</Type>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
     </PlcProjectOptions>
   </ProjectExtensions>
 </Project>
