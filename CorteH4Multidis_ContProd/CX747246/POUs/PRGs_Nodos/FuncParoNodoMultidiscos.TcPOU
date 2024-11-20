@@ -43,7 +43,7 @@ VAR_INPUT
 END_VAR
 VAR PERSISTENT 
 	HMI_Tiempo_Offset_MParo:INT:=5;
-	HMI_TiempoFiltradoFotocel:TIME:=T#2S;
+	HMI_TiempoFiltradoFotocel:TIME:=T#1S;
 // Generales multidoscos 1
 	sModeloActualTabla_MD1:STRING;
 	sFormatoActualTabla_MD1:STRING;

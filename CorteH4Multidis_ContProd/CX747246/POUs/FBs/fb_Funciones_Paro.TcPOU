@@ -49,11 +49,12 @@ VAR
 	S_Entre_Piez_Ftc:TIME;
 	Cont:INT;
 	//Comprobaciones de los retardos de envio de frase a mysql a traves del maestro 
-		TonAscendente:ton;
-	Tiempo_Sumando:TIME:=T#1S;
+	TonAscendente:ton;
+	Tiempo_Sumando:TIME:=T#3S;
 	Tiempo_A_Sumar:TIME:=T#1.25S;
 	ContandoComprobador:BOOL;
 	bCompFuncEnvDataBase:BIT;
+	TonOff:TON;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -61,7 +62,7 @@ END_VAR
 	//Llamada a los temporizadores Declaración de tiempos
 		tFiltro_up_Ftc(PT:=TiempoFiltradoFotocel); 
 		tFiltro_down_Ftc(PT:=TiempoFiltradoFotocel);
-		Delay_Esc_Ftc(PT:=T#2S);
+		Delay_Esc_Ftc(PT:=T#2S);//El delay funciona bien a T#2s
 		
 	// Temporizador para empezar a detectar pieza en paro (filtro de parpadeos) Up
 	IF 	Fotocelula OR NOT tFiltro_down_Ftc.Q or ContandoComprobador THEN 
@@ -128,7 +129,9 @@ Fin_Paro();
 //Estructura de variables que luego de las cuales el PLC maestro leerá toda la información del paro
 aStrFuncParEnviar();
 IF  bCompFuncEnvDataBase THEN 
-CompEnvContDataBase();	
+CompEnvContDataBase();
+ELSE 
+ContandoComprobador:=FALSE;	
 END_IF]]></ST>
     </Implementation>
     <Action Name="aStrFuncParEnviar" Id="{24851889-a132-475f-ba31-aaf74f0c9c17}">
@@ -159,13 +162,17 @@ END_VAR]]></Declaration>
         <ST><![CDATA[//Está funcion está hecha para comprobar si los tiempos de retardo para la lectura a plc desde el plc esclavo al plc maestro junto los los retardos que tenga el maestro funcionan bien
 //Cada cierto tiempo se va a incrementar en 10ms el temporizador , que será el encargado de forzar la fotocélula para enviar StrFuncParoEnviar.
 TonAscendente(IN:=ContandoComprobador,PT:=Tiempo_Sumando);
-ContandoComprobador:=TRUE;
-if TonAscendente.Q then 
+TonOff(In:=NOT ContandoComprobador,Pt:=T#2S);
+//ContandoComprobador:=TRUE;
+IF TonAscendente.Q THEN 	
 	Tiempo_Sumando:=Tiempo_Sumando + Tiempo_A_Sumar; 
 	ContandoComprobador:=FALSE;
 END_IF
-IF Tiempo_Sumando > T#10S THEN 
+IF Tiempo_Sumando > T#15S THEN
 	Tiempo_Sumando:=T#1.25S;
+END_IF
+IF TonOff.Q THEN 
+	ContandoComprobador:=TRUE;
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -317,7 +324,9 @@ t_Entre_Piez_Ftc:= Fecha_PLC.Fecha_Time_PLC - Time_InParo_Entera ;
       <LineId Id="143" Count="0" />
       <LineId Id="285" Count="0" />
       <LineId Id="284" Count="0" />
-      <LineId Id="389" Count="2" />
+      <LineId Id="389" Count="1" />
+      <LineId Id="398" Count="1" />
+      <LineId Id="391" Count="0" />
     </LineIds>
     <LineIds Name="fb_Funciones_Paro.aStrFuncParEnviar">
       <LineId Id="1" Count="0" />
@@ -327,12 +336,14 @@ t_Entre_Piez_Ftc:= Fecha_PLC.Fecha_Time_PLC - Time_InParo_Entera ;
     <LineIds Name="fb_Funciones_Paro.CompEnvContDataBase">
       <LineId Id="5" Count="0" />
       <LineId Id="8" Count="1" />
+      <LineId Id="22" Count="0" />
       <LineId Id="18" Count="0" />
       <LineId Id="13" Count="1" />
       <LineId Id="16" Count="0" />
       <LineId Id="15" Count="0" />
       <LineId Id="17" Count="0" />
       <LineId Id="19" Count="1" />
+      <LineId Id="23" Count="2" />
     </LineIds>
     <LineIds Name="fb_Funciones_Paro.Fecha_Detec_Up_Pieza">
       <LineId Id="5" Count="0" />
