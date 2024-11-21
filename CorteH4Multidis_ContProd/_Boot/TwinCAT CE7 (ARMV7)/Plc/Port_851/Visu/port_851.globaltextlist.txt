@@ -9,6 +9,7 @@ Id;Default
 177;%s $TContador piezas corte húmedo 4 
 125;%s $TContador piezas multidiscos 1
 246;%s $TContador piezas multidiscos 2
+771;%s $TContador piezas Multidiscos 2
 633;%t[s,ms]
 577;//Quito las letras T# de la palabra a enviar$R$Nt_Entre_Piez_Ftc := DELETE(t_Entre_Piez_Ftc, LEN := 2, POS := 1)$;
 13;Aceptar
@@ -23,6 +24,8 @@ Id;Default
 35;Diagnóstico
 29;Elección modelo de la tabla CORTE HÚMEDO 4
 16;Elección modelo de la tabla LINEA 4
+378;Elección modelo de la tabla Multidiscos 1
+634;Elección modelo de la tabla Multidiscos 2
 360;Elige la opción de fin de producción $R$Ndel modelo actual.
 32;En cuanto pulsas Reset paso a paso contadores se resetea $R$Ncontador fotocelula salida prensa,$R$N  a los 10 min de no notar pieza en la entrada del secadero se resetea $R$Ncontador entrada secadero,$R$N pasados 35 min sin notar pieza en salida airless 2 resetea $R$Ncontador salida airless 2. $R$NA los 15 min que el contador de reset salida airless 2 se haya reseteado$R$N se resetea contador fotocelula entrada horno inferior. 
 172;En cuanto se rearme la marcha se cerrará esta ventana.$R$NDe no haberte dado tiempo a justificar el paro deberas ir a $R$N$"Registro tablas y justificación de paro$" para introducirlo en la linea manualmente. 
@@ -67,6 +70,7 @@ Id;Default
 911;Marca Sin Paro 
 316;Min
 914;Minutos Parado
+531;Modelo
 735;Modelo actual
 12;Modelo de la tabla 
 96;Multidiscos

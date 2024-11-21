@@ -577,7 +577,7 @@
         <Data>
           <o xml:space="preserve" t="WebVisualizationObject">
             <o n="ViewSettings" t="WebVisualizationViewSettings">
-              <v n="StartVisu">"Home_CortH4"</v>
+              <v n="StartVisu">"Home_Sel_Maq"</v>
               <v n="HtmFileName">"webvisu"</v>
               <v n="MainStartHtm">true</v>
               <v n="UpdateRate">200</v>

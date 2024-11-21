@@ -169,7 +169,7 @@
                   <a cet="InputOpenDialogAction">
                     <o>
                       <n n="Dialog" />
-                      <v n="Dialog33">"V_Emerg_Fin_Prod_Ch4"</v>
+                      <v n="Dialog33">"V_Emerg_Fin_Prod_Md1"</v>
                       <d n="Parameters" t="Hashtable" />
                       <d n="Selected" t="Hashtable" />
                       <v n="OpenModal">true</v>
@@ -683,7 +683,7 @@
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.M_SinParo_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos1.M_SinParo_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -976,7 +976,7 @@
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.M_SinParo_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos1.M_SinParo_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -3674,7 +3674,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.M_SinParo_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos1.M_SinParo_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -5256,7 +5256,7 @@ Anterior"</v>
               <v n="BgBmpId">""</v>
               <v n="BgUseBmp">false</v>
               <v n="BgColor">true</v>
-              <v n="BgUseColor">-1</v>
+              <v n="BgUseColor">-21415</v>
               <v n="BgUseGradient">false</v>
             </o>
           </o>

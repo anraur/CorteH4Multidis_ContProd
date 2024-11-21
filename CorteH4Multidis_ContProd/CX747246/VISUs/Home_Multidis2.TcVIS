@@ -169,7 +169,7 @@
                   <a cet="InputOpenDialogAction">
                     <o>
                       <n n="Dialog" />
-                      <v n="Dialog33">"V_Emerg_Fin_Prod_Ch4"</v>
+                      <v n="Dialog33">"V_Emerg_Fin_Prod_Md2"</v>
                       <d n="Parameters" t="Hashtable" />
                       <d n="Selected" t="Hashtable" />
                       <v n="OpenModal">true</v>
@@ -394,7 +394,7 @@
                     </o>
                     <o>
                       <v n="Id">743958181L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.Fotocelula"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos2.Fotocelula"</v>
                     </o>
                   </l>
                 </o>
@@ -551,7 +551,7 @@
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.M_SinParo_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos2.M_SinParo_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -683,7 +683,7 @@
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.M_SinParo_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos2.M_SinParo_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -844,7 +844,7 @@
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.M_SinParo_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos2.M_SinParo_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -976,7 +976,7 @@
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.M_SinParo_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos2.M_SinParo_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -1954,7 +1954,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.MParo_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos2.MParo_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -2083,7 +2083,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.M_SinParo_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos2.M_SinParo_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -2495,7 +2495,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.sModeloActualTabla"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.sModeloActualTabla_MD2"</v>
                     </o>
                     <o>
                       <v n="Id">1375557818L</v>
@@ -2778,7 +2778,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.sEspesorActualTabla"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.sEspesorActualTabla_MD2"</v>
                     </o>
                     <o>
                       <v n="Id">1375557818L</v>
@@ -2787,6 +2787,10 @@ Anterior"</v>
                     <o>
                       <v n="Id">823443203L</v>
                       <v n="Value">"650"</v>
+                    </o>
+                    <o>
+                      <v n="Id">2880254039L</v>
+                      <v n="Value">""</v>
                     </o>
                   </l>
                 </o>
@@ -3061,7 +3065,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.sFormatoActualTabla"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.sFormatoActualTabla_MD2"</v>
                     </o>
                     <o>
                       <v n="Id">1375557818L</v>
@@ -3156,11 +3160,11 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">1649127785L</v>
-                      <v n="Value">1613</v>
+                      <v n="Value">1505</v>
                     </o>
                     <o>
                       <v n="Id">357335551L</v>
-                      <v n="Value">224</v>
+                      <v n="Value">226</v>
                     </o>
                     <o>
                       <v n="Id">2422045748L</v>
@@ -3190,11 +3194,11 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">550940142L</v>
-                      <v n="Value">1763</v>
+                      <v n="Value">1655</v>
                     </o>
                     <o>
                       <v n="Id">1473355128L</v>
-                      <v n="Value">239</v>
+                      <v n="Value">241</v>
                     </o>
                     <o>
                       <v n="Id">2678395525L</v>
@@ -3300,11 +3304,11 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">1649127785L</v>
-                      <v n="Value">1240</v>
+                      <v n="Value">1150</v>
                     </o>
                     <o>
                       <v n="Id">357335551L</v>
-                      <v n="Value">225</v>
+                      <v n="Value">227</v>
                     </o>
                     <o>
                       <v n="Id">2422045748L</v>
@@ -3518,11 +3522,11 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.S_Justi_Paro_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos2.S_Justi_Paro_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.M_SinParo_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos2.M_SinParo_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -3845,7 +3849,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.M_SinParo_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos2.M_SinParo_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -4016,7 +4020,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.M_SinParo_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos2.M_SinParo_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -4187,7 +4191,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.M_SinParo_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos2.M_SinParo_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -4358,7 +4362,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.M_SinParo_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos2.M_SinParo_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -4529,7 +4533,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.M_SinParo_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos2.M_SinParo_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -4700,7 +4704,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.M_SinParo_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos2.M_SinParo_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -4871,7 +4875,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.M_SinParo_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos2.M_SinParo_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>

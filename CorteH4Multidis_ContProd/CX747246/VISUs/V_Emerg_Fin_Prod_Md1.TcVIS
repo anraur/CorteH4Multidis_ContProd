@@ -16,7 +16,7 @@
                       <l n="VisualElemMemberList" t="VisualElemMemberCollection" cet="VisualElemMember">
                         <o>
                           <v n="Id">1186196937L</v>
-                          <v n="Value">"FuncParoNodoMultidiscos.FunGeneMultidiscos2.P_FinProduccion"</v>
+                          <v n="Value">"FuncParoNodoMultidiscos.FunGeneMultidiscos1.P_FinProduccion"</v>
                         </o>
                         <o>
                           <v n="Id">3779583253L</v>
@@ -191,12 +191,12 @@
                     <o t="ChangeVisuInputAction">
                       <v n="AssignExpr">""</v>
                       <n n="Assign" />
-                      <v n="Assign33">"Modelo_Tabla"</v>
+                      <v n="Assign33">"Modelo_Tabla_Md1"</v>
                       <v n="Type" t="ChangeVisuType">Assignment</v>
                     </o>
                     <o t="InputCloseDialogAction">
                       <n n="Dialog" />
-                      <v n="Dialog33">"V_Emerg_Fin_Prod_Ch4"</v>
+                      <v n="Dialog33">"V_Emerg_Fin_Prod_Md1"</v>
                       <v n="Result">"OK"</v>
                       <v n="NumpadKeypad">false</v>
                       <v n="NumpadKeypadSet">true</v>
@@ -457,7 +457,7 @@
                       <v n="Id">390574330L</v>
                       <v n="Value">"Vas a finalizar la producción de este modelo de tabla.
 ¿Estas seguro que no queda ninguna tabla 
-en toda la línea?"</v>
+en la rodillera de entrada?"</v>
                     </o>
                     <o>
                       <v n="Id">3729828405L</v>
@@ -499,7 +499,7 @@ en toda la línea?"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"138"</v>
+                      <v n="Value">"371"</v>
                     </o>
                   </l>
                 </o>

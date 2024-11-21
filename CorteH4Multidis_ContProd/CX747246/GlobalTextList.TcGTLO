@@ -56,6 +56,11 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"771"</v>
+              <v n="TextDefault">"%s 	Contador piezas Multidiscos 2"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"633"</v>
               <v n="TextDefault">"%t[s,ms]"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -124,6 +129,16 @@ t_Entre_Piez_Ftc := DELETE(t_Entre_Piez_Ftc, LEN := 2, POS := 1);"</v>
             <o>
               <v n="TextID">"16"</v>
               <v n="TextDefault">"Elección modelo de la tabla LINEA 4"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"378"</v>
+              <v n="TextDefault">"Elección modelo de la tabla Multidiscos 1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"634"</v>
+              <v n="TextDefault">"Elección modelo de la tabla Multidiscos 2"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -367,6 +382,11 @@ Máximo 5 palabras."</v>
             <o>
               <v n="TextID">"914"</v>
               <v n="TextDefault">"Minutos Parado"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"531"</v>
+              <v n="TextDefault">"Modelo"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
