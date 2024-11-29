@@ -1383,7 +1383,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.Funci_CortHum4.Cont_Piezas_Ftc"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos2.Cont_Piezas_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">1375557818L</v>
@@ -2177,7 +2177,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"Número de tablas"</v>
+                      <v n="Value">"Número de losas"</v>
                     </o>
                     <o>
                       <v n="Id">3729828405L</v>
@@ -2220,7 +2220,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"700"</v>
+                      <v n="Value">"1060"</v>
                     </o>
                   </l>
                 </o>
@@ -2785,12 +2785,12 @@ Anterior"</v>
                       <v n="Value">false</v>
                     </o>
                     <o>
-                      <v n="Id">823443203L</v>
-                      <v n="Value">"650"</v>
-                    </o>
-                    <o>
                       <v n="Id">2880254039L</v>
                       <v n="Value">""</v>
+                    </o>
+                    <o>
+                      <v n="Id">823443203L</v>
+                      <v n="Value">"650"</v>
                     </o>
                   </l>
                 </o>
@@ -3222,7 +3222,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"FuncParoNodoCorteH4Remote1.sFechaInicModeloTab"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.sFechaInicModeloTab_MD2 "</v>
                     </o>
                     <o>
                       <v n="Id">1375557818L</v>
@@ -5062,7 +5062,7 @@ Anterior"</v>
                     <o>
                       <v n="AssignExpr">""</v>
                       <n n="Assign" />
-                      <v n="Assign33">"Ajustes_CorteH4"</v>
+                      <v n="Assign33">"Ajustes_Multidiscos2"</v>
                       <v n="Type" t="ChangeVisuType">Assignment</v>
                     </o>
                   </a>

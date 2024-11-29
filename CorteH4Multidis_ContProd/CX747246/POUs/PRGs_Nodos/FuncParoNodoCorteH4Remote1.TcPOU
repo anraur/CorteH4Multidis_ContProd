@@ -45,7 +45,7 @@ VAR PERSISTENT
 	sFormatoActualTabla:STRING;
 	sEspesorActualTabla:STRING;
 	sFechaInicModeloTab:STRING;
-	sJustificaParoComun:STRING;
+
 END_VAR
 ]]></Declaration>
     <Implementation>

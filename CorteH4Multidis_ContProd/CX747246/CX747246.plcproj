@@ -24,6 +24,9 @@
     <Compile Include="DUTs\Str_Config_ADS_to_PLC.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Str_HistTablasMySQL.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GlobalTextList.TcGTLO">
       <SubType>Code</SubType>
     </Compile>
@@ -94,7 +97,11 @@
     <Compile Include="POUs\PRGs_Nodos\FuncParoNodoCorteH4Remote1.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="VISUs\Ajustes_Multidiscos.TcVIS">
+    <Compile Include="VISUs\Ajustes_Multidiscos1.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="VISUs\Ajustes_Multidiscos2.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
     </Compile>
@@ -129,6 +136,10 @@
       <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="VISUs\Home_Sel_Maq.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="VISUs\HistTablaTablas_Ch4.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
     </Compile>

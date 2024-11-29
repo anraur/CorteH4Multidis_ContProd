@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="Str_HistTablasMySQL" Id="{101d3f59-3f5e-430c-80ea-459d06d7b21d}">
+    <Declaration><![CDATA[TYPE Str_HistTablasMySQL :
+STRUCT
+	ID:INT;
+	Fecha:STRING;
+	Modelo:STRING;
+	Formato:STRING;
+	Espesor:STRING;
+	Maquina :STRING;	
+	Cont_Piezas:INT;//Numero de piezas actuales
+	t_Entre_Piez_Ftc:TIME;//Tiempo actual entre piezas
+	S_Justi_Paro_Ftc:STRING;//Justificación del paro string	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

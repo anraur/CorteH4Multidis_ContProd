@@ -2161,23 +2161,23 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">1649127785L</v>
-                      <v n="Value">57</v>
+                      <v n="Value">36</v>
                     </o>
                     <o>
                       <v n="Id">357335551L</v>
-                      <v n="Value">282</v>
+                      <v n="Value">302</v>
                     </o>
                     <o>
                       <v n="Id">2422045748L</v>
-                      <v n="Value">361</v>
+                      <v n="Value">354</v>
                     </o>
                     <o>
                       <v n="Id">2134141914L</v>
-                      <v n="Value">144</v>
+                      <v n="Value">119</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"Número de tablas"</v>
+                      <v n="Value">"Número de losas"</v>
                     </o>
                     <o>
                       <v n="Id">3729828405L</v>
@@ -2220,7 +2220,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"700"</v>
+                      <v n="Value">"1060"</v>
                     </o>
                   </l>
                 </o>
@@ -3518,7 +3518,7 @@ Anterior"</v>
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"FuncParoNodoMultidiscos.sJustificaParoComun_MD1"</v>
+                      <v n="Value">"FuncParoNodoMultidiscos.Funci_Multidiscos1.S_Justi_Paro_Ftc"</v>
                     </o>
                     <o>
                       <v n="Id">2880254039L</v>
@@ -5058,7 +5058,7 @@ Anterior"</v>
                     <o>
                       <v n="AssignExpr">""</v>
                       <n n="Assign" />
-                      <v n="Assign33">"Ajustes_CorteH4"</v>
+                      <v n="Assign33">"Ajustes_Multidiscos1"</v>
                       <v n="Type" t="ChangeVisuType">Assignment</v>
                     </o>
                   </a>

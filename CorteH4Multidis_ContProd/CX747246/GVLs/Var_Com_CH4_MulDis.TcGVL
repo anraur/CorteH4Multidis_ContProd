@@ -8,6 +8,7 @@ VAR_GLOBAL
 	aWordCom AT %MW10000: ARRAY[0..249] OF WORD;	//(1 Word = 1MW)
 	aBoolCom AT %MB10250: ARRAY[0..499] OF BOOL;	//(1 Bool = 1MB)
 	aTimeCom AT %MW10750: ARRAY[0..124] OF TIME;	//(1 Time = 4MW)
-END_VAR]]></Declaration>
+END_VAR
+]]></Declaration>
   </GVL>
 </TcPlcObject>

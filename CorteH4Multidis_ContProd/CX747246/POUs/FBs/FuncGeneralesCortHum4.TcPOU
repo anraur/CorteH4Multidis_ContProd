@@ -22,12 +22,15 @@ VAR
 	P_FinProduccion:BOOL;
 	P_EscribirModelo:BOOL;
 	pul_Justif_Paro:BOOL;
+	EscribeHistoricTablas:BOOL;
+	FlancFiltUpFtcEscHistTab:R_TRIG;
 	Cont1:INT;
 	Cont2:INT;
 	Cont3:INT;
 	Cont4:INT;
 END_VAR
 VAR PERSISTENT 
+	PointerHistTablas:INT;
 END_VAR
 	]]></Declaration>
     <Implementation>
@@ -44,8 +47,14 @@ IF P_EscribirModelo THEN
 END_IF
 
 
+//Envío de la linea de la tabla para el historico de control producción en el HMI del operario
+ IF FlancFiltUpFtcEscHistTab.Q THEN 
+	 EscStrHistoricoTablas();
+ END_IF
+
+
 Direccionamiento_variables_com();
-]]></ST>
+FlancFiltUpFtcEscHistTab(CLK := FuncParoNodoCorteH4Remote1.Funci_CortHum4.tFiltro_up_Ftc.Q);]]></ST>
     </Implementation>
     <Action Name="Direccionamiento_variables_com" Id="{4cb71bcf-b2bc-47a4-9856-c8a61ddd8fd6}">
       <Implementation>
@@ -59,6 +68,44 @@ Direccionamiento_variables_com();
 	]]></ST>
       </Implementation>
     </Action>
+    <Method Name="EscStrHistoricoTablas" Id="{44a0a646-a389-4ca9-8120-7eb4def922af}">
+      <Declaration><![CDATA[METHOD EscStrHistoricoTablas : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Recorre todas las lineas de la tabla una posición y añade la nueva tabla en la linea 0 para mayor coodidad al visulizar
+
+FOR PointerHistTablas := 100 TO 1 BY -1 DO 
+	RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas].ID := RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas-1].ID;
+	RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas].Fecha := RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas-1].Fecha;
+	RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas].Modelo := RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas-1].Modelo;
+	RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas].Formato := RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas-1].Formato;
+	RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas].Espesor :=RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas-1].Espesor;
+	RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas].Maquina := RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas-1].Maquina;
+	RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas].Cont_Piezas := RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas-1].Cont_Piezas;
+	RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas].t_Entre_Piez_Ftc := RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas-1].t_Entre_Piez_Ftc;
+	RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas].S_Justi_Paro_Ftc := RegistroLocalDataBase.aHistoricStrTablasCH4[PointerHistTablas-1].S_Justi_Paro_Ftc;
+	
+END_FOR
+//Estructura de la array de la tabla para visualizar el historico de la tablas pasadas
+RegistroLocalDataBase.aHistoricStrTablasCH4[0].ID := PointerHistTablas;
+RegistroLocalDataBase.aHistoricStrTablasCH4[0].Fecha := Fecha_PLC.StringDateHourMin;
+RegistroLocalDataBase.aHistoricStrTablasCH4[0].Modelo := FuncParoNodoCorteH4Remote1.sModeloActualTabla;
+RegistroLocalDataBase.aHistoricStrTablasCH4[0].Formato := FuncParoNodoCorteH4Remote1.sFormatoActualTabla;
+RegistroLocalDataBase.aHistoricStrTablasCH4[0].Espesor :=FuncParoNodoCorteH4Remote1.sEspesorActualTabla;
+RegistroLocalDataBase.aHistoricStrTablasCH4[0].Maquina := 'Corte húmedo 4';
+RegistroLocalDataBase.aHistoricStrTablasCH4[0].Cont_Piezas := FuncParoNodoCorteH4Remote1.Funci_CortHum4.Cont_Piezas_Ftc;
+RegistroLocalDataBase.aHistoricStrTablasCH4[0].t_Entre_Piez_Ftc := FuncParoNodoCorteH4Remote1.Funci_CortHum4.t_Entre_Piez_Ftc;
+RegistroLocalDataBase.aHistoricStrTablasCH4[0].S_Justi_Paro_Ftc := FuncParoNodoCorteH4Remote1.Funci_CortHum4.S_Justi_Paro_Ftc;
+
+
+
+
+
+]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Fin_Produccion" Id="{9cb73819-1a22-40e9-a2d8-887e90cd0ccd}">
       <Declaration><![CDATA[METHOD Fin_Produccion : BOOL
 VAR_INPUT	
@@ -136,7 +183,10 @@ END_IF
       <LineId Id="102" Count="0" />
       <LineId Id="32" Count="0" />
       <LineId Id="101" Count="0" />
-      <LineId Id="33" Count="2" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="136" Count="5" />
+      <LineId Id="133" Count="0" />
+      <LineId Id="35" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="71" Count="0" />
     </LineIds>
@@ -147,6 +197,20 @@ END_IF
       <LineId Id="12" Count="1" />
       <LineId Id="9" Count="0" />
       <LineId Id="6" Count="1" />
+    </LineIds>
+    <LineIds Name="FuncGeneralesCortHum4.EscStrHistoricoTablas">
+      <LineId Id="54" Count="0" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="55" Count="8" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="36" Count="9" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="10" Count="0" />
     </LineIds>
     <LineIds Name="FuncGeneralesCortHum4.Fin_Produccion">
       <LineId Id="49" Count="0" />

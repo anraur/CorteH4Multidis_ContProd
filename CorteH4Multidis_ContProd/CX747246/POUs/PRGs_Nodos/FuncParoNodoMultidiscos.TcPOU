@@ -42,20 +42,20 @@ VAR_INPUT
 	sEspesorEleccionTabla_MD2:STRING;
 END_VAR
 VAR PERSISTENT 
-	HMI_Tiempo_Offset_MParo:INT:=5;
-	HMI_TiempoFiltradoFotocel:TIME:=T#1S;
+	HMI_Tiempo_Offset_MParoMult1:INT:=3;
+	HMI_Tiempo_Offset_MParoMult2:INT:=3;
+	HMI_TiempoFiltradoFotMul_1:TIME:=T#1S;
+	HMI_TiempoFiltradoFotMul_2:TIME:=T#1S;
 // Generales multidoscos 1
 	sModeloActualTabla_MD1:STRING;
 	sFormatoActualTabla_MD1:STRING;
 	sEspesorActualTabla_MD1:STRING;
 	sFechaInicModeloTab_MD1:STRING;
-	sJustificaParoComun_MD1:STRING;
 // Generales multidoscos 2
 	sModeloActualTabla_MD2:STRING;
 	sFormatoActualTabla_MD2:STRING;
 	sEspesorActualTabla_MD2:STRING;
 	sFechaInicModeloTab_MD2:STRING;
-	sJustificaParoComun_MD2:STRING;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -63,14 +63,14 @@ END_VAR
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>         	Multidiscos 1         <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 Funci_Multidiscos1(Fotocelula:=Ftc_Multidiscos1 OR ForzadoFtcMultidiscos1, 
-					Tiempo_Offset_MParo:=HMI_Tiempo_Offset_MParo, 
-					TiempoFiltradoFotocel:=HMI_TiempoFiltradoFotocel,
+					Tiempo_Offset_MParo:=HMI_Tiempo_Offset_MParoMult1, 
+					TiempoFiltradoFotocel:=HMI_TiempoFiltradoFotMul_1,
 					_StrFuncParoEnviar => Multidiscos1StrFuncParoEnviar,);
 					
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>         	Multidiscos 2        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 Funci_Multidiscos2(Fotocelula:= Ftc2_Multidiscos2 OR ForzadoFtc2_Multidiscos2,
-						Tiempo_Offset_MParo:=HMI_Tiempo_Offset_MParo, 
-						TiempoFiltradoFotocel:=HMI_TiempoFiltradoFotocel,
+						Tiempo_Offset_MParo:=HMI_Tiempo_Offset_MParoMult2, 
+						TiempoFiltradoFotocel:=HMI_TiempoFiltradoFotMul_2,
 						_StrFuncParoEnviar => Multidiscos2StrFuncParoEnviar,);
 						
 

@@ -13,27 +13,27 @@
             </o>
             <o>
               <v n="TextID">"1"</v>
-              <v n="TextDefault">"17x17"</v>
+              <v n="TextDefault">"170x170"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
               <v n="TextID">"2"</v>
-              <v n="TextDefault">"20x65"</v>
+              <v n="TextDefault">"200x650"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
               <v n="TextID">"3"</v>
-              <v n="TextDefault">"30x15"</v>
+              <v n="TextDefault">"300x150"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
               <v n="TextID">"4"</v>
-              <v n="TextDefault">"30x30"</v>
+              <v n="TextDefault">"300x300"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
               <v n="TextID">"5"</v>
-              <v n="TextDefault">"03x03"</v>
+              <v n="TextDefault">"30x30"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

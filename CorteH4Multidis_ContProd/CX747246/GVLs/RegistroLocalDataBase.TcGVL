@@ -4,6 +4,12 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	aValoresTurnosAnt: ARRAY [0..50] OF StrFuncParoEnviar;//Cada fin de turno se envía los valores de la ultima tabla que ha psado y se queda guardado en esta array para enseñarlo por el Scada
+END_VAR
+VAR_GLOBAL PERSISTENT
+	//Array para el histórico de las tablas enviado a la base de datos
+	 aHistoricStrTablasCH4: ARRAY[0..100]OF Str_HistTablasMySQL;
+	 aHistoricStrTablasMD1: ARRAY[0..100]OF Str_HistTablasMySQL;
+	 aHistoricStrTablasMD2: ARRAY[0..100]OF Str_HistTablasMySQL;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
