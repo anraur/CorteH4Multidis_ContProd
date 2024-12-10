@@ -73,6 +73,9 @@
     <Compile Include="POUs\FBs\FuncGeneralesMult2.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\FBs\TempParoAcumulad.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Funciones comunes\Fecha_Hora_PLC.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -120,6 +123,9 @@
     <Compile Include="VISUs\Home_Multidis2.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>VISUs\VisualizationManager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="VISUs\IMAGENES\Imagenes.TcIPO">
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="VISUs\ImagePool.TcIPO">
       <SubType>Code</SubType>
@@ -182,6 +188,7 @@
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
     <Folder Include="VISUs\Listas_Para_Desplegables" />
+    <Folder Include="VISUs\IMAGENES" />
   </ItemGroup>
   <ItemGroup>
     <PlaceholderReference Include="CmpBitmapPool">

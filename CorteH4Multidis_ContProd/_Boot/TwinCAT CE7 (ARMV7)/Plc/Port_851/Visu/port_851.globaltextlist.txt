@@ -1,6 +1,7 @@
 Id;Default
 505;%i
 650;%s
+339;%S
 429;%s $TContador fotocelula entrada horno inferior
 862;%s $TContador fotocelula entrada horno superior
 52;%s $TContador fotocelula entrada secadero
@@ -8,22 +9,27 @@ Id;Default
 348;%s $TContador fotocelula salida prensa 
 177;%s $TContador piezas corte húmedo 4 
 125;%s $TContador piezas multidiscos 1
+699;%s $TContador piezas Multidiscos 1
 246;%s $TContador piezas multidiscos 2
 771;%s $TContador piezas Multidiscos 2
 633;%t[s,ms]
 577;//Quito las letras T# de la palabra a enviar$R$Nt_Entre_Piez_Ftc := DELETE(t_Entre_Piez_Ftc, LEN := 2, POS := 1)$;
 13;Aceptar
+1163;ACEPTAR
 1004;Admin
 801;AJUSTES
 152;Ajustes
 453;Alarmas
+259;CAMBIO DE MODELO
 856;Contador de piezas
 92;Cont_Piezas
 137;Corte húmedo 4
+1186;CORTE HÚMEDO 4
 448;Delay Escritura
 737;Diagnostico
 40;Diagnostíco 
 35;Diagnóstico
+1366;Día
 29;Elección modelo de la tabla CORTE HÚMEDO 4
 16;Elección modelo de la tabla LINEA 4
 378;Elección modelo de la tabla Multidiscos 1
@@ -37,6 +43,7 @@ Id;Default
 850;Entre Piez Anterior %s
 692;Esmaltado
 631;Espesor
+740;ESPESOR
 639;Espesor de la tabla 
 765;Exit
 1002;Fecha
@@ -47,10 +54,13 @@ Id;Default
 796;Fin de producción del modelo
 570;Fin de producción temp
 678;Fin producción temporizado
+550;FINALIZAR
 493;Finalizar la producción$R$N mientras todavía quedan $R$Npiezas por la línea $R$Npero la prensa $R$Nya ha parado.
 806;Finalizar la producción inmediatamente.$R$NNo deben haber tablas entre la prensa y$R$Nel horno de destino.   
 300;Finalizar modelo
+766;FINALIZAR MODELO
 419;Formato
+79;FORMATO
 215;Formato de la tabla 
 884;Forzar Fotocelula
 998;GreenCut
@@ -62,12 +72,19 @@ Id;Default
 621;Habilitar lectura del$R$NPLC Maestro
 413;Historial de las tablas CORTE HÚMEDO 4
 532;Histórico
+907;HISTÓRICO
+248;HISTÓRICO PRODUCCIÓN
 681;Hora Fin Paro
+1204;HORA INICIO
 553;Hora Inicio del paro
 340;Hora Inicio Paro
 226;Horno Inferior
 412;Horno Superior
 1;ID
+867;INICIADA:
+179;inicio
+1088;INICIO
+1430;INTRODUCE LOS DATOS DE LA OF
 1183;Justif paro
 1000;Justif paro 
 843;Justific paro
@@ -75,44 +92,70 @@ Id;Default
 301;Justificación del Paro
 266;JUSTIFICAR EL PARO ACTUAL
 1158;Justificar Paro
+1063;JUSTIFICAR PARO
 366;Línea  en paro
 67;Línea en paro
 200;Maquina
 227;Marca Paro 
 911;Marca Sin Paro 
 316;Min
+209;min
+1127;MINUTOS
 914;Minutos Parado
 531;Modelo
+1198;MODELO
 735;Modelo actual
 12;Modelo de la tabla 
+873;MOTIVO 1
 96;Multidiscos
 616;Multidiscos 
 228;Multidiscos 1
+197;MULTIDISCOS 1
 118;Multidiscos 2
+989;MULTIDISCOS 2
 77;Multidoscos
+1014;NINGÚN PARO ACTIVO
 6;None
+1148;NUEVO MODELO
 1078;Numero de Piezas
 897;Numero de tablas
 1060;Número de losas
 364;Número de piezas 
 700;Número de tablas
+86;OF
 1041;Operario
 23;Operario_CH4
 679;Operario_Md1
 1058;Operario_Md2
+1042;ORDEN FABRICACIÓN -
 490;Paro activo
+1136;PARO ACTIVO
+1107;PARO ACTUAL
+352;PARO TOTAL
+117;PARO TOTAL 
+1678;PARO TOTAL ACUMULADO 
+206;PARO TOTAL DIARIO
+566;PAROS
+21;PARÁMETROS
+1311;PIEZAS
 329;Prensa
+935;PRODUCCIÓN
+1123;PRODUCCIÓN TURNO
+258;PRODUCIDAS
 600;Página de diagnóstico
 732;Reset contador
 722;Reset contador 
 20;Reset paso a paso contadores
+1413;Revisa que no haya ninguna pieza en la línea.
 224;Ruta hacia horno
 299;Secadero
 403;Seg
 59;Selecciona la máquina con la que vas a trabajar
+1182;SELECCIONA LA SECCIÓN
 225;Sensor presencia tabla 
 864;Si
 1229;Tablas
+547;TIEMPO DE PARO
 510;tiempo Entre Piez
 64;tiempo entre Piezas
 906;Tiempo entre Piezas
@@ -125,7 +168,17 @@ Id;Default
 649;Tiempo filtrado fotocelulas$R$Npara evitar parpadeos
 501;Tiempo para empezar $R$Na contar como paro
 433;Total piezas
+1284;TOTAL PIEZAS
+997;Turno
+173;TURNO ACTUAL
+371;Vas a finalizar la producción de este modelo de tabla.$R$N¿Estas seguro que no queda ninguna tabla $R$Nen la rodillera de entrada?
 138;Vas a finalizar la producción de este modelo de tabla.$R$N¿Estas seguro que no queda ninguna tabla $R$Nen toda la línea?
 58;Vas a finalizar la producción de este modelo de tabla.$R$N¿Estas seguro que no queda ninguna tabla $R$Nentre la prensa y la entrada del horno?
+198;Vas a finalizar la producción de este modelo.$R$N¿Estas seguro que no queda ninguna tabla $Nen la rodillera de entrada?
+1465;Volver
+1166;VOLVER
 729;Zona entrada horno
 278;Zona presa
+1577;¿Quieres finalizar el modelo?
+506;¿Quieres finalizar la producción de este modelo?
+1440;¿Quieres finalizar la producción?

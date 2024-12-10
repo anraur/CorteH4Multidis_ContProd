@@ -7,16 +7,16 @@ VAR
 	
 	//Recordar que el IDXOFFS debe ser el doble de la posición a la que queréis acceder Ejemplo: para leer los strings a partir de la dirección MW100 Debéis poner 200 en exadecimal (C8)
 	
-	//Configuración de la lectura de las variables Bool, IDXGRP:=16#4020(Hace referencia a la lectura de M),IDXOFFS:=16#B3B0(Offset %MB46000 a %MB46100), LEN : 101 Longitud bools leidos,DESTADDR:= ADR(Lectura_PLCs.aMasterBoolCom) Ubicación del array donde se guarda la lectura
+	//Configuración de la lectura de las variables Bool, IDXGRP:=16#4020(Hace referencia a la lectura de M),IDXOFFS:=16#B41E(%MB46110 a %MB46210), LEN : 101 Longitud bools leidos,DESTADDR:= ADR(Lectura_PLCs.aMasterBoolCom) Ubicación del array donde se guarda la lectura
 	Config_Read_ADS_Bools_Maestro:Str_Config_ADS_to_PLC:=(NETID:='192.168.10.71.1.1', PORT:=851, IDXGRP:=16#4020,IDXOFFS:=16#B41E,LEN:=101,DESTADDR:= ADR(Lectura_PLCs.aMasterBoolCom));
 	
-	//Configuración de la lectura de las variables String, IDXGRP:=16#4020(Hace referencia a la lectura de M),IDXOFFS:= 16#13880(Offset %MB80000, %MW40000 a %MW41215 ( 15 word)),Longitud de bytes a leer 1215 bytes = 15 strings que son 81words por cada string. ,DESTADDR:= ADR(Lectura_PLCs.aMasterStringCom) Ubicación del array donde se guarda la lectura
+	//Configuración de la lectura de las variables String, IDXGRP:=16#4020(Hace referencia a la lectura de M),IDXOFFS:= 16#142A8(%MW41300 a %MW42515 ( 15 word)),Longitud de bytes a leer 1215 bytes = 15 strings que son 81words por cada string. ,DESTADDR:= ADR(Lectura_PLCs.aMasterStringCom) Ubicación del array donde se guarda la lectura
 	Config_Read_ADS_Strings_Maestro:Str_Config_ADS_to_PLC:=(NETID:='192.168.10.71.1.1', PORT:=851, IDXGRP:=16#4020,IDXOFFS:=16#142A8,LEN:=1215,DESTADDR:= ADR(Lectura_PLCs.aMasterStringCom));
 	
-	//Configuración de la lectura de las variables Times, IDXGRP:=16#4020(Hace referencia a la lectura de M),IDXOFFS:=16#16F30 Offset %MB94000, %MW47000 a %MW47204 (204 word),LEN:= 204 Longitud de bytes a leer bytes = 200words    51 componentes,DESTADDR:= ADR(Lectura_PLCs.aMasterTimeCom) Ubicación del array donde se guarda la lectura
-	Config_Read_ADS_Times_Maestro:Str_Config_ADS_to_PLC:=(NETID:='192.168.10.71.1.1', PORT:=851, IDXGRP:=16#4020,IDXOFFS:=16#170D4,LEN:= 204,DESTADDR:= ADR(Lectura_PLCs.aMasterTimeCom));
+	//Configuración de la lectura de las variables Times, IDXGRP:=16#4020(Hace referencia a la lectura de M),IDXOFFS:=16#16F30 ( %MW47210 a %MW47414 (204 word),LEN:= 204 Longitud de bytes a leer bytes = 200words    51 componentes,DESTADDR:= ADR(Lectura_PLCs.aMasterTimeCom) Ubicación del array donde se guarda la lectura
+	Config_Read_ADS_Times_Maestro:Str_Config_ADS_to_PLC:=(NETID:='192.168.10.71.1.1', PORT:=851, IDXGRP:=16#4020,IDXOFFS:=16#16F30,LEN:= 204,DESTADDR:= ADR(Lectura_PLCs.aMasterTimeCom));
 	
-	//Configuración de la lectura de las variables Words, IDXGRP:=16#4020(Hace referencia a la lectura de M),IDXOFFS:=16#15F90;//Offset %MB90000, %MW45000 a %MW45040 (40 word),82;//Longitud de bytes a leer 80 bytes = 40words   ,DESTADDR:= ADR(Lectura_PLCs.aMasteWordCom) Ubicación del array donde se guarda la lectura
+	//Configuración de la lectura de las variables Words, IDXGRP:=16#4020(Hace referencia a la lectura de M),IDXOFFS:=16#15FF4 ( %MW45050 a %MW45090 (40 word),82;//Longitud de bytes a leer 80 bytes = 40words   ,DESTADDR:= ADR(Lectura_PLCs.aMasteWordCom) Ubicación del array donde se guarda la lectura
 	Config_Read_ADS_Words_Maestro:Str_Config_ADS_to_PLC:=(NETID:='192.168.10.71.1.1', PORT:=851, IDXGRP:=16#4020,IDXOFFS:=16#15FF4,LEN:=82,DESTADDR:= ADR(Lectura_PLCs.aMasterWordCom));
 	
 	

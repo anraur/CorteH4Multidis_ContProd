@@ -46,6 +46,7 @@ VAR PERSISTENT
 	sEspesorActualTabla:STRING;
 	sFechaInicModeloTab:STRING;
 
+
 END_VAR
 ]]></Declaration>
     <Implementation>

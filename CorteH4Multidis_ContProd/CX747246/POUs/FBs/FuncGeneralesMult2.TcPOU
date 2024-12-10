@@ -98,6 +98,7 @@ s_FormatoActualTabla:=s_FormatoEleccionTabla;
 s_EspesorActualTabla:= s_EspesorEleccionTabla;
 
 
+
 ]]></ST>
       </Implementation>
     </Method>
@@ -168,6 +169,7 @@ END_IF
       <LineId Id="10" Count="0" />
       <LineId Id="20" Count="0" />
       <LineId Id="25" Count="0" />
+      <LineId Id="30" Count="0" />
       <LineId Id="19" Count="0" />
       <LineId Id="14" Count="0" />
       <LineId Id="13" Count="0" />

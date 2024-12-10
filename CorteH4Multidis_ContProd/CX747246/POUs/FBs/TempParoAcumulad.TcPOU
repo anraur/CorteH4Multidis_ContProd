@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="TempParoAcumulad" Id="{f3fc6d10-ed21-45d6-875f-84933478080e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TempParoAcumulad
+VAR_INPUT
+	EnableCount:BOOL;
+	ParoActivo:BOOL;
+
+	DateAndTimeActual:DATE_AND_TIME;
+	P_resetCont:BOOL;
+	
+END_VAR
+VAR_OUTPUT
+	t_Acumulado:TIME;
+END_VAR
+VAR
+	FlancoUp_Enable:r_trig;
+	FlancoDo_Enable:f_trig;
+	t_InicioSuma:TIME;
+	t_FinSuma:TIME;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FlancoUp_Enable(CLK:=EnableCount);
+FlancoDo_Enable(CLK:=EnableCount);
+
+IF FlancoUp_Enable.Q THEN 
+	InicioHoraCont();
+END_IF
+IF FlancoDo_Enable.Q AND ParoActivo THEN  
+	FinHoraCont();
+END_IF
+IF P_resetCont THEN 
+	ResetContador();
+	P_resetCont:=FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <Method Name="FinHoraCont" Id="{1fb14688-e825-4653-9e12-12a2b9dee7b6}">
+      <Declaration><![CDATA[METHOD FinHoraCont : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[t_FinSuma := DT_TO_TIME(DateAndTimeActual);
+t_Acumulado:= t_Acumulado + (t_FinSuma-t_InicioSuma);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="InicioHoraCont" Id="{bd5a6f4d-52ae-4248-a9ef-edf3b851718e}">
+      <Declaration><![CDATA[METHOD InicioHoraCont : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[t_InicioSuma := DT_TO_TIME(DateAndTimeActual) ;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ResetContador" Id="{02296109-42f9-4a41-8dae-91f14d975529}">
+      <Declaration><![CDATA[METHOD ResetContador : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[InicioHoraCont();
+t_Acumulado:=T#0S;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="TempParoAcumulad">
+      <LineId Id="9" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="22" Count="4" />
+      <LineId Id="49" Count="1" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="51" Count="0" />
+    </LineIds>
+    <LineIds Name="TempParoAcumulad.FinHoraCont">
+      <LineId Id="5" Count="1" />
+    </LineIds>
+    <LineIds Name="TempParoAcumulad.InicioHoraCont">
+      <LineId Id="5" Count="1" />
+    </LineIds>
+    <LineIds Name="TempParoAcumulad.ResetContador">
+      <LineId Id="5" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

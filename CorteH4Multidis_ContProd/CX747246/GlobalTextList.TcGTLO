@@ -16,6 +16,11 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"339"</v>
+              <v n="TextDefault">"%S"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"429"</v>
               <v n="TextDefault">"%s 	Contador fotocelula entrada horno inferior"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -51,6 +56,11 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"699"</v>
+              <v n="TextDefault">"%s 	Contador piezas Multidiscos 1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"246"</v>
               <v n="TextDefault">"%s 	Contador piezas multidiscos 2"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -77,6 +87,11 @@ t_Entre_Piez_Ftc := DELETE(t_Entre_Piez_Ftc, LEN := 2, POS := 1);"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"1163"</v>
+              <v n="TextDefault">"ACEPTAR"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"1004"</v>
               <v n="TextDefault">"Admin"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -97,6 +112,11 @@ t_Entre_Piez_Ftc := DELETE(t_Entre_Piez_Ftc, LEN := 2, POS := 1);"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"259"</v>
+              <v n="TextDefault">"CAMBIO DE MODELO"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"856"</v>
               <v n="TextDefault">"Contador de piezas"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -109,6 +129,11 @@ t_Entre_Piez_Ftc := DELETE(t_Entre_Piez_Ftc, LEN := 2, POS := 1);"</v>
             <o>
               <v n="TextID">"137"</v>
               <v n="TextDefault">"Corte húmedo 4"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1186"</v>
+              <v n="TextDefault">"CORTE HÚMEDO 4"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -129,6 +154,11 @@ t_Entre_Piez_Ftc := DELETE(t_Entre_Piez_Ftc, LEN := 2, POS := 1);"</v>
             <o>
               <v n="TextID">"35"</v>
               <v n="TextDefault">"Diagnóstico"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1366"</v>
+              <v n="TextDefault">"Día"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -207,6 +237,11 @@ De no haberte dado tiempo a justificar el paro deberas ir a
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"740"</v>
+              <v n="TextDefault">"ESPESOR"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"639"</v>
               <v n="TextDefault">"Espesor de la tabla "</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -257,6 +292,11 @@ De no haberte dado tiempo a justificar el paro deberas ir a
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"550"</v>
+              <v n="TextDefault">"FINALIZAR"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"493"</v>
               <v n="TextDefault">"Finalizar la producción
  mientras todavía quedan 
@@ -278,8 +318,18 @@ el horno de destino.   "</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"766"</v>
+              <v n="TextDefault">"FINALIZAR MODELO"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"419"</v>
               <v n="TextDefault">"Formato"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"79"</v>
+              <v n="TextDefault">"FORMATO"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -344,8 +394,23 @@ PLC Maestro"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"907"</v>
+              <v n="TextDefault">"HISTÓRICO"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"248"</v>
+              <v n="TextDefault">"HISTÓRICO PRODUCCIÓN"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"681"</v>
               <v n="TextDefault">"Hora Fin Paro"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1204"</v>
+              <v n="TextDefault">"HORA INICIO"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -371,6 +436,26 @@ PLC Maestro"</v>
             <o>
               <v n="TextID">"1"</v>
               <v n="TextDefault">"ID"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"867"</v>
+              <v n="TextDefault">"INICIADA:"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"179"</v>
+              <v n="TextDefault">"inicio"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1088"</v>
+              <v n="TextDefault">"INICIO"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1430"</v>
+              <v n="TextDefault">"INTRODUCE LOS DATOS DE LA OF"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -410,6 +495,11 @@ Máximo 5 palabras."</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"1063"</v>
+              <v n="TextDefault">"JUSTIFICAR PARO"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"366"</v>
               <v n="TextDefault">"Línea  en paro"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -440,6 +530,16 @@ Máximo 5 palabras."</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"209"</v>
+              <v n="TextDefault">"min"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1127"</v>
+              <v n="TextDefault">"MINUTOS"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"914"</v>
               <v n="TextDefault">"Minutos Parado"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -450,6 +550,11 @@ Máximo 5 palabras."</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"1198"</v>
+              <v n="TextDefault">"MODELO"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"735"</v>
               <v n="TextDefault">"Modelo actual"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -457,6 +562,11 @@ Máximo 5 palabras."</v>
             <o>
               <v n="TextID">"12"</v>
               <v n="TextDefault">"Modelo de la tabla "</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"873"</v>
+              <v n="TextDefault">"MOTIVO 1"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -475,8 +585,18 @@ Máximo 5 palabras."</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"197"</v>
+              <v n="TextDefault">"MULTIDISCOS 1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"118"</v>
               <v n="TextDefault">"Multidiscos 2"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"989"</v>
+              <v n="TextDefault">"MULTIDISCOS 2"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -485,8 +605,18 @@ Máximo 5 palabras."</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"1014"</v>
+              <v n="TextDefault">"NINGÚN PARO ACTIVO"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"6"</v>
               <v n="TextDefault">"None"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1148"</v>
+              <v n="TextDefault">"NUEVO MODELO"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -515,6 +645,11 @@ Máximo 5 palabras."</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"86"</v>
+              <v n="TextDefault">"OF"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"1041"</v>
               <v n="TextDefault">"Operario"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -535,13 +670,78 @@ Máximo 5 palabras."</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"1042"</v>
+              <v n="TextDefault">"ORDEN FABRICACIÓN -"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"490"</v>
               <v n="TextDefault">"Paro activo"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"1136"</v>
+              <v n="TextDefault">"PARO ACTIVO"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1107"</v>
+              <v n="TextDefault">"PARO ACTUAL"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"352"</v>
+              <v n="TextDefault">"PARO TOTAL"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"117"</v>
+              <v n="TextDefault">"PARO TOTAL "</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1678"</v>
+              <v n="TextDefault">"PARO TOTAL ACUMULADO "</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"206"</v>
+              <v n="TextDefault">"PARO TOTAL DIARIO"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"566"</v>
+              <v n="TextDefault">"PAROS"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"21"</v>
+              <v n="TextDefault">"PARÁMETROS"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1311"</v>
+              <v n="TextDefault">"PIEZAS"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"329"</v>
               <v n="TextDefault">"Prensa"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"935"</v>
+              <v n="TextDefault">"PRODUCCIÓN"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1123"</v>
+              <v n="TextDefault">"PRODUCCIÓN TURNO"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"258"</v>
+              <v n="TextDefault">"PRODUCIDAS"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -565,6 +765,11 @@ Máximo 5 palabras."</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"1413"</v>
+              <v n="TextDefault">"Revisa que no haya ninguna pieza en la línea."</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"224"</v>
               <v n="TextDefault">"Ruta hacia horno"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -585,6 +790,11 @@ Máximo 5 palabras."</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"1182"</v>
+              <v n="TextDefault">"SELECCIONA LA SECCIÓN"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"225"</v>
               <v n="TextDefault">"Sensor presencia tabla "</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -597,6 +807,11 @@ Máximo 5 palabras."</v>
             <o>
               <v n="TextID">"1229"</v>
               <v n="TextDefault">"Tablas"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"547"</v>
+              <v n="TextDefault">"TIEMPO DE PARO"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -663,6 +878,28 @@ a contar como paro"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"1284"</v>
+              <v n="TextDefault">"TOTAL PIEZAS"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"997"</v>
+              <v n="TextDefault">"Turno"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"173"</v>
+              <v n="TextDefault">"TURNO ACTUAL"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"371"</v>
+              <v n="TextDefault">"Vas a finalizar la producción de este modelo de tabla.
+¿Estas seguro que no queda ninguna tabla 
+en la rodillera de entrada?"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"138"</v>
               <v n="TextDefault">"Vas a finalizar la producción de este modelo de tabla.
 ¿Estas seguro que no queda ninguna tabla 
@@ -677,6 +914,23 @@ entre la prensa y la entrada del horno?"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"198"</v>
+              <v n="TextDefault">"Vas a finalizar la producción de este modelo.
+¿Estas seguro que no queda ninguna tabla 
+en la rodillera de entrada?"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1465"</v>
+              <v n="TextDefault">"Volver"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1166"</v>
+              <v n="TextDefault">"VOLVER"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"729"</v>
               <v n="TextDefault">"Zona entrada horno"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -684,6 +938,21 @@ entre la prensa y la entrada del horno?"</v>
             <o>
               <v n="TextID">"278"</v>
               <v n="TextDefault">"Zona presa"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1577"</v>
+              <v n="TextDefault">"¿Quieres finalizar el modelo?"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"506"</v>
+              <v n="TextDefault">"¿Quieres finalizar la producción de este modelo?"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1440"</v>
+              <v n="TextDefault">"¿Quieres finalizar la producción?"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
           </l>
