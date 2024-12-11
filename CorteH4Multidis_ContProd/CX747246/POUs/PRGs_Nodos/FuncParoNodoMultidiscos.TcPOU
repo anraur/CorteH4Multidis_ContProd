@@ -79,6 +79,7 @@ Direccionamiento_variables_com();
 Linkado_Entradas();
 FunGeneMultidiscos1(s_ModeloActualTabla => sModeloActualTabla_MD1,s_ModeloEleccionTabla => sModeloEleccionTabla_MD1,s_FechaInicModeloTab=>sFechaInicModeloTab_MD1,s_FormatoActualTabla=>sFormatoActualTabla_MD1,s_FormatoEleccionTabla=>sFormatoEleccionTabla_MD1,s_EspesorActualTabla=>sEspesorActualTabla_MD1,s_EspesorEleccionTabla=>sEspesorEleccionTabla_MD1);
 FunGeneMultidiscos2(s_ModeloActualTabla => sModeloActualTabla_MD2,s_ModeloEleccionTabla => sModeloEleccionTabla_MD2,s_FechaInicModeloTab=>sFechaInicModeloTab_MD2,s_FormatoActualTabla=>sFormatoActualTabla_MD2,s_FormatoEleccionTabla=>sFormatoEleccionTabla_MD2,s_EspesorActualTabla=>sEspesorActualTabla_MD2,s_EspesorEleccionTabla=>sEspesorEleccionTabla_MD2);
+
 ]]></ST>
     </Implementation>
     <Action Name="Direccionamiento_variables_com" Id="{ccbcc35e-de58-4535-9514-7aeadbc87591}">
@@ -197,6 +198,7 @@ Consenso4:= TRUE;// main.id0Local2.7;
       <LineId Id="163" Count="0" />
       <LineId Id="281" Count="0" />
       <LineId Id="283" Count="0" />
+      <LineId Id="340" Count="0" />
       <LineId Id="236" Count="0" />
     </LineIds>
     <LineIds Name="FuncParoNodoMultidiscos.Direccionamiento_variables_com">

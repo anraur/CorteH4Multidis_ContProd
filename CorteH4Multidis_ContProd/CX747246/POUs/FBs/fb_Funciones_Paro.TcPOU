@@ -33,7 +33,6 @@ VAR RETAIN
 	t_InParo_Ftc_Entera:STRING;
 	t_InParo_Ftc_Ent_Syst:TIMESTRUCT;	 
 	H_InParo_Ftc:STRING;//Variable de la hora de inicio del paro
-	
 END_VAR
 VAR
 	i:INT;
@@ -54,6 +53,8 @@ VAR
 	fbTiempParoAcumDiario:TempParoAcumulad;
 	fbTiempParoAcumModelo:TempParoAcumulad;
 	Cont:INT;
+	Cont1:INT;
+	Cont2:INT;
 	//Comprobaciones de los retardos de envio de frase a mysql a traves del maestro 
 	TonAscendente:ton;
 	Tiempo_Sumando:TIME:=T#3S;
@@ -126,14 +127,14 @@ Reset_cnt_piez(Pul_Reset:=TRUE);
   
  //Instanciar todos los metodos que tengan que estar corriendo todo el tiempo y la dirección de sus entradas
 Reset_cnt_piez(Pul_Reset:=Pul_Reset_Cnt_Piez);
-
+// Temporizadores acumulativos del paro, Turno, Diario, Modelo nuevo
+TiempoParoAcumulado();
 //si el paro excede de el tiempo de la variable offset empieza a contar como paro y resetea marca sin paro 
 Mparo_SinParo();
 Temporizador1min(IN:=NOT Temporizador1min.Q , PT:= T#60S, Q=> , ET=> );
 // Enviar constantemente la Fecha a Hora fin de paro 
 Fin_Paro();
-// Temporizadores acumulativos del paro, Turno, Diario, Modelo nuevo
-TiempoParoAcumulado();
+
 //Estructura de variables que luego de las cuales el PLC maestro leerá toda la información del paro
 aStrFuncParEnviar();
 IF  bCompFuncEnvDataBase THEN 
@@ -327,6 +328,7 @@ END_VAR]]></Declaration>
 
 //Diario 
 IF Fecha_PLC.Fecha_Struct.wHour = 0 AND Fecha_PLC.Fecha_Struct.wMinute = 0 AND Fecha_PLC.Fecha_Struct.wSecond = 0 THEN 
+	Cont1:=Cont1+1;
 	fbTiempParoAcumDiario.ResetContador();
 END_IF
 
@@ -335,6 +337,7 @@ IF (Fecha_PLC.Fecha_Struct.wHour = 6 AND Fecha_PLC.Fecha_Struct.wMinute = 0 AND 
  OR (Fecha_PLC.Fecha_Struct.wHour = 14 AND Fecha_PLC.Fecha_Struct.wMinute = 0 AND Fecha_PLC.Fecha_Struct.wSecond = 0)
  OR (Fecha_PLC.Fecha_Struct.wHour = 22 AND Fecha_PLC.Fecha_Struct.wMinute = 0 AND Fecha_PLC.Fecha_Struct.wSecond = 0)   
 THEN 
+Cont2:=Cont2+1;
 	fbTiempParoAcumTurno.ResetContador();
 END_IF
 
@@ -353,7 +356,12 @@ fbTiempParoAcumTurno(EnableCount:=tFiltro_up_Ftc.Q,
 fbTiempParoAcumModelo(EnableCount:=tFiltro_up_Ftc.Q,
 					  ParoActivo:=MParo_Ftc,
 					  DateAndTimeActual:=Fecha_PLC.Fecha_Entera_Dt,
-					  t_Acumulado=>t_Paro_Acumulado_Modelo);]]></ST>
+					  t_Acumulado=>t_Paro_Acumulado_Modelo);
+					  
+					  
+					  
+					  
+]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="fb_Funciones_Paro">
@@ -370,11 +378,13 @@ fbTiempParoAcumModelo(EnableCount:=tFiltro_up_Ftc.Q,
       <LineId Id="333" Count="1" />
       <LineId Id="338" Count="1" />
       <LineId Id="335" Count="2" />
-      <LineId Id="109" Count="4" />
+      <LineId Id="109" Count="1" />
+      <LineId Id="468" Count="0" />
+      <LineId Id="111" Count="2" />
       <LineId Id="9" Count="0" />
       <LineId Id="144" Count="0" />
       <LineId Id="143" Count="0" />
-      <LineId Id="463" Count="1" />
+      <LineId Id="464" Count="0" />
       <LineId Id="285" Count="0" />
       <LineId Id="284" Count="0" />
       <LineId Id="389" Count="1" />
@@ -458,9 +468,12 @@ fbTiempParoAcumModelo(EnableCount:=tFiltro_up_Ftc.Q,
     <LineIds Name="fb_Funciones_Paro.TiempoParoAcumulado">
       <LineId Id="27" Count="2" />
       <LineId Id="5" Count="0" />
-      <LineId Id="8" Count="2" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="9" Count="1" />
       <LineId Id="12" Count="2" />
       <LineId Id="19" Count="2" />
+      <LineId Id="45" Count="0" />
       <LineId Id="15" Count="0" />
       <LineId Id="11" Count="0" />
       <LineId Id="23" Count="0" />
@@ -472,6 +485,8 @@ fbTiempParoAcumModelo(EnableCount:=tFiltro_up_Ftc.Q,
       <LineId Id="36" Count="0" />
       <LineId Id="41" Count="2" />
       <LineId Id="40" Count="0" />
+      <LineId Id="51" Count="3" />
+      <LineId Id="58" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

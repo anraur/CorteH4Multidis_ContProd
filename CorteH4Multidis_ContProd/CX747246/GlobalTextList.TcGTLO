@@ -675,6 +675,11 @@ Máximo 5 palabras."</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"973"</v>
+              <v n="TextDefault">"ORDEN PRODUCCIÓN"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"490"</v>
               <v n="TextDefault">"Paro activo"</v>
               <l n="LanguageTexts" t="ArrayList" />

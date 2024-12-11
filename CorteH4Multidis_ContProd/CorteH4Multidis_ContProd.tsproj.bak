@@ -116,7 +116,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{37105E22-1437-468C-9BD4-3FEDC08B4CED}" Name="CX747246" PrjFilePath="CX747246\CX747246.plcproj" TmcFilePath="CX747246\CX747246.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="CX747246\CX747246.tmc" TmcHash="{7AD55112-5D17-E8AB-D6EC-05BFC1180577}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="CX747246\CX747246.tmc" TmcHash="{59B03A44-E9D1-5AD1-4FF1-603EE4E27F67}">
 					<Name>CX747246 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1" ContextId="1" AreaNo="16">

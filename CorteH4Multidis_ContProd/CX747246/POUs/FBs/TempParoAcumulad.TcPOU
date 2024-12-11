@@ -4,32 +4,37 @@
     <Declaration><![CDATA[FUNCTION_BLOCK TempParoAcumulad
 VAR_INPUT
 	EnableCount:BOOL;
-	ParoActivo:BOOL;
-
 	DateAndTimeActual:DATE_AND_TIME;
 	P_resetCont:BOOL;
-	
+	ParoActivo:BOOL;
 END_VAR
 VAR_OUTPUT
 	t_Acumulado:TIME;
 END_VAR
 VAR
 	FlancoUp_Enable:r_trig;
-	FlancoDo_Enable:f_trig;
+	FlancoDo_ParoActivo:f_trig;
 	t_InicioSuma:TIME;
 	t_FinSuma:TIME;
+	TimeActual:TIME;
+	Conta1:INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[FlancoUp_Enable(CLK:=EnableCount);
-FlancoDo_Enable(CLK:=EnableCount);
+FlancoDo_ParoActivo(CLK:=ParoActivo);
+TimeActual:=DT_TO_TIME(DateAndTimeActual);
 
-IF FlancoUp_Enable.Q THEN 
-	InicioHoraCont();
-END_IF
-IF FlancoDo_Enable.Q AND ParoActivo THEN  
+
+IF FlancoDo_ParoActivo.Q  THEN  
+	Conta1:=Conta1+1;
 	FinHoraCont();
 END_IF
+
+IF FlancoDo_ParoActivo.Q OR (FlancoUp_Enable.Q AND NOT ParoActivo) THEN 
+	InicioHoraCont();
+END_IF
+
 IF P_resetCont THEN 
 	ResetContador();
 	P_resetCont:=FALSE;
@@ -41,7 +46,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[t_FinSuma := DT_TO_TIME(DateAndTimeActual);
+        <ST><![CDATA[t_FinSuma := TimeActual;
 t_Acumulado:= t_Acumulado + (t_FinSuma-t_InicioSuma);]]></ST>
       </Implementation>
     </Method>
@@ -51,7 +56,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[t_InicioSuma := DT_TO_TIME(DateAndTimeActual) ;
+        <ST><![CDATA[t_InicioSuma := TimeActual ;
 ]]></ST>
       </Implementation>
     </Method>
@@ -66,13 +71,18 @@ t_Acumulado:=T#0S;]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="TempParoAcumulad">
-      <LineId Id="9" Count="0" />
-      <LineId Id="27" Count="0" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="22" Count="4" />
-      <LineId Id="49" Count="1" />
-      <LineId Id="52" Count="0" />
+      <LineId Id="57" Count="2" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="23" Count="1" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="25" Count="1" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="87" Count="1" />
       <LineId Id="51" Count="0" />
     </LineIds>
     <LineIds Name="TempParoAcumulad.FinHoraCont">
